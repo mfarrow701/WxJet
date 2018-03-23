@@ -18,7 +18,7 @@ const history = createHistory({basename: process.env.PUBLIC_URL}),
     rootElement = document.getElementById('root');
 
 const middleware = applyMiddleware(
-    // reduxLogger,
+    reduxLogger,
     routerMiddleware(history),
     sagaMiddleware
 );
