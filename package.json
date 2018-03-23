@@ -2,6 +2,7 @@
   "name": "wxjet",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mfarrow701.github.io/wxjet",
   "dependencies": {
     "classnames": "^2.2.5",
     "history": "^4.7.2",
