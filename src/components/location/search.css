@@ -1,0 +1,16 @@
+.Search {
+  background: white;
+  min-height: 100%;
+  padding: 15px; }
+  .Search input[type=search] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    margin: 8px 0;
+    outline: none;
+    padding: 12px 20px;
+    width: 100%; }
+    .Search input[type=search]:focus {
+      background-color: #4CAF50; }
+    .Search input[type=search]::placeholder {
+      color: white; }

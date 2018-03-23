@@ -1,0 +1,164 @@
+.Dashboard {
+  display:               grid;
+  grid-template-columns: 100%;
+  grid-template-rows:    80px 1fr 80px 80px;
+  justify-items:         center;
+  min-height:            100%;
+  padding: 15px;
+
+  .First {
+    color:      white;
+    text-align: center;
+    width:      100%;
+  }
+
+  // Weather icon container
+  .Second {
+
+    img {
+      max-width: 400px;
+      width:     100%;
+    }
+  }
+
+  // Temperature container
+  .Third {
+    color:                 white;
+    display:               grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows:    50% 50%;
+    width:                 100%;
+
+    .Temperature {
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    h1, h2, h3, h4, h5, h6, p {
+      font-weight: 300;
+    }
+  }
+
+  // Wind container
+  .Fourth {
+    color:                 white;
+    display:               grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows:    50% 50%;
+    width:                 100%;
+
+    h1, h2, h3, h4, h5, h6, p {
+      font-weight: 300;
+    }
+  }
+}
+
+//.Dashboard {
+//  align-items:     center;
+//  display:         flex;
+//  flex:            1;
+//  flex-direction:  column;
+//  justify-content: space-around;
+//
+//  .Top {
+//    align-items:     center;
+//    display:         flex;
+//    flex-direction:  column;
+//    justify-content: center;
+//    width:           100%;
+//
+//    .City {
+//      color: white
+//    }
+//
+//    .Country {
+//      color: white
+//    }
+//  }
+//
+//  .Centre {
+//    width: 100%;
+//
+//    .Weather-Icon {
+//      color: white;
+//      width: 100%;
+//    }
+//
+//    :nth-child(2) {
+//      align-items:     center;
+//      display:         flex;
+//      flex-direction:  row;
+//      justify-content: space-around;
+//
+//      .Temperature {
+//        color:       white;
+//        font-size:   8rem;
+//        font-weight: 300;
+//      }
+//
+//      :nth-child(2) {
+//        align-items:    flex-start;
+//        display:        flex;
+//        flex-direction: column;
+//
+//        .Time {
+//          color:       white;
+//          font-weight: 300;
+//        }
+//
+//        .Flight-Rule {
+//          color:       white;
+//          font-weight: 300;
+//        }
+//      }
+//    }
+//  }
+//
+//  .Bottom {
+//    align-items:     center;
+//    display:         flex;
+//    flex-direction:  row;
+//    justify-content: space-around;
+//    width:           100%;
+//
+//    :nth-child(1) {
+//      align-items:    center;
+//      display:        flex;
+//      flex-direction: row;
+//
+//      .Weather-Icon {
+//        width: 10rem;
+//      }
+//
+//      :nth-child(1) {
+//        display:        flex;
+//        flex-direction: column;
+//
+//        .Wind-Direction {
+//          color:       white;
+//          font-weight: 300;
+//        }
+//
+//        .Wind-Speed {
+//          color:       white;
+//          font-weight: 300;
+//        }
+//      }
+//    }
+//    :nth-child(2) {
+//      align-items:    flex-start;
+//      display:        flex;
+//      flex-direction: column;
+//
+//      .Pressure-Type {
+//        color:       white;
+//        font-weight: 300;
+//      }
+//
+//      .Pressure-Value {
+//        color:       white;
+//        font-weight: 300;
+//      }
+//    }
+//  }
+//}

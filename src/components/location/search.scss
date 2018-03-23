@@ -1,0 +1,23 @@
+.Search {
+  background: white;
+  min-height: 100%;
+  padding: 15px;
+
+  input[type=search] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    margin: 8px 0;
+    outline: none;
+    padding: 12px 20px;
+    width: 100%;
+
+    &:focus {
+      background-color: #4CAF50;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}

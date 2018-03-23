@@ -1,0 +1,43 @@
+/* Define grid areas */
+.Main { grid-area: main; }
+
+.Header {
+  align-items:      center;
+  background-color: rgba(0, 0, 0, 0.8);
+  display:          flex;
+  grid-area:        header;
+  justify-content:  space-between;
+  padding: 0 15px;
+  text-align:       center;
+
+  .Icon {
+    height: 30px;
+  }
+}
+
+.Footer {
+  align-items:      center;
+  background-color: rgb(100, 100, 100);
+  color:            #FFFFFF;
+  display:          flex;
+  grid-area:        footer;
+  justify-content:  center;
+}
+
+.App {
+  background:            url("./core/assets/isometric-bg.png");
+  background-size:       cover;
+  display:               grid;
+  grid-template-areas:   "header" "main" "footer";
+  grid-template-columns: 100%;
+  grid-template-rows:    48px 1fr 48px;
+  min-height:            100vh;
+}
+
+@media screen and (max-width: 600px) {
+  .App {
+    grid-template-areas:   "header" "main" "footer";
+    grid-template-columns: 100%;
+    grid-template-rows:    48px 1fr 48px;
+  }
+}

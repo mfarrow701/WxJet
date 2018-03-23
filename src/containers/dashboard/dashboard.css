@@ -1,0 +1,33 @@
+.Dashboard {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 1fr 80px 80px;
+  justify-items: center;
+  min-height: 100%;
+  padding: 15px; }
+  .Dashboard .First {
+    color: white;
+    text-align: center;
+    width: 100%; }
+  .Dashboard .Second img {
+    max-width: 400px;
+    width: 100%; }
+  .Dashboard .Third {
+    color: white;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    width: 100%; }
+    .Dashboard .Third .Temperature {
+      grid-row-start: 1;
+      grid-row-end: 3; }
+    .Dashboard .Third h1, .Dashboard .Third h2, .Dashboard .Third h3, .Dashboard .Third h4, .Dashboard .Third h5, .Dashboard .Third h6, .Dashboard .Third p {
+      font-weight: 300; }
+  .Dashboard .Fourth {
+    color: white;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    width: 100%; }
+    .Dashboard .Fourth h1, .Dashboard .Fourth h2, .Dashboard .Fourth h3, .Dashboard .Fourth h4, .Dashboard .Fourth h5, .Dashboard .Fourth h6, .Dashboard .Fourth p {
+      font-weight: 300; }
