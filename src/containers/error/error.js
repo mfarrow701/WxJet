@@ -8,7 +8,7 @@ class Error extends Component {
     render() {
         return (
             <div className="Error">
-                <h1>{this.props.message}</h1>
+                <h1>{this.props.message || 'No message specified'}</h1>
             </div>
         )
     }

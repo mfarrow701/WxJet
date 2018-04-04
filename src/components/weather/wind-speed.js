@@ -1,7 +1,7 @@
 // @flow
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {isNullOrUndefined} from '../../services/utils.servics';
+import {isNullOrUndefined} from '../../services/utils.service';
 
 class WindSpeed extends Component {
     constructor(props) {

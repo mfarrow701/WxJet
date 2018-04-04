@@ -12,6 +12,9 @@ import SearchIcon from './core/assets/search-icon.svg';
 import './app.css';
 
 class App extends Component {
+    logoMessage = 'WxJet';
+    searchMessage = 'Search for a location';
+
     constructor() {
         super();
         this.state = {
@@ -31,16 +34,20 @@ class App extends Component {
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
                         <header className="Header">
-                            <img className="Icon" src={Logo} />
-                            { this.props.selectedLocation !== null &&
-                            <img alt="Search for a location"
-                                 className="Icon"
+                            <img alt={this.logoMessage}
+                                 className="Logo"
+                                 src={Logo}
+                                 title={this.logoMessage}/>
+                            {this.props.selectedLocation !== null &&
+                            <img alt={this.searchMessage}
+                                 className="Search-icon"
                                  onClick={this.props.clearLocation}
-                                 src={SearchIcon}/> }
+                                 src={SearchIcon}
+                                 title={this.searchMessage}/>}
                         </header>
                         <main className="Main">
-                            { this.props.selectedLocation === null ? (
-                                <Search/>
+                            {this.props.selectedLocation === null ? (
+                                <Search />
                             ) : (
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
@@ -48,7 +55,38 @@ class App extends Component {
                                 </Switch>
                             )}
                         </main>
-                        <footer className="Footer">Footer</footer>
+                        <footer className="Footer">
+                            <div className="Item">
+                                <img
+                                    alt=""
+                                    src={SearchIcon}/>
+                                <p>Home</p>
+                            </div>
+                            <div className="Item">
+                                <img
+                                    alt=""
+                                    src={SearchIcon}/>
+                                <p>Map</p>
+                            </div>
+                            <div className="Item">
+                                <img
+                                    alt=""
+                                    src={SearchIcon}/>
+                                <p>Text</p>
+                            </div>
+                            <div className="Item">
+                                <img
+                                    alt=""
+                                    src={SearchIcon}/>
+                                <p>Chart</p>
+                            </div>
+                            <div className="Item">
+                                <img
+                                    alt=""
+                                    src={SearchIcon}/>
+                                <p>More</p>
+                            </div>
+                        </footer>
                     </div>
                 </ConnectedRouter>
             )

@@ -2,6 +2,19 @@
   background: white;
   min-height: 100%;
   padding: 15px; }
+  .Search button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin: 8px 0;
+    padding: 12px 20px;
+    width: 100%; }
+    .Search button:focus {
+      background-color: #4CAF50;
+      outline: none; }
+    .Search button:hover {
+      background-color: #bad66f; }
   .Search input[type=search] {
     background-color: #4CAF50;
     border: none;
@@ -14,3 +27,22 @@
       background-color: #4CAF50; }
     .Search input[type=search]::placeholder {
       color: white; }
+    .Search input[type=search]::-webkit-search-cancel-button {
+      display: none; }
+  .Search .Item {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 5px 10px;
+    transition: background 0.2s ease; }
+    .Search .Item .Icon {
+      background: teal;
+      min-height: 50px;
+      min-width: 50px; }
+    .Search .Item .Content {
+      display: flex;
+      flex-direction: column;
+      padding-left: 10px; }
+    .Search .Item:hover {
+      background: lightgray;
+      cursor: pointer; }

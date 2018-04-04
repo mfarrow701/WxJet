@@ -1,7 +1,7 @@
 // @flow
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {isNullOrUndefined} from '../../services/utils.servics';
+import {isNullOrUndefined} from '../../services/utils.service';
 import {DateTime} from 'luxon';
 
 class Time extends Component {

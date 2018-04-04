@@ -7,7 +7,9 @@ export function fetchLocations() {
             }
             return response.json();
         })
-        .catch(error => error);
+        .catch(error => {
+            throw Error(error);
+        });
 }
 
 export function filterLocations(locations, searchText, maxResults) {

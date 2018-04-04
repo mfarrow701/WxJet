@@ -10,8 +10,16 @@
   padding: 0 15px;
   text-align:       center;
 
-  .Icon {
+  .Logo {
     height: 30px;
+  }
+
+  .Search-icon {
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -21,7 +29,26 @@
   color:            #FFFFFF;
   display:          flex;
   grid-area:        footer;
-  justify-content:  center;
+  justify-content:  space-around;
+
+  .Item {
+    align-items: center;
+    background-color: teal;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+
+    img {
+      height: 20px
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
 }
 
 .App {

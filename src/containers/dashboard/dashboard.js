@@ -1,7 +1,7 @@
 // @flow
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {DateTime} from 'luxon';
+import {DateTime, Interval} from 'luxon';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
 import Temperature from '../../components/weather/temperature';
 import Time from '../../components/time/time';
@@ -12,6 +12,7 @@ import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import Pressure from '../../components/weather/pressure';
 import './dashboard.css';
+import Loading from '../../components/loading/loading';
 
 class Dashboard extends Component {
 
@@ -22,15 +23,17 @@ class Dashboard extends Component {
     render() {
         let body;
         if (this.props.forecastPayload === null || typeof this.props.forecastPayload !== 'object') {
-            body = <h1>Loading forecast...</h1>
+            body = <Loading/>
         } else {
-            const forecast = this.props.forecastPayload.SiteRep.DV.Location.Period[0].Rep;
-            let day = forecast[0], night = forecast[1];
+            const forecast = this.props.forecastPayload.SiteRep.DV.Location.Period[0].Rep, updated = this.props.forecastPayload.SiteRep.DV.dataDate;
+            let day = forecast[0], 
+                night = forecast[1], 
+                updateMessage = "United Kingdom, " + Math.round(Interval.fromDateTimes(DateTime.fromISO(updated), DateTime.local()).length('minutes', true)) + " min ago";
             body = (
                 <Fragment>
                     <div className="First">
                         <City value={this.props.selectedLocation.name}/>
-                        <Country value="United Kingdom"/>
+                        <Country value={updateMessage}/>
                     </div>
                     <div className="Second">
                         {/*<WeatherIcon icon={BlowingSnow}/>*/}
