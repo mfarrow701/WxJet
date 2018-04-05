@@ -14,6 +14,7 @@ describe('Not found container', () => {
     });
 
     it('should render the not-found container after load', () => {
-        expect(component.contains(<h1>Not Found!</h1>)).toEqual(true);
+        expect(component).toMatchSnapshot();
+        expect(component.find('.Not-Found h1').text()).toEqual('Not Found!');
     });
 });

@@ -14,11 +14,12 @@ describe('Error container', () => {
     });
 
     it('should render the error container after load', () => {
-        expect(component.contains(<h1>No message specified</h1>)).toEqual(true);
+        expect(component).toMatchSnapshot();
+        expect(component.find('.Error h1').text()).toEqual('No message specified');
     });
 
     it('should render the error container with a custom message', () => {
         component.setProps({message: 'Page not found'});
-        expect(component.contains(<h1>Page not found</h1>)).toEqual(true);
+        expect(component.find('.Error h1').text()).toEqual('Page not found');
     });
 });

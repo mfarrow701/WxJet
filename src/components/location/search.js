@@ -19,12 +19,6 @@ class Search extends Component {
     }
 
     componentWillMount() {
-        const savedLocation = localStorage.getItem('selectedLocation');
-        if(savedLocation) {
-            console.log("Location saved!")
-        } else {
-            console.log("No location saved")
-        }
         this.props.requestLocations();
     }
 

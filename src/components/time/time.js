@@ -8,29 +8,25 @@ class Time extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: this.getTime()
+            time: DateTime.local()
         }
     }
 
     componentWillMount() {
         this.interval = setInterval(() => this.setState({
-            time: this.getTime()
+            time: DateTime.local()
         }), 1000);
     }
 
     render() {
+        const time = isNullOrUndefined(this.props.format) ? this.state.time.toLocaleString(DateTime.TIME_24_SIMPLE) : this.state.time.toLocaleString(this.props.format);
         return (
-            <h1 className="Time">{this.state.time}</h1>
+            <h1 className="Time">{time}</h1>
         )
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
-
-    getTime() {
-        const {format} = this.props;
-        return isNullOrUndefined(format) ? DateTime.local().toLocaleString(DateTime.TIME_24_SIMPLE) : DateTime.local().toLocaleString(format);
     }
 }
 

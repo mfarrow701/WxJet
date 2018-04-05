@@ -4,7 +4,7 @@ import createMemoryHistory from 'history/createMemoryHistory';
 import configureStore from 'redux-mock-store';
 import App from './app';
 
-describe.skip('App component', () => {
+describe('App component', () => {
     const initialState = {
             flightReducer: {fetching: false, payload: null, error: null},
             locationsReducer: {selectedLocation: null},
@@ -16,7 +16,7 @@ describe.skip('App component', () => {
 
     const renderWrapper = (state) => {
         store = mockStore(state);
-        component = shallow(<App history={history} store={store}/>);
+        component = shallow(<App history={history} store={store}/>).dive();
     };
 
     beforeEach(() => {

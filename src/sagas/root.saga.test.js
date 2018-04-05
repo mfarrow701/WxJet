@@ -1,12 +1,12 @@
 import React from 'react';
-import {takeLatest} from 'redux-saga/effects';
+import {all, takeLatest} from 'redux-saga/effects';
 import rootSaga from './root.saga';
 import {forecastAPIGenerator} from './forecast.saga';
 import {locationsAPIGenerator} from './locations.saga';
 import {FORECAST_API_REQUEST} from '../actions/forecast.actions';
 import {LOCATIONS_API_REQUEST} from '../actions/location.actions';
 
-describe.skip('Root saga', () => {
+describe('Root saga', () => {
     let generator;
 
     beforeEach(() => {
@@ -17,11 +17,7 @@ describe.skip('Root saga', () => {
         expect(generator).toBeDefined();
     });
 
-    it('should yield an effect from the forecast API generator', () => {
-        expect(generator.next().value).toEqual(takeLatest(FORECAST_API_REQUEST, forecastAPIGenerator))
-    });
-
-    it('should yield an effect from the locations API generator', () => {
-        expect(generator.next().value).toEqual(takeLatest(LOCATIONS_API_REQUEST, locationsAPIGenerator))
+    it.only('should yield an effect from the root saga', () => {
+        expect(generator.next().value).toEqual(all([takeLatest(LOCATIONS_API_REQUEST, locationsAPIGenerator), takeLatest(FORECAST_API_REQUEST, forecastAPIGenerator)]))
     });
 });
