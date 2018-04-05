@@ -1,13 +1,13 @@
 // @flow
+import axios from 'axios';
+
 export function fetchForecast(location) {
-    return fetch('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + location + '?res=daily&key=' + process.env.REACT_APP_DATAPOINT_API_KEY)
-        .then(response => {
-            if (!response.ok) {
-                throw Error(response.status);
-            }
-            return response.json();
-        })
-        .catch(error => {
-            throw Error(error);
-        });
+    return axios({
+        method: 'get',
+        url: 'https://api.datapoint.metoffice.gov.uk/points/v1/hourly-spot-forecast?longitude=' + location[0] + '&latitude=' + location[1]
+    }).then(response => {
+        return response.data;
+    }).catch(error => {
+        throw Error(error);
+    });
 }

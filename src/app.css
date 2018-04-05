@@ -1,6 +1,6 @@
-/* Define grid areas */
 .Main {
-  grid-area: main; }
+  grid-area: main;
+  margin: 20px; }
 
 .Header {
   align-items: center;
@@ -13,7 +13,7 @@
   .Header .Logo {
     height: 30px; }
   .Header .Search-icon {
-    height: 20px; }
+    height: 25px; }
     .Header .Search-icon:hover {
       cursor: pointer; }
 
@@ -33,22 +33,16 @@
     height: 100%;
     justify-content: space-evenly; }
     .Footer .Item img {
-      height: 20px; }
+      height: 25px; }
     .Footer .Item p {
       font-size: 1rem;
       margin: 0; }
 
 .App {
-  background: url("./core/assets/isometric-bg.png");
+  background-color: #F1F1F1;
   background-size: cover;
   display: grid;
   grid-template-areas: "header" "main" "footer";
   grid-template-columns: 100%;
   grid-template-rows: 48px 1fr 48px;
   min-height: 100vh; }
-
-@media screen and (max-width: 600px) {
-  .App {
-    grid-template-areas: "header" "main" "footer";
-    grid-template-columns: 100%;
-    grid-template-rows: 48px 1fr 48px; } }

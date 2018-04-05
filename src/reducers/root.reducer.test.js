@@ -23,6 +23,7 @@ describe('Root reducer', () => {
             'payload': null,
             'error': null,
             'fetching': false,
+            'selectedLocation': null
         });
         expect(store.getState().locationsReducer).toEqual({
             'payload': null,

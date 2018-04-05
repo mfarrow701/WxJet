@@ -17,35 +17,35 @@ describe('Locations service', () => {
                 'Content-Type': 'application/json'
             }
         };
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=' + process.env.REACT_APP_DATAPOINT_API_KEY, mockResult);
+        fetchMock.get('/static/locations.json', mockResult);
         return fetchLocations().then(response => {
             expect(response).toEqual(locations);
         });
     });
 
     it('should throw a redirection error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 300);
+        fetchMock.get('/static/locations.json', 300);
         return fetchLocations().catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 300'));
         });
     });
 
     it('should throw an not found error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 404);
+        fetchMock.get('/static/locations.json', 404);
         return fetchLocations().catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 404'));
         });
     });
 
     it('should throw an internal server error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 500);
+        fetchMock.get('/static/locations.json', 500);
         return fetchLocations().catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 500'));
         });
     });
 
     it('should filter the locations on a search query', () => {
-        const array = locations.Locations.Location;
+        const array = locations.locations;
         expect(filterLocations(array, 'Airport', 10)).toEqual([{
             'elevation': '50.0',
             'id': '14',

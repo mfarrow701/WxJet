@@ -1,7 +1,5 @@
 .Search {
-  background: white;
-  min-height: 100%;
-  padding: 15px; }
+  min-height: 100%; }
   .Search button {
     background-color: #4CAF50;
     border: none;

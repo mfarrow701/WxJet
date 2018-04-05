@@ -17,7 +17,8 @@ import Loading from '../../components/loading/loading';
 class Dashboard extends Component {
 
     componentWillMount() {
-        this.props.requestForecast(this.props.selectedLocation.id);
+        const lonLat = [this.props.selectedLocation.longitude, this.props.selectedLocation.latitude];
+        this.props.requestForecast(lonLat);
     }
 
     render() {
@@ -25,27 +26,36 @@ class Dashboard extends Component {
         if (this.props.forecastPayload === null || typeof this.props.forecastPayload !== 'object') {
             body = <Loading/>
         } else {
-            const forecast = this.props.forecastPayload.SiteRep.DV.Location.Period[0].Rep, updated = this.props.forecastPayload.SiteRep.DV.dataDate;
-            let day = forecast[0], 
-                night = forecast[1], 
-                updateMessage = "United Kingdom, " + Math.round(Interval.fromDateTimes(DateTime.fromISO(updated), DateTime.local()).length('minutes', true)) + " min ago";
+            const forecast = this.props.forecastPayload.features[0].properties.time_series[0];
+            console.log(forecast.time);
+            let updateMessage = 'United Kingdom, updated ' + Math.round(Interval.fromDateTimes(DateTime.fromISO(forecast.time), DateTime.local()).length('minutes', true)) + ' min ago';
             body = (
                 <Fragment>
-                    <div className="First">
+                    <div className="Location-Card">
                         <City value={this.props.selectedLocation.name}/>
                         <Country value={updateMessage}/>
                     </div>
-                    <div className="Second">
+                    <div className="Card Cloud-Card">
+                        <div className="Content">
+                            <h5>Weather</h5>
                         {/*<WeatherIcon icon={BlowingSnow}/>*/}
+                        </div>
                     </div>
-                    <div className="Third">
-                        <Temperature value={parseInt(day.Dm)}/>
-                        <Time format={DateTime.TIME_24_SIMPLE}/>
-                        <FlightRule/>
+                    <div className="Card Flight-Card">
+                        <div className="Content">
+                            <h5>Flight info</h5>
+                            <Temperature value={parseInt(forecast['screen_temperature'])}/>
+                            <Time format={DateTime.TIME_24_SIMPLE}/>
+                            <FlightRule ceiling={forecast['5_okta_cloud_base_height']}
+                                        visibility={forecast['visibility']}/>
+                        </div>
                     </div>
-                    <div className="Fourth">
-                        <WindDirection value={day.D}/>
-                        <WindSpeed value={parseInt(day.S)}/>
+                    <div className="Card Wind-Card">
+                        <div className="Content">
+                            <h5>Wind</h5>
+                            <WindDirection value={forecast['10m_wind_direction'].toString()}/>
+                            <WindSpeed value={parseInt(forecast['10m_wind_speed'])}/>
+                        </div>
                     </div>
                 </Fragment>
             );

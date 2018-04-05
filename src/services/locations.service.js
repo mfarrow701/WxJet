@@ -1,6 +1,6 @@
 // @flow
 export function fetchLocations() {
-    return fetch('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=' + process.env.REACT_APP_DATAPOINT_API_KEY, {})
+    return fetch('/static/locations.json', {})
         .then(response => {
             if (!response.ok) {
                 throw Error(response.status);

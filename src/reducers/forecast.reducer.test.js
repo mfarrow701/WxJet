@@ -7,23 +7,21 @@ describe('Forecast reducer', () => {
 
     it('should handle the initial state', () => {
         expect(handleForecastAPIActions(undefined, {})).toEqual({
-                'payload': null,
-                'error': null,
-                'fetching': false
-            }
-        )
+            'payload': null,
+            'error': null,
+            'fetching': false,
+            'selectedLocation': null
+        })
     });
 
     it('should handle the forecast API request action', () => {
         expect(handleForecastAPIActions([], {
             type: FORECAST_API_REQUEST,
-            payload: null
+            payload: [50, 50]
         })).toEqual({
-                'payload': null,
-                'error': null,
-                'fetching': true,
-            }
-        );
+            'fetching': true,
+            'selectedLocation': [50, 50]
+        });
     });
 
     it('should handle the forecast API success action', () => {
@@ -31,11 +29,10 @@ describe('Forecast reducer', () => {
             type: FORECAST_API_SUCCESS,
             payload: forecast
         })).toEqual({
-                'payload': forecast,
-                'error': null,
-                'fetching': false,
-            }
-        );
+            'payload': forecast,
+            'error': null,
+            'fetching': false,
+        });
     });
 
     it('should handle the forecast API failure action', () => {
@@ -43,10 +40,9 @@ describe('Forecast reducer', () => {
             type: FORECAST_API_FAILURE,
             payload: 'Fetch failed'
         })).toEqual({
-                'payload': null,
-                'error': 'Fetch failed',
-                'fetching': false,
-            }
-        );
+            'payload': null,
+            'error': 'Fetch failed',
+            'fetching': false,
+        });
     });
 });

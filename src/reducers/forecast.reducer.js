@@ -8,14 +8,15 @@ import {
 const initialState = {
     fetching: false,
     payload: null,
-    error: null
+    error: null,
+    selectedLocation: null
 };
 
 export function handleForecastAPIActions(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
         case FORECAST_API_REQUEST:
-            return {...state, fetching: true, payload: payload, error: null};
+            return {...state, fetching: true, selectedLocation: action.payload};
         case FORECAST_API_SUCCESS:
             return {...state, fetching: false, payload, error: null};
         case FORECAST_API_FAILURE:

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mfarrow701.github.io/wxjet",
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
     "lodash": "^4.17.5",

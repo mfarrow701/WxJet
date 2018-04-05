@@ -1,5 +1,7 @@
-/* Define grid areas */
-.Main { grid-area: main; }
+.Main {
+  grid-area: main;
+  margin: 20px;
+}
 
 .Header {
   align-items:      center;
@@ -15,7 +17,7 @@
   }
 
   .Search-icon {
-    height: 20px;
+    height: 25px;
 
     &:hover {
       cursor: pointer;
@@ -41,7 +43,7 @@
     justify-content: space-evenly;
 
     img {
-      height: 20px
+      height: 25px
     }
 
     p {
@@ -52,19 +54,12 @@
 }
 
 .App {
-  background:            url("./core/assets/isometric-bg.png");
+  //background:            url("./core/assets/isometric-bg.png");
+  background-color: #F1F1F1;
   background-size:       cover;
   display:               grid;
   grid-template-areas:   "header" "main" "footer";
   grid-template-columns: 100%;
   grid-template-rows:    48px 1fr 48px;
   min-height:            100vh;
-}
-
-@media screen and (max-width: 600px) {
-  .App {
-    grid-template-areas:   "header" "main" "footer";
-    grid-template-columns: 100%;
-    grid-template-rows:    48px 1fr 48px;
-  }
 }
