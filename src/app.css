@@ -26,12 +26,14 @@
   justify-content: space-around; }
   .Footer .Item {
     align-items: center;
-    background-color: teal;
+    background-color: darkturquoise;
     display: flex;
     flex: 1;
     flex-direction: column;
     height: 100%;
     justify-content: space-evenly; }
+    .Footer .Item:nth-child(1) {
+      background-color: deeppink; }
     .Footer .Item img {
       height: 25px; }
     .Footer .Item p {

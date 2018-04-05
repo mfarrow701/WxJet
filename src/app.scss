@@ -35,12 +35,16 @@
 
   .Item {
     align-items: center;
-    background-color: teal;
+    background-color: darkturquoise;
     display: flex;
     flex: 1;
     flex-direction: column;
     height: 100%;
     justify-content: space-evenly;
+
+    &:nth-child(1) {
+      background-color: deeppink;
+    }
 
     img {
       height: 25px

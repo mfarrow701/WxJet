@@ -1,31 +1,31 @@
 .Search {
   min-height: 100%;
   button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    cursor: pointer;
-    margin: 8px 0;
-    padding: 12px 20px;
-    width: 100%;
+    background-color: darkturquoise;
+    border:           none;
+    color:            white;
+    cursor:           pointer;
+    margin:           8px 0;
+    padding:          12px 20px;
+    width:            100%;
     &:focus {
-      background-color: #4CAF50;
-      outline: none;
+      background-color: teal;
+      outline:          none;
     }
     &:hover {
-      background-color: #bad66f;
+      background-color: teal;
     }
   }
   input[type=search] {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    margin: 8px 0;
-    outline: none;
-    padding: 12px 20px;
-    width: 100%;
+    background-color: darkturquoise;
+    border:           none;
+    color:            white;
+    margin:           8px 0;
+    outline:          none;
+    padding:          12px 20px;
+    width:            100%;
     &:focus {
-      background-color: #4CAF50;
+      background-color: teal;
     }
     &::placeholder {
       color: white;
@@ -35,24 +35,24 @@
     }
   }
   .Item {
-    align-items: center;
-    display: flex;
+    align-items:    center;
+    display:        flex;
     flex-direction: row;
-    padding: 5px 10px;
-    transition: background 0.2s ease;
+    padding:        5px 10px;
+    transition:     background 0.2s ease;
     .Icon {
       background: teal;
       min-height: 50px;
-      min-width: 50px;
+      min-width:  50px;
     }
     .Content {
-      display: flex;
+      display:        flex;
       flex-direction: column;
-      padding-left: 10px;
+      padding-left:   10px;
     }
     &:hover {
       background: lightgray;
-      cursor: pointer;
+      cursor:     pointer;
     }
   }
 }

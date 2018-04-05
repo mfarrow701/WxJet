@@ -1,7 +1,7 @@
 .Search {
   min-height: 100%; }
   .Search button {
-    background-color: #4CAF50;
+    background-color: darkturquoise;
     border: none;
     color: white;
     cursor: pointer;
@@ -9,12 +9,12 @@
     padding: 12px 20px;
     width: 100%; }
     .Search button:focus {
-      background-color: #4CAF50;
+      background-color: teal;
       outline: none; }
     .Search button:hover {
-      background-color: #bad66f; }
+      background-color: teal; }
   .Search input[type=search] {
-    background-color: #4CAF50;
+    background-color: darkturquoise;
     border: none;
     color: white;
     margin: 8px 0;
@@ -22,7 +22,7 @@
     padding: 12px 20px;
     width: 100%; }
     .Search input[type=search]:focus {
-      background-color: #4CAF50; }
+      background-color: teal; }
     .Search input[type=search]::placeholder {
       color: white; }
     .Search input[type=search]::-webkit-search-cancel-button {
