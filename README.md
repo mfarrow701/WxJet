@@ -7,6 +7,27 @@
 <h1 align="center"> WxJet </h1> 
 
 <div align="center">
+  <!-- Cats -->
+ <a href="">
+    <img src="https://forthebadge.com/images/badges/contains-cat-gifs.svg"
+      alt="Contains cats" title="Contains cats" />
+  </a>
+  
+  <!-- JavaScript -->
+ <a href="">
+    <img src="https://forthebadge.com/images/badges/made-with-javascript.svg"
+      alt="Made with JavaScript" title="Made with JavaScript" />
+  </a>
+  
+  <!-- With love -->
+   <a href="">
+      <img src="https://forthebadge.com/images/badges/built-with-love.svg"
+        alt="Made with love" title="Made with love" />
+    </a>
+  
+</div>
+
+<div align="center">
   <!-- Coverage -->
  <a href="">
     <img src="https://sonarcloud.io/api/badges/measure?key=wxjet&metric=coverage"
