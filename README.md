@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" target="_blank">
-    <img alt="WxJet" title="WxJet" src="" width="180">
+    <img alt="WxJet" title="WxJet" src="https://github.com/mfarrow701/wxjet/blob/master/logo.png" width="180">
   </a>
 </p>
 
