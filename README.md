@@ -6,6 +6,38 @@
 
 <h1 align="center"> WxJet </h1> 
 
+<div align="center">
+  <!-- Coverage -->
+ <a href="">
+    <img src="https://sonarcloud.io/api/badges/measure?key=wxjet&metric=coverage"
+      alt="Code coverage" title="Code coverage" />
+  </a>
+  
+  <!-- Complexity -->
+   <a href="">
+      <img src="https://sonarcloud.io/api/badges/measure?key=wxjet&metric=function_complexity"
+        alt="Code complexity" title="Code complexity" />
+    </a>
+      
+  <!-- Quality -->
+   <a href="">
+      <img src="https://sonarcloud.io/api/badges/gate?key=wxjet"
+        alt="Code quality" title="Code quality" />
+    </a> 
+              
+  <!-- Bugs -->
+   <a href="">
+      <img src="https://sonarcloud.io/api/badges/measure?key=wxjet&metric=bugs"
+        alt="Code bugs" title="Code bugs" />
+    </a> 
+                  
+  <!-- Vulnerabilities -->
+   <a href="">
+      <img src="https://sonarcloud.io/api/badges/measure?key=wxjet&metric=vulnerabilities"
+        alt="Code vulnerabilities" title="Code vulnerabilities" />
+    </a> 
+</div>
+
 <p align="center">
    <strong> A redux-saga demonstrator application bootstrapped using create-react-app!</strong>
 </p>
