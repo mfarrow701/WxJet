@@ -4,11 +4,10 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {routerMiddleware} from 'react-router-redux';
 import {applyMiddleware, createStore} from 'redux';
-import reduxLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
-import rootReducer from './reducers/root.reducer'
+import rootReducer from './reducers/rootReducer'
 import rootSaga from './sagas/root.saga';
 import App from './app';
 import './index.css';

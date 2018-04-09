@@ -7,7 +7,7 @@ import {
     forecastAPIFailure,
     forecastAPIRequest
 } from '../actions/forecast.actions';
-import {locationID} from '../core/mocks/location';
+import {selectedLocation} from '../core/mocks/location';
 
 describe('Forecast saga', () => {
 
@@ -15,7 +15,7 @@ describe('Forecast saga', () => {
     let generator;
 
     beforeEach(() => {
-        generator = forecastAPIGenerator(forecastAPIRequest(locationID));
+        generator = forecastAPIGenerator(forecastAPIRequest(selectedLocation));
     });
 
     it('should have a defined generator', () => {
@@ -23,12 +23,12 @@ describe('Forecast saga', () => {
     });
 
     it('should yield an effect from a successful API call', () => {
-        expect(generator.next().value).toEqual(call(forecastService.fetchForecast, locationID));
+        expect(generator.next().value).toEqual(call(forecastService.fetchForecast, selectedLocation));
         expect(generator.next().value).toEqual(put(forecastAPISuccess()));
     });
 
     it('should yield an effect from an un-successful API call', () => {
-        expect(generator.next().value).toEqual(call(forecastService.fetchForecast, locationID));
+        expect(generator.next().value).toEqual(call(forecastService.fetchForecast, selectedLocation));
         expect(generator.throw().value).toEqual(put(forecastAPIFailure()));
     });
 });

@@ -7,15 +7,14 @@ class WindSpeed extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isKnots: true
+            isMps: true
         }
     }
 
     render() {
-        const {value} = this.props;
         return (
             <h3 className="Wind-Speed"
-                onClick={this.onClick}>{this.convertValue(value)}</h3>
+                onClick={this.onClick}>{this.convertValue(this.props.value)}</h3>
         )
     }
 
@@ -29,7 +28,7 @@ class WindSpeed extends Component {
         if (isNullOrUndefined(value)) {
             return '--kts'
         } else {
-            return this.state.isKnots ? value.toFixed(0).toString() + 'kts' : (value * 0.51444).toFixed(0).toString() + 'm/s';
+            return this.state.isMps ? value.toFixed(0).toString() + 'm/s' : (value * 1.94).toFixed(0).toString() + 'kts';
         }
     }
 
@@ -38,7 +37,7 @@ class WindSpeed extends Component {
      */
     onClick = () => {
         this.setState({
-            isKnots: !this.state.isKnots
+            isMps: !this.state.isMps
         });
     };
 }

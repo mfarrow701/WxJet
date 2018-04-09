@@ -12,6 +12,10 @@ class Pressure extends Component {
             </Fragment>
         )
     }
+
+    convertValue(value) {
+
+    }
 }
 
 Pressure.propTypes = {

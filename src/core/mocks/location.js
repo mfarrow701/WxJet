@@ -1,4 +1,3 @@
-export const locationID = '44830c39-9451-4c44-a950-850a9bfdd93c';
 export const locations = {
     'locations': [
         {
@@ -29,6 +28,15 @@ export const locations = {
             'unitaryAuthArea': 'Shetland Islands'
         }
     ]
+};
+export const selectedLocation = {
+    elevation: "119.0",
+    id: "352816",
+    latitude: "50.4407",
+    longitude: "-5.0028",
+    name: "Newquay Cornwall Airport",
+    region: "sw",
+    unitaryAuthArea: "Cornwall"
 };
 export const successful = {};
 export const failure = 404;

@@ -2,7 +2,7 @@ import React from 'react';
 import fetchMock from 'fetch-mock';
 import {fetchForecast} from './forecast.service';
 import {forecast} from '../core/mocks/forecast';
-import {locationID} from '../core/mocks/location';
+import {selectedLocation} from '../core/mocks/location';
 
 describe('Forecast service', () => {
 
@@ -18,29 +18,29 @@ describe('Forecast service', () => {
                 'Content-Type': 'application/json'
             }
         };
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + locationID + '?res=daily&key=' + process.env.REACT_APP_DATAPOINT_API_KEY, mockResult);
-        return fetchForecast(locationID).then(response => {
+        fetchMock.get('https://api.datapoint.metoffice.gov.uk/points/v1/hourly-spot-forecast?longitude='+selectedLocation.longitude+'&latitude='+selectedLocation.latitude, mockResult);
+        return fetchForecast([selectedLocation.longitude, selectedLocation.latitude]).then(response => {
             expect(response).toEqual(forecast);
         });
     });
 
     it('should throw a redirection error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + locationID + '?res=daily&key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 300);
-        return fetchForecast(locationID).catch(error => {
+        fetchMock.get('https://api.datapoint.metoffice.gov.uk/points/v1/hourly-spot-forecast?longitude='+selectedLocation.longitude+'&latitude='+selectedLocation.latitude, 300);
+        return fetchForecast([selectedLocation.longitude, selectedLocation.latitude]).catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 300'));
         });
     });
 
     it('should throw an not found error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + locationID + '?res=daily&key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 404);
-        return fetchForecast(locationID).catch(error => {
+        fetchMock.get('https://api.datapoint.metoffice.gov.uk/points/v1/hourly-spot-forecast?longitude='+selectedLocation.longitude+'&latitude='+selectedLocation.latitude, 404);
+        return fetchForecast([selectedLocation.longitude, selectedLocation.latitude]).catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 404'));
         });
     });
 
     it('should throw an internal server error from the API on an unsuccessful request', () => {
-        fetchMock.get('//datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/' + locationID + '?res=daily&key=' + process.env.REACT_APP_DATAPOINT_API_KEY, 500);
-        return fetchForecast(locationID).catch(error => {
+        fetchMock.get('https://api.datapoint.metoffice.gov.uk/points/v1/hourly-spot-forecast?longitude='+selectedLocation.longitude+'&latitude='+selectedLocation.latitude, 500);
+        return fetchForecast([selectedLocation.longitude, selectedLocation.latitude]).catch(error => {
             expect(error.toString()).toEqual(expect.stringContaining('Error: 500'));
         });
     });

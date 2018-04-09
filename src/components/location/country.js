@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 class Country extends Component {
 
     render() {
-        const {value} = this.props;
         return (
-            <p className="Country">{value}</p>
+            <p className="Country">{this.props.value || 'No country specified'}</p>
         )
     }
 }

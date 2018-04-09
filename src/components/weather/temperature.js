@@ -12,10 +12,9 @@ class Temperature extends Component {
     }
 
     render() {
-        const {value} = this.props;
         return (
             <h1 className="Temperature"
-                onClick={this.onClick}>{this.convertValue(value)}</h1>
+                onClick={this.onClick}>{this.convertValue(this.props.value)}</h1>
         )
     }
 

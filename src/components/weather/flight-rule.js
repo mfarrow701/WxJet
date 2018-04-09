@@ -3,28 +3,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class FlightRule extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isVFR: true
-        }
-    }
-
-    componentWillMount() {
-        this.interval = setInterval(() => this.setState({
-            isVFR: !this.state.isVFR
-        }), 5000)
-    }
 
     render() {
         const flightRule = this.calculateFlightRule(this.props.ceiling, this.props.visibility);
         return (
             <h3 className="Flight-Rule" style={{color: flightRule.colour}}>{flightRule.state}</h3>
         )
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
     }
 
     calculateFlightRule(ceiling, visibility) {

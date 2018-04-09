@@ -9,7 +9,7 @@ import {
     locationAPISuccess,
     locationSelected
 } from './location.actions';
-import {locationID, successful, failure} from '../core/mocks/location';
+import {selectedLocation, successful, failure} from '../core/mocks/location';
 
 describe('Location actions', () => {
 
@@ -43,8 +43,8 @@ describe('Location actions', () => {
     });
 
     it('should have a defined selected action', () => {
-        expect(locationSelected(locationID)).toEqual({
-            'payload': locationID,
+        expect(locationSelected(selectedLocation)).toEqual({
+            'payload': selectedLocation,
             'type': LOCATION_SELECTED,
         })
     })

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStore} from 'redux';
 import {LOCATION_CHANGE} from 'react-router-redux';
-import rootReducer from './root.reducer';
+import rootReducer from './rootReducer';
 import {
     FORECAST_API_SUCCESS,
 } from '../actions/forecast.actions';
@@ -57,6 +57,7 @@ describe('Root reducer', () => {
             'payload': forecast,
             'error': null,
             'fetching': false,
+            'selectedLocation': null
         });
     });
 

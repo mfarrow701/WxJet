@@ -6,7 +6,7 @@ import {
     LOCATIONS_API_REQUEST,
     LOCATION_SELECTED
 } from '../actions/location.actions';
-import {locationID, locations} from '../core/mocks/location';
+import {selectedLocation, locations} from '../core/mocks/location';
 
 describe('Locations reducer', () => {
 
@@ -59,9 +59,9 @@ describe('Locations reducer', () => {
     it('should handle the locations selected action', () => {
         expect(handleLocationsAPIActions([], {
             type: LOCATION_SELECTED,
-            payload: locationID
+            payload: selectedLocation
         })).toEqual({
-                'selectedLocation': locationID
+                'selectedLocation': selectedLocation
             }
         );
     });

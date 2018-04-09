@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 class City extends Component {
 
     render() {
-        const {value} = this.props;
         return (
-            <h3 className="City">{value}</h3>
+            <h3 className="City">{this.props.value || 'No city specified'}</h3>
         )
     }
 }

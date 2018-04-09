@@ -8,15 +8,15 @@ class WindDirection extends Component {
     render() {
         const {value} = this.props;
         return (
-            <h1 className="Wind-Direction">{this.convertValue(value) + '°'}</h1>
+            <h1 className="Wind-Direction">{this.convertValue(value)}</h1>
         )
     }
 
     convertValue(value) {
         if (isNullOrUndefined(value)) {
-            return '--'
+            return '--°'
         } else {
-            return value;
+            return value + '°';
         }
     }
 }

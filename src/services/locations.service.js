@@ -1,6 +1,6 @@
 // @flow
 export function fetchLocations() {
-    return fetch('/static/locations.json', {})
+    return fetch(process.env.PUBLIC_URL+'/static/locations.json', {})
         .then(response => {
             if (!response.ok) {
                 throw Error(response.status);
