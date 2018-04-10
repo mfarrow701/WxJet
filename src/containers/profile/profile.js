@@ -13,11 +13,9 @@ class Profile extends Component {
                     <h3>Matthew Farrow</h3>
                     <p><em>Web Application Developer</em></p>
                 </div>
-                <div>
-                    <p><strong>First name:</strong> Matthew</p>
-                    <p><strong>Last name:</strong> Farrow</p>
-                    <p><strong>Email:</strong> N/A</p>
-                    <p><strong>Home location:</strong> {this.props.selectedLocation.name}</p>
+                <div className="Details">
+                    <p className="Email"><strong>Email:</strong> N/A</p>
+                    <p className="Favourite-Location"><strong>Home location:</strong> {this.props.selectedLocation.name}</p>
                 </div>
             </div>
         )
