@@ -16,7 +16,7 @@ class Profile extends Component {
                 <div>
                     <p><strong>First name:</strong> Matthew</p>
                     <p><strong>Last name:</strong> Farrow</p>
-                    <p><strong>Email:</strong> matthew.farrow@metoffice.gov.uk</p>
+                    <p><strong>Email:</strong> N/A</p>
                     <p><strong>Home location:</strong> {this.props.selectedLocation.name}</p>
                 </div>
             </div>
