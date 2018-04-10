@@ -1,0 +1,36 @@
+.Profile {
+  display:               grid;
+  grid-row-gap:          20px;
+  grid-template-columns: 100%;
+  grid-template-rows:    min-content;
+  justify-items:         center;
+
+  .Avatar {
+    img {
+      border-radius: 50%;
+      width:         200px
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Profile {
+    grid-column-gap:       20px;
+    grid-template-columns: 1fr 1fr;
+
+    .Avatar {
+      grid-column: span 2;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .Profile {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .Avatar {
+      grid-column: span 3;
+    }
+  }
+}
+

@@ -9,6 +9,10 @@
 # Testing
 /coverage
 
+# Development
+/src/*.css
+/src/**/*.css
+
 # Production
 /build
 

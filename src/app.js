@@ -5,12 +5,13 @@ import {ConnectedRouter} from 'react-router-redux';
 import {connect} from 'react-redux';
 import {locationSelected} from './actions/location.actions';
 import Dashboard from './containers/dashboard/dashboard';
+import Profile from './containers/profile/profile';
+import Settings from './containers/settings/settings';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 import Logo from './core/assets/logo.svg';
 import ChartIcon from './core/assets/chart-icon.svg';
 import HomeIcon from './core/assets/home-icon.svg';
-import MapIcon from './core/assets/map-icon.svg';
 import MoreIcon from './core/assets/more-icon.svg';
 import ProfileIcon from './core/assets/profile-icon.svg';
 import SearchIcon from './core/assets/search-icon.svg';
@@ -63,41 +64,37 @@ class App extends Component {
                             ) : (
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
+                                    <Route path="/profile" component={Profile}/>
+                                    <Route path="/settings" component={Settings}/>
                                     <Route component={NotFound}/>
                                 </Switch>
                             )}
                         </main>
                         <footer className="Footer">
-                            <div className="Item">
+                            <button className="Item" onClick={() => { this.props.history.push('/') }}>
                                 <img
                                     alt="Home"
                                     src={HomeIcon}
                                     title="Home"/>
-                            </div>
-                            <div className="Item">
-                                <img
-                                    alt="Map"
-                                    src={MapIcon}
-                                    title="Map"/>
-                            </div>
-                            <div className="Item">
+                            </button>
+                            <button className="Item" onClick={() => { this.props.history.push('/profile') }}>
                                 <img
                                     alt="Profile"
                                     src={ProfileIcon}
                                     title="Profile"/>
-                            </div>
-                            <div className="Item">
+                            </button>
+                            <button className="Item" onClick={() => { this.props.history.push('/charts') }}>
                                 <img
                                     alt="Charts"
                                     src={ChartIcon}
                                     title="Charts"/>
-                            </div>
-                            <div className="Item">
+                            </button>
+                            <button className="Item" onClick={() => { this.props.history.push('/settings') }}>
                                 <img
-                                    alt="More"
+                                    alt="Settings"
                                     src={MoreIcon}
-                                    title="More"/>
-                            </div>
+                                    title="Settings"/>
+                            </button>
                         </footer>
                     </div>
                 </ConnectedRouter>

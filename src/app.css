@@ -19,21 +19,26 @@
 
 .Footer {
   align-items: center;
-  background-color: #646464;
+  background-color: transparent;
   color: #FFFFFF;
   display: flex;
   grid-area: footer;
   justify-content: space-around; }
   .Footer .Item {
     align-items: center;
-    background-color: darkturquoise;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
     display: flex;
     flex: 1;
     flex-direction: column;
     height: 100%;
-    justify-content: space-evenly; }
-    .Footer .Item:nth-child(1) {
-      background-color: deeppink; }
+    justify-content: space-evenly;
+    transition: background-color 500ms linear; }
+    .Footer .Item:hover {
+      background-color: #FFAD17; }
+    .Footer .Item:focus {
+      background-color: #4D4D4D;
+      outline: none; }
     .Footer .Item img {
       height: 25px; }
     .Footer .Item p {
