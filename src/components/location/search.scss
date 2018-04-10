@@ -1,5 +1,6 @@
 .Search {
   min-height: 100%;
+
   button {
     background-color: darkturquoise;
     border:           none;
@@ -8,50 +9,60 @@
     margin:           8px 0;
     padding:          12px 20px;
     width:            100%;
+
     &:focus {
       background-color: teal;
       outline:          none;
     }
+
     &:hover {
       background-color: teal;
     }
   }
+
   input[type=search] {
-    background-color: darkturquoise;
-    border:           none;
-    color:            white;
-    margin:           8px 0;
-    outline:          none;
-    padding:          12px 20px;
-    width:            100%;
+    background-color:   rgba(0, 0, 0, 0.8);
+    border:             none;
+    color:              white;
+    margin:             8px 0;
+    outline:            none;
+    padding:            12px 20px;
+    transition:         background-color 0.5s linear;
+    width:              100%;
     -webkit-appearance: none;
 
     &:focus {
-      background-color: teal;
+      background-color: #FFAD17;
     }
+
     &::placeholder {
       color: white;
     }
+
     &::-webkit-search-cancel-button {
       display: none;
     }
   }
+
   .Item {
     align-items:    center;
     display:        flex;
     flex-direction: row;
     padding:        5px 10px;
     transition:     background 0.2s ease;
+
     .Icon {
       background: teal;
       min-height: 50px;
       min-width:  50px;
     }
+
     .Content {
       display:        flex;
       flex-direction: column;
       padding-left:   10px;
     }
+
     &:hover {
       background: lightgray;
       cursor:     pointer;

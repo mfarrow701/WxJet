@@ -49,6 +49,7 @@ class App extends Component {
                         <header className="Header">
                             <img alt={this.logoMessage}
                                  className="Logo"
+                                 onClick={() => { this.props.history.push('/') }}
                                  src={Logo}
                                  title={this.logoMessage}/>
                             {this.props.selectedLocation !== null &&

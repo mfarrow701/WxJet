@@ -43,14 +43,14 @@
     height:           100%;
     justify-content:  space-evenly;
     transition:       background-color 500ms linear;
-    width: 100%;
+    width:            100%;
 
     &:hover {
-      background-color: #FFAD17;
+      background-color: #4D4D4D;
     }
 
     &:focus {
-      background-color: #4D4D4D;
+      background-color: #FFAD17;
       outline:          none;
     }
 

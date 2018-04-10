@@ -36,9 +36,9 @@
     transition: background-color 500ms linear;
     width: 100%; }
     .Footer .Item:hover {
-      background-color: #FFAD17; }
+      background-color: #4D4D4D; }
     .Footer .Item:focus {
-      background-color: #4D4D4D;
+      background-color: #FFAD17;
       outline: none; }
     .Footer .Item img {
       height: 25px; }

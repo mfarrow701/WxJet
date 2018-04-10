@@ -910,15 +910,6 @@
       "unitaryAuthArea": "North East Lincolnshire"
     },
     {
-      "elevation": "42.0",
-      "id": "322581",
-      "latitude": "52.92",
-      "longitude": "-1.08",
-      "name": "Nottingham",
-      "region": "em",
-      "unitaryAuthArea": "Nottinghamshire"
-    },
-    {
       "elevation": "277.0",
       "id": "322192",
       "latitude": "56.67",
@@ -2708,15 +2699,6 @@
       "name": "Coalisland",
       "region": "ni",
       "unitaryAuthArea": "County Tyrone"
-    },
-    {
-      "elevation": "100.0",
-      "id": "350980",
-      "latitude": "52.4993",
-      "longitude": "-1.705",
-      "name": "Coleshill",
-      "region": "wm",
-      "unitaryAuthArea": "Warwickshire"
     },
     {
       "elevation": "85.0",
@@ -9097,16 +9079,6 @@
       "name": "Sheffield Airport",
       "region": "yh",
       "unitaryAuthArea": "South Yorkshire"
-    },
-    {
-      "elevation": "228.0",
-      "id": "3063",
-      "latitude": "57.206",
-      "longitude": "-3.827",
-      "name": "Aviemore",
-      "nationalPark": "Cairngorms National Park",
-      "region": "he",
-      "unitaryAuthArea": "Highland"
     },
     {
       "elevation": "9.0",
@@ -16905,15 +16877,6 @@
       "unitaryAuthArea": "Devon"
     },
     {
-      "elevation": "125.0",
-      "id": "354362",
-      "latitude": "54.749",
-      "longitude": "-1.36",
-      "name": "Shotton",
-      "region": "ne",
-      "unitaryAuthArea": "Durham"
-    },
-    {
       "elevation": "55.0",
       "id": "354368",
       "latitude": "55.78215",
@@ -18222,16 +18185,6 @@
       "unitaryAuthArea": "Aberdeen"
     },
     {
-      "elevation": "17.0",
-      "id": "3105",
-      "latitude": "55.681",
-      "longitude": "-6.256",
-      "obsSource": "LNDSYN",
-      "name": "Islay Airport",
-      "region": "st",
-      "unitaryAuthArea": "Argyll and Bute"
-    },
-    {
       "elevation": "12.0",
       "id": "3010",
       "latitude": "59.083",
@@ -18585,24 +18538,6 @@
       "name": "Guildford",
       "region": "se",
       "unitaryAuthArea": "Surrey"
-    },
-    {
-      "elevation": "91.0",
-      "id": "310089",
-      "latitude": "51.758",
-      "longitude": "-0.4687",
-      "name": "Hemel Hempstead",
-      "region": "ee",
-      "unitaryAuthArea": "Hertfordshire"
-    },
-    {
-      "elevation": "81.0",
-      "id": "310090",
-      "latitude": "51.631",
-      "longitude": "-0.7479",
-      "name": "High Wycombe",
-      "region": "se",
-      "unitaryAuthArea": "Buckinghamshire"
     },
     {
       "elevation": "42.0",
@@ -22955,15 +22890,6 @@
       "unitaryAuthArea": "Suffolk"
     },
     {
-      "elevation": "24.0",
-      "id": "350289",
-      "latitude": "52.1339",
-      "longitude": "-0.4614",
-      "name": "Bedford",
-      "region": "ee",
-      "unitaryAuthArea": "Bedford"
-    },
-    {
       "elevation": "77.0",
       "id": "351751",
       "latitude": "53.3499",
@@ -25985,15 +25911,6 @@
       "unitaryAuthArea": "South Gloucestershire"
     },
     {
-      "elevation": "764.0",
-      "id": "371629",
-      "latitude": "56.9545",
-      "longitude": "-6.3095",
-      "name": "Sgurr Nan Gillean",
-      "region": "he",
-      "unitaryAuthArea": "Highland"
-    },
-    {
       "elevation": "483.0",
       "id": "371630",
       "latitude": "50.4688",
@@ -26237,15 +26154,6 @@
       "unitaryAuthArea": "Scottish Borders"
     },
     {
-      "elevation": "0.0",
-      "id": "371381",
-      "latitude": "51.4878",
-      "longitude": "-3.1873",
-      "name": "Cardiff",
-      "region": "wl",
-      "unitaryAuthArea": "Cardiff"
-    },
-    {
       "elevation": "792.0",
       "id": "371382",
       "latitude": "57.1905",
@@ -26415,15 +26323,6 @@
       "unitaryAuthArea": "North Ayrshire"
     },
     {
-      "elevation": "46.0",
-      "id": "371457",
-      "latitude": "51.2965",
-      "longitude": "0.8796",
-      "name": "Faversham",
-      "region": "se",
-      "unitaryAuthArea": "Kent"
-    },
-    {
       "elevation": "544.0",
       "id": "371458",
       "latitude": "53.4252",
@@ -26572,16 +26471,6 @@
       "id": "371497",
       "latitude": "54.3867",
       "longitude": "-3.2036",
-      "name": "Harter Fell",
-      "nationalPark": "Lake District National Park",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
-    },
-    {
-      "elevation": "764.0",
-      "id": "371498",
-      "latitude": "54.4722",
-      "longitude": "-2.8349",
       "name": "Harter Fell",
       "nationalPark": "Lake District National Park",
       "region": "nw",
@@ -27389,16 +27278,6 @@
       "unitaryAuthArea": "Aberdeenshire"
     },
     {
-      "elevation": "10.0",
-      "id": "3111",
-      "latitude": "55.441",
-      "longitude": "-5.699",
-      "obsSource": "LNDSYN",
-      "name": "Campbeltown Airport",
-      "region": "st",
-      "unitaryAuthArea": "Argyll and Bute"
-    },
-    {
       "elevation": "7.0",
       "id": "3006",
       "latitude": "60.447",
@@ -27443,15 +27322,6 @@
       "name": "Cassley",
       "region": "he",
       "unitaryAuthArea": "Highland"
-    },
-    {
-      "elevation": "87.0",
-      "id": "3808",
-      "latitude": "50.218",
-      "longitude": "-5.33",
-      "name": "Camborne",
-      "region": "sw",
-      "unitaryAuthArea": "Cornwall"
     },
     {
       "elevation": "16.0",
@@ -27499,15 +27369,6 @@
       "unitaryAuthArea": "County Fermanagh"
     },
     {
-      "elevation": "49.0",
-      "id": "3904",
-      "latitude": "54.707",
-      "longitude": "-7.577",
-      "name": "Castlederg",
-      "region": "ni",
-      "unitaryAuthArea": "County Tyrone"
-    },
-    {
       "elevation": "8.0",
       "id": "3914",
       "latitude": "55.208",
@@ -27523,15 +27384,6 @@
       "longitude": "-8.25",
       "obsSource": "LNDSYN",
       "name": "Roches Point"
-    },
-    {
-      "elevation": "102.0",
-      "id": "99049",
-      "latitude": "54.767",
-      "longitude": "-1.583",
-      "name": "Durham",
-      "region": "ne",
-      "unitaryAuthArea": "Durham"
     },
     {
       "elevation": "115.0",
@@ -27650,25 +27502,6 @@
       "nationalPark": "Snowdonia National Park",
       "region": "wl",
       "unitaryAuthArea": "Gwynedd"
-    },
-    {
-      "elevation": "9.0",
-      "id": "3316",
-      "latitude": "53.497",
-      "longitude": "-3.056",
-      "obsSource": "LNDSYN",
-      "name": "Crosby",
-      "region": "nw",
-      "unitaryAuthArea": "Merseyside"
-    },
-    {
-      "elevation": "298.0",
-      "id": "3330",
-      "latitude": "53.12755",
-      "longitude": "-1.97993",
-      "name": "Leek",
-      "region": "wm",
-      "unitaryAuthArea": "Staffordshire"
     },
     {
       "elevation": "88.0",
@@ -27804,15 +27637,6 @@
       "name": "Banbury",
       "region": "se",
       "unitaryAuthArea": "Oxfordshire"
-    },
-    {
-      "elevation": "19.0",
-      "id": "320305",
-      "latitude": "52.1096",
-      "longitude": "-2.0734",
-      "name": "Pershore",
-      "region": "wm",
-      "unitaryAuthArea": "Worcestershire"
     },
     {
       "elevation": "18.0",
@@ -27966,15 +27790,6 @@
       "name": "Preston",
       "region": "nw",
       "unitaryAuthArea": "Lancashire"
-    },
-    {
-      "elevation": "132.0",
-      "id": "310126",
-      "latitude": "53.6139",
-      "longitude": "-2.1604",
-      "name": "Rochdale",
-      "region": "nw",
-      "unitaryAuthArea": "Greater Manchester"
     },
     {
       "elevation": "34.0",
@@ -28471,15 +28286,6 @@
       "name": "Brough (Cumbria)",
       "region": "nw",
       "unitaryAuthArea": "Cumbria"
-    },
-    {
-      "elevation": "200.0",
-      "id": "324261",
-      "latitude": "55.2692",
-      "longitude": "-3.1773",
-      "name": "Eskdalemuir",
-      "region": "dg",
-      "unitaryAuthArea": "Dumfries and Galloway"
     },
     {
       "elevation": "60.0",
@@ -29696,15 +29502,6 @@
       "name": "Ludlow Youth Hostel",
       "region": "wm",
       "unitaryAuthArea": "Shropshire"
-    },
-    {
-      "elevation": "3.0",
-      "id": "352468",
-      "latitude": "50.9507",
-      "longitude": "0.909",
-      "name": "Lydd",
-      "region": "se",
-      "unitaryAuthArea": "Kent"
     },
     {
       "elevation": "21.0",
@@ -31384,15 +31181,6 @@
       "unitaryAuthArea": "Oxfordshire"
     },
     {
-      "elevation": "70.0",
-      "id": "351442",
-      "latitude": "51.2863",
-      "longitude": "-0.7524",
-      "name": "Farnborough",
-      "region": "se",
-      "unitaryAuthArea": "Hampshire"
-    },
-    {
       "elevation": "47.0",
       "id": "351444",
       "latitude": "53.7869",
@@ -31743,15 +31531,6 @@
       "name": "Fulbourn",
       "region": "ee",
       "unitaryAuthArea": "Cambridgeshire"
-    },
-    {
-      "elevation": "1.0",
-      "id": "351525",
-      "latitude": "51.4789",
-      "longitude": "-0.1995",
-      "name": "Fulham",
-      "region": "se",
-      "unitaryAuthArea": "Greater London"
     },
     {
       "elevation": "1.0",
@@ -34391,15 +34170,6 @@
       "unitaryAuthArea": "Hampshire"
     },
     {
-      "elevation": "6.0",
-      "id": "350534",
-      "latitude": "50.7814",
-      "longitude": "-1.8285",
-      "name": "Bournemouth Airport",
-      "region": "sw",
-      "unitaryAuthArea": "Dorset"
-    },
-    {
       "elevation": "38.0",
       "id": "350537",
       "latitude": "50.593",
@@ -35204,15 +34974,6 @@
       "unitaryAuthArea": "Leicestershire"
     },
     {
-      "elevation": "14.0",
-      "id": "353719",
-      "latitude": "58.2111",
-      "longitude": "-6.3842",
-      "name": "Stornoway",
-      "region": "he",
-      "unitaryAuthArea": "Na h-Eileanan Siar"
-    },
-    {
       "elevation": "78.0",
       "id": "353722",
       "latitude": "52.4566",
@@ -35919,15 +35680,6 @@
       "unitaryAuthArea": "County Londonderry"
     },
     {
-      "elevation": "708.0",
-      "id": "371687",
-      "latitude": "54.3841",
-      "longitude": "-2.3727",
-      "name": "Wild Boar Fell",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
-    },
-    {
       "elevation": "947.0",
       "id": "371693",
       "latitude": "53.1154",
@@ -36094,16 +35846,6 @@
       "latitude": "54.5916",
       "longitude": "-3.2407",
       "name": "Grisedale Pike",
-      "nationalPark": "Lake District National Park",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
-    },
-    {
-      "elevation": "802.0",
-      "id": "371508",
-      "latitude": "54.5132",
-      "longitude": "-2.8524",
-      "name": "High Raise",
       "nationalPark": "Lake District National Park",
       "region": "nw",
       "unitaryAuthArea": "Cumbria"
@@ -36435,25 +36177,6 @@
       "unitaryAuthArea": "Kent"
     },
     {
-      "elevation": "54.0",
-      "id": "3797",
-      "latitude": "51.3422",
-      "longitude": "1.3461",
-      "obsSource": "LNDSYN",
-      "name": "Manston",
-      "region": "se",
-      "unitaryAuthArea": "Kent"
-    },
-    {
-      "elevation": "103.0",
-      "id": "3817",
-      "latitude": "50.438",
-      "longitude": "-4.999",
-      "name": "Newquay Cornwall Airport",
-      "region": "sw",
-      "unitaryAuthArea": "Cornwall"
-    },
-    {
       "elevation": "50.0",
       "id": "3827",
       "latitude": "50.354",
@@ -36598,15 +36321,6 @@
       "name": "Holyhead",
       "region": "wl",
       "unitaryAuthArea": "Isle of Anglesey"
-    },
-    {
-      "elevation": "33.0",
-      "id": "310218",
-      "latitude": "50.1183",
-      "longitude": "-5.5366",
-      "name": "Penzance",
-      "region": "sw",
-      "unitaryAuthArea": "Cornwall"
     },
     {
       "elevation": "19.0",
@@ -36763,15 +36477,6 @@
     },
     {
       "elevation": "1.0",
-      "id": "322947",
-      "latitude": "50.6139",
-      "longitude": "-2.4563",
-      "name": "Weymouth",
-      "region": "sw",
-      "unitaryAuthArea": "Dorset"
-    },
-    {
-      "elevation": "1.0",
       "id": "322234",
       "latitude": "53.7027",
       "longitude": "-0.8748",
@@ -36796,15 +36501,6 @@
       "name": "Bottesford",
       "region": "em",
       "unitaryAuthArea": "Nottinghamshire"
-    },
-    {
-      "elevation": "254.0",
-      "id": "322052",
-      "latitude": "55.95",
-      "longitude": "-4.5",
-      "name": "Bowling",
-      "region": "st",
-      "unitaryAuthArea": "West Dunbartonshire"
     },
     {
       "elevation": "8.0",
@@ -36905,15 +36601,6 @@
       "name": "Selsey",
       "region": "se",
       "unitaryAuthArea": "West Sussex"
-    },
-    {
-      "elevation": "70.0",
-      "id": "324071",
-      "latitude": "52.867",
-      "longitude": "-1.75",
-      "name": "Sudbury",
-      "region": "wm",
-      "unitaryAuthArea": "Staffordshire"
     },
     {
       "elevation": "82.0",
@@ -37040,16 +36727,6 @@
       "name": "Ingleton Youth Hostel",
       "region": "yh",
       "unitaryAuthArea": "North Yorkshire"
-    },
-    {
-      "elevation": "168.0",
-      "id": "324263",
-      "latitude": "52.9096",
-      "longitude": "-3.6003",
-      "name": "Bala",
-      "nationalPark": "Snowdonia National Park",
-      "region": "wl",
-      "unitaryAuthArea": "Gwynedd"
     },
     {
       "elevation": "86.0",
@@ -37522,15 +37199,6 @@
       "name": "Cardiff Ski Centre",
       "region": "wl",
       "unitaryAuthArea": "Cardiff"
-    },
-    {
-      "elevation": "21.0",
-      "id": "350766",
-      "latitude": "54.8924",
-      "longitude": "-2.9315",
-      "name": "Carlisle",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
     },
     {
       "elevation": "46.0",
@@ -38662,15 +38330,6 @@
       "name": "Cleveleys",
       "region": "nw",
       "unitaryAuthArea": "Lancashire"
-    },
-    {
-      "elevation": "9.0",
-      "id": "352440",
-      "latitude": "57.7218",
-      "longitude": "-3.2788",
-      "name": "Lossiemouth",
-      "region": "gr",
-      "unitaryAuthArea": "Moray"
     },
     {
       "elevation": "64.0",
@@ -40683,15 +40342,6 @@
       "unitaryAuthArea": "North Yorkshire"
     },
     {
-      "elevation": "87.0",
-      "id": "351464",
-      "latitude": "51.5074",
-      "longitude": "-2.5751",
-      "name": "Filton",
-      "region": "sw",
-      "unitaryAuthArea": "South Gloucestershire"
-    },
-    {
       "elevation": "933.0",
       "id": "351468",
       "latitude": "57.6101",
@@ -41046,15 +40696,6 @@
       "unitaryAuthArea": "Conwy"
     },
     {
-      "elevation": "64.0",
-      "id": "350010",
-      "latitude": "57.2073",
-      "longitude": "-2.2032",
-      "name": "Aberdeen Airport",
-      "region": "gr",
-      "unitaryAuthArea": "Aberdeen"
-    },
-    {
       "elevation": "81.0",
       "id": "350012",
       "latitude": "57.145",
@@ -41071,15 +40712,6 @@
       "name": "Abertillery",
       "region": "wl",
       "unitaryAuthArea": "Blaenau Gwent"
-    },
-    {
-      "elevation": "129.0",
-      "id": "350022",
-      "latitude": "57.0768",
-      "longitude": "-2.7788",
-      "name": "Aboyne",
-      "region": "gr",
-      "unitaryAuthArea": "Aberdeenshire"
     },
     {
       "elevation": "999.0",
@@ -42583,15 +42215,6 @@
       "name": "St George",
       "region": "sw",
       "unitaryAuthArea": "Bristol"
-    },
-    {
-      "elevation": "36.0",
-      "id": "353318",
-      "latitude": "53.4561",
-      "longitude": "-2.7357",
-      "name": "St Helens",
-      "region": "nw",
-      "unitaryAuthArea": "Merseyside"
     },
     {
       "elevation": "16.0",
@@ -44437,15 +44060,6 @@
       "unitaryAuthArea": "Kent"
     },
     {
-      "elevation": "10.0",
-      "id": "99159",
-      "latitude": "50.6136",
-      "longitude": "-1.9588",
-      "name": "Swanage",
-      "region": "sw",
-      "unitaryAuthArea": "Dorset"
-    },
-    {
       "elevation": "0.0",
       "id": "354700",
       "latitude": "51.3928",
@@ -44745,15 +44359,6 @@
     },
     {
       "elevation": "0.0",
-      "id": "354508",
-      "latitude": "51.0989",
-      "longitude": "-4.2232",
-      "name": "Saunton Sands (Beach)",
-      "region": "sw",
-      "unitaryAuthArea": "Devon"
-    },
-    {
-      "elevation": "0.0",
       "id": "354510",
       "latitude": "51.1468",
       "longitude": "-4.2227",
@@ -44911,15 +44516,6 @@
       "name": "Barrowden",
       "region": "em",
       "unitaryAuthArea": "Rutland"
-    },
-    {
-      "elevation": "826.0",
-      "id": "371347",
-      "latitude": "55.6217",
-      "longitude": "-5.2415",
-      "name": "Beinn Tarsuinn",
-      "region": "st",
-      "unitaryAuthArea": "North Ayrshire"
     },
     {
       "elevation": "582.0",
@@ -45137,15 +44733,6 @@
       "name": "Hob Tor",
       "region": "em",
       "unitaryAuthArea": "Derbyshire"
-    },
-    {
-      "elevation": "51.0",
-      "id": "371527",
-      "latitude": "51.6254",
-      "longitude": "-2.3662",
-      "name": "Kingswood",
-      "region": "sw",
-      "unitaryAuthArea": "Gloucestershire"
     },
     {
       "elevation": "717.0",
@@ -45527,16 +45114,6 @@
       "unitaryAuthArea": "Aberdeenshire"
     },
     {
-      "elevation": "26.0",
-      "id": "3017",
-      "latitude": "58.954",
-      "longitude": "-2.9",
-      "obsSource": "LNDSYN",
-      "name": "Kirkwall",
-      "region": "os",
-      "unitaryAuthArea": "Orkney Islands"
-    },
-    {
       "elevation": "91.0",
       "id": "99014",
       "latitude": "54.3",
@@ -45572,25 +45149,6 @@
       "name": "Guernsey",
       "region": "sw",
       "unitaryAuthArea": "Guernsey"
-    },
-    {
-      "elevation": "63.0",
-      "id": "3917",
-      "latitude": "54.664",
-      "longitude": "-6.224",
-      "obsSource": "LNDSYN",
-      "name": "Belfast International Airport",
-      "region": "ni",
-      "unitaryAuthArea": "County Antrim"
-    },
-    {
-      "elevation": "140.0",
-      "id": "99062",
-      "latitude": "52.456",
-      "longitude": "-1.9262",
-      "name": "Winterbourne",
-      "region": "wm",
-      "unitaryAuthArea": "West Midlands Conurbation"
     },
     {
       "elevation": "14.0",
@@ -45785,15 +45343,6 @@
       "unitaryAuthArea": "Argyll and Bute"
     },
     {
-      "elevation": "1.0",
-      "id": "310223",
-      "latitude": "53.3189",
-      "longitude": "-3.4903",
-      "name": "Rhyl",
-      "region": "wl",
-      "unitaryAuthArea": "Denbighshire"
-    },
-    {
       "elevation": "22.0",
       "id": "320286",
       "latitude": "55.7702",
@@ -45882,15 +45431,6 @@
       "name": "Exeter",
       "region": "sw",
       "unitaryAuthArea": "Devon"
-    },
-    {
-      "elevation": "2.0",
-      "id": "310077",
-      "latitude": "52.6091",
-      "longitude": "1.7314",
-      "name": "Great Yarmouth",
-      "region": "ee",
-      "unitaryAuthArea": "Norfolk"
     },
     {
       "elevation": "15.0",
@@ -46028,16 +45568,6 @@
       "unitaryAuthArea": "Lincolnshire"
     },
     {
-      "elevation": "331.0",
-      "id": "322053",
-      "latitude": "57.0065",
-      "longitude": "-3.3966",
-      "name": "Braemar",
-      "nationalPark": "Cairngorms National Park",
-      "region": "gr",
-      "unitaryAuthArea": "Aberdeenshire"
-    },
-    {
       "elevation": "12.0",
       "id": "322076",
       "latitude": "56.0588",
@@ -46083,15 +45613,6 @@
       "unitaryAuthArea": "Gloucestershire"
     },
     {
-      "elevation": "51.0",
-      "id": "324058",
-      "latitude": "52.056",
-      "longitude": "-2.7146",
-      "name": "Hereford",
-      "region": "wm",
-      "unitaryAuthArea": "Herefordshire"
-    },
-    {
       "elevation": "74.0",
       "id": "324062",
       "latitude": "52.7661",
@@ -46117,15 +45638,6 @@
       "name": "Killingholme",
       "region": "em",
       "unitaryAuthArea": "Lincolnshire"
-    },
-    {
-      "elevation": "120.0",
-      "id": "324238",
-      "latitude": "51.9878",
-      "longitude": "-0.6209",
-      "name": "Woburn",
-      "region": "ee",
-      "unitaryAuthArea": "Central Bedfordshire"
     },
     {
       "elevation": "40.0",
@@ -46662,16 +46174,6 @@
       "unitaryAuthArea": "Surrey"
     },
     {
-      "elevation": "67.0",
-      "id": "352321",
-      "latitude": "52.8163",
-      "longitude": "-4.0983",
-      "name": "Llanbedr",
-      "nationalPark": "Snowdonia National Park",
-      "region": "wl",
-      "unitaryAuthArea": "Gwynedd"
-    },
-    {
       "elevation": "210.0",
       "id": "352323",
       "latitude": "53.1127",
@@ -47116,15 +46618,6 @@
       "name": "Tyersal Gate",
       "region": "yh",
       "unitaryAuthArea": "West Yorkshire"
-    },
-    {
-      "elevation": "30.0",
-      "id": "354005",
-      "latitude": "55.0179",
-      "longitude": "-1.4242",
-      "name": "Tynemouth",
-      "region": "ne",
-      "unitaryAuthArea": "North Tyneside"
     },
     {
       "elevation": "182.0",
@@ -49375,15 +48868,6 @@
       "unitaryAuthArea": "York"
     },
     {
-      "elevation": "110.0",
-      "id": "99142",
-      "latitude": "54.273",
-      "longitude": "-0.421",
-      "name": "Scarborough",
-      "region": "yh",
-      "unitaryAuthArea": "North Yorkshire"
-    },
-    {
       "elevation": "84.0",
       "id": "350019",
       "latitude": "57.4751",
@@ -49901,15 +49385,6 @@
       "name": "Halliwell",
       "region": "nw",
       "unitaryAuthArea": "Greater Manchester"
-    },
-    {
-      "elevation": "13.0",
-      "id": "351744",
-      "latitude": "51.4923",
-      "longitude": "-0.2236",
-      "name": "Hammersmith",
-      "region": "se",
-      "unitaryAuthArea": "Greater London"
     },
     {
       "elevation": "135.0",
@@ -50472,15 +49947,6 @@
       "unitaryAuthArea": "Hampshire"
     },
     {
-      "elevation": "63.0",
-      "id": "351793",
-      "latitude": "53.1834",
-      "longitude": "-3.027",
-      "name": "Hawarden",
-      "region": "wl",
-      "unitaryAuthArea": "Flintshire"
-    },
-    {
       "elevation": "244.0",
       "id": "351794",
       "latitude": "54.3039",
@@ -50830,15 +50296,6 @@
       "unitaryAuthArea": "Cornwall"
     },
     {
-      "elevation": "67.0",
-      "id": "351879",
-      "latitude": "51.6282",
-      "longitude": "-0.7467",
-      "name": "High Wycombe",
-      "region": "se",
-      "unitaryAuthArea": "Buckinghamshire"
-    },
-    {
       "elevation": "70.0",
       "id": "351880",
       "latitude": "52.307",
@@ -50910,15 +50367,6 @@
       "name": "Hodgehill",
       "region": "wm",
       "unitaryAuthArea": "West Midlands Conurbation"
-    },
-    {
-      "elevation": "2.0",
-      "id": "351911",
-      "latitude": "52.8037",
-      "longitude": "0.0151",
-      "name": "Holbeach",
-      "region": "em",
-      "unitaryAuthArea": "Lincolnshire"
     },
     {
       "elevation": "192.0",
@@ -51490,15 +50938,6 @@
       "unitaryAuthArea": "Argyll and Bute"
     },
     {
-      "elevation": "29.0",
-      "id": "352013",
-      "latitude": "56.845",
-      "longitude": "-2.2783",
-      "name": "Inverbervie",
-      "region": "gr",
-      "unitaryAuthArea": "Aberdeenshire"
-    },
-    {
       "elevation": "9.0",
       "id": "352014",
       "latitude": "55.9341",
@@ -51848,16 +51287,6 @@
       "name": "Kensington",
       "region": "se",
       "unitaryAuthArea": "Greater London"
-    },
-    {
-      "elevation": "86.0",
-      "id": "352079",
-      "latitude": "54.6012",
-      "longitude": "-3.1333",
-      "name": "Keswick",
-      "nationalPark": "Lake District National Park",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
     },
     {
       "elevation": "7.0",
@@ -52620,15 +52049,6 @@
       "name": "Par (Beach)",
       "region": "sw",
       "unitaryAuthArea": "Cornwall"
-    },
-    {
-      "elevation": "0.0",
-      "id": "354580",
-      "latitude": "51.1485",
-      "longitude": "-4.2205",
-      "name": "Putsborough Sands (Beach)",
-      "region": "sw",
-      "unitaryAuthArea": "Devon"
     },
     {
       "elevation": "0.0",
@@ -53442,15 +52862,6 @@
       "unitaryAuthArea": "North Yorkshire"
     },
     {
-      "elevation": "686.0",
-      "id": "371615",
-      "latitude": "54.7195",
-      "longitude": "-2.3971",
-      "name": "Round Hill",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
-    },
-    {
       "elevation": "515.0",
       "id": "371619",
       "latitude": "50.5054",
@@ -53813,15 +53224,6 @@
       "unitaryAuthArea": "Dumfries and Galloway"
     },
     {
-      "elevation": "45.0",
-      "id": "371444",
-      "latitude": "51.20346",
-      "longitude": "0.1362",
-      "name": "Edenbridge",
-      "region": "se",
-      "unitaryAuthArea": "Kent"
-    },
-    {
       "elevation": "924.0",
       "id": "371446",
       "latitude": "53.1305",
@@ -53839,15 +53241,6 @@
       "name": "Empingham",
       "region": "em",
       "unitaryAuthArea": "Rutland"
-    },
-    {
-      "elevation": "0.0",
-      "id": "371451",
-      "latitude": "56.0184",
-      "longitude": "-3.7616",
-      "name": "Falkirk",
-      "region": "ta",
-      "unitaryAuthArea": "Falkirk"
     },
     {
       "elevation": "632.0",
@@ -53974,26 +53367,6 @@
       "nationalPark": "Yorkshire Dales National Park",
       "region": "yh",
       "unitaryAuthArea": "North Yorkshire"
-    },
-    {
-      "elevation": "608.0",
-      "id": "371510",
-      "latitude": "54.5525",
-      "longitude": "-3.1024",
-      "name": "High Seat",
-      "nationalPark": "Lake District National Park",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
-    },
-    {
-      "elevation": "828.0",
-      "id": "371512",
-      "latitude": "54.4916",
-      "longitude": "-2.8635",
-      "name": "High Street",
-      "nationalPark": "Lake District National Park",
-      "region": "nw",
-      "unitaryAuthArea": "Cumbria"
     },
     {
       "elevation": "757.0",
@@ -54218,16 +53591,6 @@
       "latitude": "54.3339",
       "longitude": "-0.6799",
       "name": "The Hole Of Horcum",
-      "nationalPark": "North York Moors National Park",
-      "region": "yh",
-      "unitaryAuthArea": "North Yorkshire"
-    },
-    {
-      "elevation": "59.0",
-      "id": "354955",
-      "latitude": "54.2469",
-      "longitude": "-1.0621",
-      "name": "Helmsley",
       "nationalPark": "North York Moors National Park",
       "region": "yh",
       "unitaryAuthArea": "North Yorkshire"
@@ -54492,16 +53855,6 @@
       "unitaryAuthArea": "Northumberland"
     },
     {
-      "elevation": "483.0",
-      "id": "354885",
-      "latitude": "55.4167",
-      "longitude": "-2.214",
-      "name": "Windy Gyle",
-      "nationalPark": "Northumberland National Park",
-      "region": "ne",
-      "unitaryAuthArea": "Northumberland"
-    },
-    {
       "elevation": "205.0",
       "id": "354890",
       "latitude": "55.0797",
@@ -54540,15 +53893,6 @@
       "nationalPark": "Yorkshire Dales National Park",
       "region": "yh",
       "unitaryAuthArea": "North Yorkshire"
-    },
-    {
-      "elevation": "27.0",
-      "id": "3844",
-      "latitude": "50.7366",
-      "longitude": "-3.40458",
-      "name": "Exeter Airport 2",
-      "region": "sw",
-      "unitaryAuthArea": "Devon"
     },
     {
       "elevation": "16.0",

@@ -14,16 +14,17 @@
     .Search button:hover {
       background-color: teal; }
   .Search input[type=search] {
-    background-color: darkturquoise;
+    background-color: rgba(0, 0, 0, 0.8);
     border: none;
     color: white;
     margin: 8px 0;
     outline: none;
     padding: 12px 20px;
+    transition: background-color 0.5s linear;
     width: 100%;
     -webkit-appearance: none; }
     .Search input[type=search]:focus {
-      background-color: teal; }
+      background-color: #FFAD17; }
     .Search input[type=search]::placeholder {
       color: white; }
     .Search input[type=search]::-webkit-search-cancel-button {

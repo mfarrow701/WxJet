@@ -12,9 +12,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentSearch: '',
             filteredLocations: null,
-            error: false
         }
     }
 
@@ -25,19 +23,14 @@ class Search extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.locationsPayload !== null) {
             this.setState({
-                filteredLocations: filterLocations(nextProps.locationsPayload.locations, '', 15),
-                error: false
-            });
-        } else if (nextProps.locationsError !== null) {
-            this.setState({
-                error: true
+                filteredLocations: filterLocations(nextProps.locationsPayload.locations, '', 15)
             });
         }
     }
 
     render() {
         let body;
-        if (!this.state.error) {
+        if (!this.props.locationsError) {
             if (this.state.filteredLocations === null) {
                 body = <Loading />
             } else if (this.state.filteredLocations.length === 0) {
@@ -55,7 +48,7 @@ class Search extends Component {
                             return (
                                 <div className="Item" key={locationData.id}
                                      onClick={() => this.props.selectLocation(locationData)}>
-                                    <div className="Icon" style={{background: generateRandomHexCode()}}></div>
+                                    <div className="Icon" style={{background: generateRandomHexCode()}}/>
                                     <div className="Content">
                                         <h5>{locationData.name}</h5>
                                         <p>{locationData.unitaryAuthArea}</p>

@@ -7,13 +7,12 @@
   min-height: 100%; }
   .Dashboard .Card {
     background: white;
+    border-top: 10px solid #333333;
     width: 100%; }
     .Dashboard .Card .Content {
-      padding: 10px; }
+      padding: 15px; }
   .Dashboard .Location-Card {
     text-align: center; }
-  .Dashboard .Cloud-Card {
-    border-top: 10px solid yellow; }
   .Dashboard .Flight-Card {
     border-top: 10px solid deeppink; }
     .Dashboard .Flight-Card .Temperature {

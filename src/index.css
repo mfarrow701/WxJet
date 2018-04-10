@@ -37,3 +37,7 @@ p {
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 1rem; }
+
+input {
+  font-family: inherit;
+  font-size: 1.6rem; }

@@ -1,11 +1,23 @@
 // @flow
 
 /**
+ * Generates a random hash code
+ * @returns {string}: The random hash code
+ */
+export function generateRandomHash() {
+    return Math.random().toString(36).substring(7);
+}
+
+/**
  * Generates a random hex code
  * @returns {string}: The random hex code
  */
 export function generateRandomHexCode() {
-    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+    let value, grayScale;
+    value = Math.random() * 0xFF | 0;
+    grayScale = (value << 16) | (value << 8) | value;
+    return '#' + grayScale.toString(16);
+    // return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
 }
 
 /**

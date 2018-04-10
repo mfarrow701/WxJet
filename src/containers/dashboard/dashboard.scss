@@ -8,19 +8,16 @@
 
   .Card {
     background: white;
+    border-top: 10px solid #333333;
     width:      100%;
 
     .Content {
-      padding: 10px;
+      padding: 15px;
     }
   }
 
   .Location-Card {
     text-align: center;
-  }
-
-  .Cloud-Card {
-    border-top: 10px solid yellow;
   }
 
   .Flight-Card {

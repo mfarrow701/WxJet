@@ -1,5 +1,10 @@
 import React from 'react';
-import {isNullOrUndefined, generateRandomHexCode, generateRandomNumberBetweenValues} from './utils.service';
+import {
+    isNullOrUndefined,
+    generateRandomHexCode,
+    generateRandomHash,
+    generateRandomNumberBetweenValues
+} from './utils.service';
 
 describe('Utils service', () => {
 
@@ -15,7 +20,7 @@ describe('Utils service', () => {
 
     it('should generate a random hex colour', () => {
         spyOn(Math, 'random').and.returnValue(0.7);
-        expect(generateRandomHexCode()).toEqual('#b33332');
+        expect(generateRandomHexCode()).toEqual('#b2b2b2');
     });
 
     it('should generate a random number between two values', () => {
@@ -30,5 +35,10 @@ describe('Utils service', () => {
         expect(generateRandomNumberBetweenValues(0, 100)).toEqual(70);
         expect(generateRandomNumberBetweenValues(0, 1000)).toEqual(700);
         expect(generateRandomNumberBetweenValues(7, 7)).toEqual(7);
+    });
+
+    it('should generate a random hash code', () => {
+        spyOn(Math, 'random').and.returnValue(0.7);
+        expect(generateRandomHash()).toEqual("77777");
     });
 });
