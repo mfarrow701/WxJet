@@ -33,7 +33,8 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-evenly;
-    transition: background-color 500ms linear; }
+    transition: background-color 500ms linear;
+    width: 100%; }
     .Footer .Item:hover {
       background-color: #FFAD17; }
     .Footer .Item:focus {

@@ -24,6 +24,8 @@
     outline:          none;
     padding:          12px 20px;
     width:            100%;
+    -webkit-appearance: none;
+
     &:focus {
       background-color: teal;
     }

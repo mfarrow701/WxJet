@@ -12,7 +12,7 @@ const initialState = {
     selectedLocation: null
 };
 
-export function handleForecastAPIActions(state = initialState, action) {
+export function handleForecastAPIActions(state = initialState, action) { // NOSONAR
     const {payload, type} = action;
     switch (type) {
         case FORECAST_API_REQUEST:

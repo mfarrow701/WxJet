@@ -13,7 +13,7 @@ const initialState = {
     selectedLocation: null
 };
 
-export function handleLocationsAPIActions(state = initialState, action) {
+export function handleLocationsAPIActions(state = initialState, action) { // NOSONAR
     const {payload, type} = action;
 
     switch (type) {

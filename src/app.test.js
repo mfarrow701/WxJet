@@ -1,11 +1,9 @@
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import createMemoryHistory from 'history/createMemoryHistory';
 import configureStore from 'redux-mock-store';
 import {selectedLocation} from './core/mocks/location';
 import App from './app';
-import Dashboard from './containers/dashboard/dashboard';
-import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 
 describe('App component', () => {

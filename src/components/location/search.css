@@ -20,7 +20,8 @@
     margin: 8px 0;
     outline: none;
     padding: 12px 20px;
-    width: 100%; }
+    width: 100%;
+    -webkit-appearance: none; }
     .Search input[type=search]:focus {
       background-color: teal; }
     .Search input[type=search]::placeholder {
