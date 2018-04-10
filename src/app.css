@@ -12,6 +12,8 @@
   text-align: center; }
   .Header .Logo {
     height: 30px; }
+    .Header .Logo:hover {
+      cursor: pointer; }
   .Header .Search-icon {
     height: 25px; }
     .Header .Search-icon:hover {

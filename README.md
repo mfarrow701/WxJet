@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="" target="_blank">
+  <a href="https://mfarrow701.github.io/wxjet" target="_blank">
     <img alt="WxJet" title="WxJet" src="https://github.com/mfarrow701/wxjet/blob/master/logo.png" width="180">
   </a>
 </p>

@@ -83,7 +83,6 @@ class Search extends Component {
 
 const mapStateToProps = state => {
     return {
-        locationsFetching: state.locationsReducer.fetching,
         locationsPayload: state.locationsReducer.payload,
         locationsError: state.locationsReducer.error
     };
