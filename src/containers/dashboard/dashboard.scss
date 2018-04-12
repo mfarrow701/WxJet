@@ -1,3 +1,5 @@
+@import "../../core/variables.scss";
+
 .Dashboard {
   display:               grid;
   grid-row-gap:          20px;
@@ -8,7 +10,7 @@
 
   .Card {
     background: white;
-    border-top: 10px solid #333333;
+    border-top: 10px solid $colour-primary;
     width:      100%;
 
     .Content {
@@ -49,7 +51,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $media-query-md) {
   .Dashboard {
     grid-column-gap:       20px;
     grid-template-columns: 1fr 1fr;
@@ -61,7 +63,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $media-query-xl) {
   .Dashboard {
     grid-template-columns: 1fr 1fr 1fr;
 

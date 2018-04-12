@@ -3,18 +3,15 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 import {locationSelected} from './actions/location.actions';
 import Dashboard from './containers/dashboard/dashboard';
 import Profile from './containers/profile/profile';
+import Chart from './containers/chart/chart';
 import Settings from './containers/settings/settings';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 import Logo from './core/assets/logo.svg';
-import ChartIcon from './core/assets/chart-icon.svg';
-import HomeIcon from './core/assets/home-icon.svg';
-import MoreIcon from './core/assets/more-icon.svg';
-import ProfileIcon from './core/assets/profile-icon.svg';
-import SearchIcon from './core/assets/search-icon.svg';
 import './app.css';
 
 class App extends Component {
@@ -30,7 +27,7 @@ class App extends Component {
 
     componentWillMount() {
         let storedLocation = localStorage.getItem('storedLocation');
-        if(storedLocation) {
+        if (storedLocation) {
             this.props.selectLocation(JSON.parse(storedLocation));
         }
     }
@@ -43,58 +40,58 @@ class App extends Component {
 
     render() {
         if (this.state.appLoaded) {
+            const themeClass = classNames(
+                this.props.themeIsDark ? 'Dark' : 'Light'
+            );
+
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
-                        <header className="Header">
+                        <header className={themeClass}>
                             <img alt={this.logoMessage}
                                  className="Logo"
-                                 onClick={() => { this.props.history.push('/') }}
+                                 onClick={() => {
+                                     this.props.history.push('/')
+                                 }}
                                  src={Logo}
                                  title={this.logoMessage}/>
                             {this.props.selectedLocation !== null &&
-                            <img alt={this.searchMessage}
-                                 className="Search-icon"
-                                 onClick={this.props.clearLocation}
-                                 src={SearchIcon}
-                                 title={this.searchMessage}/>}
+                            <div className={'Search-Icon Icon ' + themeClass}
+                                 onClick={this.props.clearLocation}/>}
                         </header>
-                        <main className="Main">
+                        <main>
                             {this.props.selectedLocation === null ? (
                                 <Search />
                             ) : (
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
                                     <Route path="/profile" component={Profile}/>
+                                    <Route path="/charts" component={Chart}/>
                                     <Route path="/settings" component={Settings}/>
                                     <Route component={NotFound}/>
                                 </Switch>
                             )}
                         </main>
-                        <footer className="Footer">
-                            <button className="Item" onClick={() => { this.props.history.push('/') }}>
-                                <img
-                                    alt="Home"
-                                    src={HomeIcon}
-                                    title="Home"/>
+                        <footer className={themeClass}>
+                            <button onClick={() => {
+                                this.props.history.push('/')
+                            }}>
+                                <div className={'Home-Icon Icon ' + themeClass}/>
                             </button>
-                            <button className="Item" onClick={() => { this.props.history.push('/profile') }}>
-                                <img
-                                    alt="Profile"
-                                    src={ProfileIcon}
-                                    title="Profile"/>
+                            <button onClick={() => {
+                                this.props.history.push('/profile')
+                            }}>
+                                <div className={'Profile-Icon Icon ' + themeClass}/>
                             </button>
-                            <button className="Item" onClick={() => { this.props.history.push('/charts') }}>
-                                <img
-                                    alt="Charts"
-                                    src={ChartIcon}
-                                    title="Charts"/>
+                            <button onClick={() => {
+                                this.props.history.push('/charts')
+                            }}>
+                                <div className={'Chart-Icon Icon ' + themeClass}/>
                             </button>
-                            <button className="Item" onClick={() => { this.props.history.push('/settings') }}>
-                                <img
-                                    alt="Settings"
-                                    src={MoreIcon}
-                                    title="Settings"/>
+                            <button onClick={() => {
+                                this.props.history.push('/settings')
+                            }}>
+                                <div className={'Settings-Icon Icon ' + themeClass}/>
                             </button>
                         </footer>
                     </div>
@@ -108,7 +105,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        selectedLocation: state.locationsReducer.selectedLocation
+        selectedLocation: state.locationsReducer.selectedLocation,
+        themeIsDark: state.settings.themeIsDark
     };
 };
 

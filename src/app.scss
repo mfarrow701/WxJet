@@ -1,81 +1,121 @@
-.Main {
-  grid-area: main;
-  margin:    20px;
-}
-
-.Header {
-  align-items:      center;
-  background-color: rgba(0, 0, 0, 0.8);
-  display:          flex;
-  grid-area:        header;
-  justify-content:  space-between;
-  padding:          0 15px;
-  text-align:       center;
-
-  .Logo {
-    height: 30px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .Search-icon {
-    height: 25px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-.Footer {
-  align-items:      center;
-  background-color: transparent;
-  color:            #FFFFFF;
-  display:          flex;
-  grid-area:        footer;
-  justify-content:  space-around;
-
-  .Item {
-    align-items:      center;
-    background-color: rgba(0, 0, 0, 0.8);
-    border:           none;
-    display:          flex;
-    flex:             1;
-    flex-direction:   column;
-    height:           100%;
-    justify-content:  space-evenly;
-    transition:       background-color 500ms linear;
-    width:            100%;
-
-    &:hover {
-      background-color: #4D4D4D;
-    }
-
-    &:focus {
-      background-color: #FFAD17;
-      outline:          none;
-    }
-
-    img {
-      height: 25px
-    }
-
-    p {
-      font-size: 1rem;
-      margin:    0;
-    }
-  }
-}
+@import "./core/variables.scss";
 
 .App {
   //background:            url("./core/assets/isometric-bg.png");
-  background-color:      #F1F1F1;
+  background-color:      $background-ternary;
   background-size:       cover;
   display:               grid;
   grid-template-areas:   "header" "main" "footer";
   grid-template-columns: 100%;
-  grid-template-rows:    48px 1fr 48px;
+  grid-template-rows:    $navbar-height 1fr $navbar-height;
   min-height:            100vh;
+
+  main {
+    grid-area: main;
+    margin:    20px;
+  }
+
+  header {
+    align-items:     center;
+    display:         flex;
+    grid-area:       header;
+    justify-content: space-between;
+    padding:         0 15px;
+    text-align:      center;
+    transition:      0.5s;
+
+    &.Dark {
+      background-color: $background-primary;
+    }
+
+    &.Light {
+      background-color: $background-secondary;
+    }
+
+    .Logo {
+      height: 30px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .Search-Icon {
+      mask: url('./core/assets/search-icon.svg') no-repeat center;
+    }
+  }
+
+  footer {
+    align-items:      center;
+    background-color: transparent;
+    display:          flex;
+    grid-area:        footer;
+    justify-content:  space-around;
+    transition:       0.5s;
+
+    &.Dark {
+      background-color: $background-primary;
+    }
+
+    &.Light {
+      background-color: $background-secondary;
+    }
+
+    button {
+      align-items:      center;
+      background-color: transparent;
+      border:           none;
+      display:          flex;
+      flex:             1;
+      flex-direction:   column;
+      height:           100%;
+      justify-content:  space-evenly;
+      transition:       0.5s;
+      width:            100%;
+
+      &:hover {
+        background-color: $colour-secondary;
+      }
+
+      &:focus {
+        background-color: $colour-ternary;
+        outline:          none;
+      }
+
+      .Home-Icon {
+        mask: url('./core/assets/home-icon.svg') no-repeat center;
+      }
+
+      .Profile-Icon {
+        mask: url('./core/assets/profile-icon.svg') no-repeat center;
+      }
+
+      .Chart-Icon {
+        mask: url('./core/assets/chart-icon.svg') no-repeat center;
+      }
+
+      .Settings-Icon {
+        mask: url('./core/assets/more-icon.svg') no-repeat center;
+      }
+    }
+  }
+
+  .Icon {
+    height:     25px;
+    transition: 0.5s;
+    width:      25px;
+
+    &.Dark {
+      background-color: white;
+    }
+
+    &.Light {
+      background-color: $colour-primary;
+    }
+
+    &:hover {
+      background-color: $colour-secondary;
+      cursor:           pointer;
+    }
+  }
 }

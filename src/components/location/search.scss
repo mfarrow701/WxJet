@@ -1,38 +1,45 @@
+@import "../../core/variables.scss";
+
 .Search {
   min-height: 100%;
 
   button {
-    background-color: darkturquoise;
+    background-color: $colour-primary;
     border:           none;
     color:            white;
     cursor:           pointer;
     margin:           8px 0;
     padding:          12px 20px;
+    transition:       0.5s;
     width:            100%;
 
     &:focus {
-      background-color: teal;
+      background-color: $colour-ternary;
       outline:          none;
     }
 
     &:hover {
-      background-color: teal;
+      background-color: $colour-secondary;
     }
   }
 
   input[type=search] {
-    background-color:   rgba(0, 0, 0, 0.8);
+    background-color:   $colour-primary;
     border:             none;
     color:              white;
     margin:             8px 0;
     outline:            none;
     padding:            12px 20px;
-    transition:         background-color 0.5s linear;
+    transition:         0.5s;
     width:              100%;
     -webkit-appearance: none;
 
     &:focus {
-      background-color: #FFAD17;
+      background-color: $colour-ternary;
+    }
+
+    &:hover {
+      background-color: $colour-secondary;
     }
 
     &::placeholder {
@@ -64,7 +71,7 @@
     }
 
     &:hover {
-      background: lightgray;
+      background: $colour-secondary;
       cursor:     pointer;
     }
   }

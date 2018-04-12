@@ -1,29 +1,32 @@
 .Search {
   min-height: 100%; }
   .Search button {
-    background-color: darkturquoise;
+    background-color: #333333;
     border: none;
     color: white;
     cursor: pointer;
     margin: 8px 0;
     padding: 12px 20px;
+    transition: 0.5s;
     width: 100%; }
     .Search button:focus {
-      background-color: teal;
+      background-color: darkturquoise;
       outline: none; }
     .Search button:hover {
-      background-color: teal; }
+      background-color: #FFAD17; }
   .Search input[type=search] {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #333333;
     border: none;
     color: white;
     margin: 8px 0;
     outline: none;
     padding: 12px 20px;
-    transition: background-color 0.5s linear;
+    transition: 0.5s;
     width: 100%;
     -webkit-appearance: none; }
     .Search input[type=search]:focus {
+      background-color: darkturquoise; }
+    .Search input[type=search]:hover {
       background-color: #FFAD17; }
     .Search input[type=search]::placeholder {
       color: white; }
@@ -44,5 +47,5 @@
       flex-direction: column;
       padding-left: 10px; }
     .Search .Item:hover {
-      background: lightgray;
+      background: #FFAD17;
       cursor: pointer; }

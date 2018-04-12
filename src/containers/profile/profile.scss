@@ -1,3 +1,4 @@
+@import "../../core/variables.scss";
 .Profile {
   display:               grid;
   grid-row-gap:          20px;
@@ -13,7 +14,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $media-query-md) {
   .Profile {
     grid-column-gap:       20px;
     grid-template-columns: 1fr 1fr;
@@ -24,7 +25,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $media-query-xl) {
   .Profile {
     grid-template-columns: 1fr 1fr 1fr;
 

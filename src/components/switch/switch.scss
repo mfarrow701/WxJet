@@ -1,0 +1,48 @@
+@import "../../core/variables.scss";
+
+.Switch {
+  display:  inline-block;
+  height:   34px;
+  position: relative;
+  width:    60px;
+
+  input {
+    display: none;
+
+    &:checked + .Slider {
+      background-color: $colour-secondary;
+    }
+
+    &:checked + .Slider:before {
+      transform: translateX(26px);
+    }
+
+    &:focus + .Slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+  }
+
+  .Slider {
+    background-color: $colour-primary;
+    border-radius:    34px;
+    bottom:           0;
+    cursor:           pointer;
+    left:             0;
+    position:         absolute;
+    right:            0;
+    top:              0;
+    transition:       0.5s;
+
+    &:before {
+      background-color: white;
+      border-radius:    50%;
+      bottom:           4px;
+      content:          "";
+      height:           26px;
+      left:             4px;
+      position:         absolute;
+      transition:       0.5s;
+      width:            26px;
+    }
+  }
+}
