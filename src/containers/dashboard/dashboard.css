@@ -6,10 +6,10 @@
   justify-items: center;
   min-height: 100%; }
   .Dashboard .Card {
-    background: white;
     border-top: 10px solid #333333;
     width: 100%; }
     .Dashboard .Card .Content {
+      background: white;
       padding: 15px; }
   .Dashboard .Location-Card {
     text-align: center; }

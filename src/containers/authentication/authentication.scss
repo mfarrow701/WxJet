@@ -1,0 +1,57 @@
+@import "../../core/variables.scss";
+
+.Authentication {
+  align-items:     center;
+  display:         flex;
+  flex-direction:  column;
+  justify-content: center;
+  min-height:      100%;
+
+  img {
+    height: 144px;
+  }
+
+  input {
+    background-color:   $colour-primary;
+    border:             none;
+    color:              white;
+    margin:             8px 0;
+    outline:            none;
+    padding:            12px 20px;
+    transition:         0.5s;
+    width:              280px;
+    -webkit-appearance: none;
+
+    &:focus {
+      background-color: $colour-ternary;
+    }
+
+    &:hover {
+      background-color: $colour-secondary;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
+
+  button {
+    background-color: $colour-primary;
+    border:           none;
+    color:            white;
+    cursor:           pointer;
+    margin:           8px 0;
+    padding:          12px 20px;
+    transition:       0.5s;
+    width:            280px;
+
+    &:focus {
+      background-color: $colour-ternary;
+      outline:          none;
+    }
+
+    &:hover {
+      background-color: $colour-secondary;
+    }
+  }
+}

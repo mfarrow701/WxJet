@@ -7,6 +7,7 @@ import {filterLocations} from '../../services/locations.service';
 import {generateRandomHexCode} from '../../services/utils.service';
 import './search.css';
 import Loading from '../loading/loading';
+import List from '../core/list/list';
 
 class Search extends Component {
     constructor(props) {
@@ -44,18 +45,8 @@ class Search extends Component {
                 body = (
                     <Fragment>
                         <input onChange={this.handleSearchChange} placeholder="Search for a location..." type="search"/>
-                        {this.state.filteredLocations.map(locationData => {
-                            return (
-                                <div className="Item" key={locationData.id}
-                                     onClick={() => this.props.selectLocation(locationData)}>
-                                    <div className="Icon" style={{background: generateRandomHexCode()}}/>
-                                    <div className="Content">
-                                        <h5>{locationData.name}</h5>
-                                        <p>{locationData.unitaryAuthArea}</p>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                        <List data={this.populateSearchList(this.state.filteredLocations)}
+                              onClick={this.props.selectLocation}/>
                     </Fragment>
                 );
             }
@@ -79,6 +70,20 @@ class Search extends Component {
             filteredLocations: filterLocations(this.props.locationsPayload.locations, event.target.value, 15)
         });
     };
+
+    populateSearchList = (filteredLocations) => {
+        let searchList = [], searchElement;
+        for (const item of filteredLocations) {
+            searchElement = {
+                key: item.name,
+                value: item.unitaryAuthArea,
+                icon: true,
+                data: item
+            };
+            searchList.push(searchElement);
+        }
+        return searchList;
+    }
 }
 
 const mapStateToProps = state => {
@@ -92,13 +97,14 @@ const mapDispatchToProps = dispatch => {
     return {
         requestLocations: () => dispatch(locationsAPIRequest()),
         selectLocation: location => {
-            let storedLocation = localStorage.getItem('storedLocation');
+            let selectedLocation = location.data,
+                storedLocation = localStorage.getItem('storedLocation');
             if (storedLocation && JSON.parse(storedLocation)) {
                 // Clear the previously selected location from local storage
                 localStorage.removeItem('storedLocation');
             }
-            localStorage.setItem('storedLocation', JSON.stringify(location));
-            dispatch(locationSelected(location));
+            localStorage.setItem('storedLocation', JSON.stringify(selectedLocation));
+            dispatch(locationSelected(selectedLocation));
         }
     };
 };

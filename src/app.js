@@ -5,9 +5,9 @@ import {ConnectedRouter} from 'react-router-redux';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {locationSelected} from './actions/location.actions';
+import Authentication from './containers/authentication/authentication';
 import Dashboard from './containers/dashboard/dashboard';
 import Profile from './containers/profile/profile';
-import Chart from './containers/chart/chart';
 import Settings from './containers/settings/settings';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
@@ -16,7 +16,6 @@ import './app.css';
 
 class App extends Component {
     logoMessage = 'WxJet';
-    searchMessage = 'Search for a location';
 
     constructor() {
         super();
@@ -43,16 +42,13 @@ class App extends Component {
             const themeClass = classNames(
                 this.props.themeIsDark ? 'Dark' : 'Light'
             );
-
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
                         <header className={themeClass}>
                             <img alt={this.logoMessage}
                                  className="Logo"
-                                 onClick={() => {
-                                     this.props.history.push('/')
-                                 }}
+                                 onClick={() => this.handleNavigationClick('/')}
                                  src={Logo}
                                  title={this.logoMessage}/>
                             {this.props.selectedLocation !== null &&
@@ -66,31 +62,23 @@ class App extends Component {
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
                                     <Route path="/profile" component={Profile}/>
-                                    <Route path="/charts" component={Chart}/>
+                                    <Route path="/authenticate" component={Authentication} />
                                     <Route path="/settings" component={Settings}/>
                                     <Route component={NotFound}/>
                                 </Switch>
                             )}
                         </main>
                         <footer className={themeClass}>
-                            <button onClick={() => {
-                                this.props.history.push('/')
-                            }}>
+                            <button onClick={() => this.handleNavigationClick('/')}>
                                 <div className={'Home-Icon Icon ' + themeClass}/>
                             </button>
-                            <button onClick={() => {
-                                this.props.history.push('/profile')
-                            }}>
+                            <button onClick={() => this.handleNavigationClick('/profile')}>
                                 <div className={'Profile-Icon Icon ' + themeClass}/>
                             </button>
-                            <button onClick={() => {
-                                this.props.history.push('/charts')
-                            }}>
-                                <div className={'Chart-Icon Icon ' + themeClass}/>
-                            </button>
-                            <button onClick={() => {
-                                this.props.history.push('/settings')
-                            }}>
+                            {/*<button onClick={() => this.handleNavigationClick('/charts')}>*/}
+                                {/*<div className={'Chart-Icon Icon ' + themeClass}/>*/}
+                            {/*</button>*/}
+                            <button onClick={() => this.handleNavigationClick('/settings')}>
                                 <div className={'Settings-Icon Icon ' + themeClass}/>
                             </button>
                         </footer>
@@ -99,6 +87,12 @@ class App extends Component {
             )
         } else {
             return <h1>Loading</h1>
+        }
+    }
+
+    handleNavigationClick(route) {
+        if (route !== this.props.history.location.pathname) {
+            this.props.history.push(route);
         }
     }
 }

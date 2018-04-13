@@ -9,12 +9,12 @@
   min-height:            100%;
 
   .Card {
-    background: white;
     border-top: 10px solid $colour-primary;
     width:      100%;
 
     .Content {
-      padding: 15px;
+      background: white;
+      padding:    15px;
     }
   }
 

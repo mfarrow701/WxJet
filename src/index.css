@@ -28,16 +28,23 @@ h6 {
   font-size: 1.6rem; }
 
 h1, h2, h3, h4, h5, h6 {
+  color: #333333;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
 p {
+  color: #333333;
   font-size: 1.6rem;
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 1rem; }
 
 input {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1.6rem; }
+
+button {
   font-family: inherit;
   font-size: 1.6rem; }

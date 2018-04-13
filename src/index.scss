@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+@import './core/variables.scss';
 
 html {
   font-size: 62.5%;
@@ -37,12 +38,14 @@ h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color:         $colour-primary;
   font-weight:   500;
   margin-top:    0;
   margin-bottom: 0.5rem;
 }
 
 p {
+  color:         $colour-primary;
   font-size:     1.6rem;
   font-weight:   300;
   margin-top:    0;
@@ -50,6 +53,12 @@ p {
 }
 
 input {
+  box-sizing:  border-box;
+  font-family: inherit;
+  font-size:   1.6rem;
+}
+
+button {
   font-family: inherit;
   font-size:   1.6rem;
 }

@@ -32,20 +32,13 @@
       color: white; }
     .Search input[type=search]::-webkit-search-cancel-button {
       display: none; }
-  .Search .Item {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    padding: 5px 10px;
-    transition: background 0.2s ease; }
-    .Search .Item .Icon {
-      background: teal;
-      min-height: 50px;
-      min-width: 50px; }
-    .Search .Item .Content {
-      display: flex;
-      flex-direction: column;
-      padding-left: 10px; }
-    .Search .Item:hover {
+  .Search .List li {
+    padding: 5px 10px; }
+    .Search .List li:hover {
       background: #FFAD17;
       cursor: pointer; }
+    .Search .List li .List-Content {
+      align-items: flex-start;
+      flex-direction: column; }
+      .Search .List li .List-Content p:nth-child(2) {
+        color: #333333; }

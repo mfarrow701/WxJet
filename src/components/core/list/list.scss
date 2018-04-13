@@ -1,0 +1,39 @@
+@import '../../../core/variables.scss';
+
+.List {
+  display:        flex;
+  flex-direction: column;
+  list-style:     none;
+  margin:         0;
+  padding:        0;
+
+  li {
+    align-items:    center;
+    display:        flex;
+    flex-direction: row;
+    padding:        5px 0;
+
+    .List-Icon {
+      background:   teal;
+      margin-right: 10px;
+      min-height:   50px;
+      min-width:    50px;
+    }
+
+    .List-Content {
+      align-items:     center;
+      display:         flex;
+      flex-direction:  row;
+      flex:            1;
+      justify-content: space-between;
+
+      p {
+        margin: auto 0;
+
+        &:nth-child(2) {
+          color: $colour-ternary;
+        }
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ class Profile extends Component {
                 <div className="Avatar">
                     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" title="Avatar" />
                     <h3>Matthew Farrow</h3>
-                    <p><em>Web Application Developer</em></p>
+                    <p>Web Application Developer</p>
                 </div>
                 <div className="Details">
                     <p className="Email"><strong>Email:</strong> N/A</p>

@@ -51,28 +51,26 @@
     }
   }
 
-  .Item {
-    align-items:    center;
-    display:        flex;
-    flex-direction: row;
-    padding:        5px 10px;
-    transition:     background 0.2s ease;
+  .List {
 
-    .Icon {
-      background: teal;
-      min-height: 50px;
-      min-width:  50px;
-    }
+    li {
+      padding: 5px 10px;
 
-    .Content {
-      display:        flex;
-      flex-direction: column;
-      padding-left:   10px;
-    }
+      &:hover {
+        background: $colour-secondary;
+        cursor:     pointer;
+      }
 
-    &:hover {
-      background: $colour-secondary;
-      cursor:     pointer;
+      .List-Content {
+        align-items:    flex-start;
+        flex-direction: column;
+
+        p {
+          &:nth-child(2) {
+            color: $colour-primary;
+          }
+        }
+      }
     }
   }
 }
