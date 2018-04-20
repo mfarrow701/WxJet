@@ -11,8 +11,8 @@ import Country from '../../components/location/country';
 import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import {generateRandomNumberBetweenValues} from '../../services/utils.service';
-import './dashboard.css';
 import List from '../../components/core/list/list';
+import './dashboard.css';
 
 class Dashboard extends Component {
 
@@ -20,7 +20,10 @@ class Dashboard extends Component {
     render() {
         let body,
             updateMessage = 'United Kingdom, updated 7 min ago',
-            cloudsList = [{key: 'Cumulus', icon: 'test', value: '2000-5000ft'}, {key: 'Stratus', value: '3000-3200ft'}, {key: 'Cumulonimbus', value: '7000-20000ft'}, {key: 'Cirrus', value: '40000ft'}];
+            cloudsList = [{key: 'Cumulus', value: '2000-5000ft'}, {
+                key: 'Stratus',
+                value: '3000-3200ft'
+            }, {key: 'Cumulonimbus', value: '7000-20000ft'}, {key: 'Cirrus', value: '40000ft'}];
         body = (
             <Fragment>
                 <div className="Location-Card">
