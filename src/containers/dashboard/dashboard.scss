@@ -1,74 +1,81 @@
 @import "../../core/variables.scss";
 
 .Dashboard {
-  display:               grid;
-  grid-row-gap:          20px;
-  grid-template-columns: 100%;
-  grid-template-rows:    min-content;
-  justify-items:         center;
-  min-height:            100%;
-
-  .Card {
-    border-top: 10px solid $colour-primary;
-    width:      100%;
-
-    .Content {
-      background: white;
-      padding:    15px;
-    }
-  }
 
   .Location-Card {
     text-align: center;
   }
 
-  .Flight-Card {
-    border-top: 10px solid deeppink;
+  .Masonry {
+    column-count: 1;
+    column-gap:   20px;
+    min-height:   100%;
 
-    .Temperature {
-      font-weight: 300;
+    .Card {
+      border-top: 10px solid $colour-primary;
+      display:    inline-block;
+      margin:     0 0 20px 0;
+      width:      100%;
+
+      .Content {
+        background: white;
+        padding:    15px;
+      }
     }
 
-    .Time {
-      font-weight: 300;
+    .Flight-Card {
+      border-top: 10px solid deeppink;
+
+      .Temperature {
+        font-weight: 300;
+      }
+
+      .Time {
+        font-weight: 300;
+      }
+
+      .Flight-Rule {
+        font-weight: 900;
+      }
     }
 
-    .Flight-Rule {
-      font-weight: 900;
+    .Wind-Card {
+      border-top: 10px solid turquoise;
+
+      .Wind-Direction {
+        font-weight: 300;
+      }
+
+      .Wind-Speed {
+        font-weight: 300;
+      }
     }
   }
+}
 
-  .Wind-Card {
-    border-top: 10px solid turquoise;
+@media screen and (min-width: $media-query-sm) {
+  .Dashboard {
 
-    .Wind-Direction {
-      font-weight: 300;
-    }
-
-    .Wind-Speed {
-      font-weight: 300;
+    .Masonry {
+      column-count: 2;
     }
   }
 }
 
 @media screen and (min-width: $media-query-md) {
   .Dashboard {
-    grid-column-gap:       20px;
-    grid-template-columns: 1fr 1fr;
-    min-height:            initial;
 
-    .Location-Card {
-      grid-column: span 2;
+    .Masonry {
+      column-count: 3;
     }
   }
 }
 
 @media screen and (min-width: $media-query-xl) {
   .Dashboard {
-    grid-template-columns: 1fr 1fr 1fr;
 
-    .Location-Card {
-      grid-column: span 3;
+    .Masonry {
+      column-count: 4;
     }
   }
 }

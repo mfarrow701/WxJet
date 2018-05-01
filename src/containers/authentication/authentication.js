@@ -18,7 +18,7 @@ class Authentication extends Component {
         if (true) {
             body = (
                 <Fragment>
-                    <img src={Logo}/>
+                    <img alt="" src={Logo}/>
                     <input type="text" onChange={this.onEmailChange} placeholder="Email"/>
                     <input type="password" onChange={this.onPasswordChange} placeholder="Password"/>
                     <button onClick={this.onSignInClick}>Sign in</button>
@@ -28,7 +28,7 @@ class Authentication extends Component {
         } else {
             body = (
                 <Fragment>
-                    <img src=""/>
+                    <img alt="" src=""/>
                     <input type="text"/>
                     <input type="password"/>
                 </Fragment>

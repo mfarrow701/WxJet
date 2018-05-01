@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {locationsAPIRequest, locationSelected} from '../../actions/location.actions';
 import {filterLocations} from '../../services/locations.service';
-import {generateRandomHexCode} from '../../services/utils.service';
 import './search.css';
 import Loading from '../loading/loading';
 import List from '../core/list/list';

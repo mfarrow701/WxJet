@@ -1,43 +1,41 @@
-.Dashboard {
-  display: grid;
-  grid-row-gap: 20px;
-  grid-template-columns: 100%;
-  grid-template-rows: min-content;
-  justify-items: center;
+.Dashboard .Location-Card {
+  text-align: center; }
+
+.Dashboard .Masonry {
+  column-count: 1;
+  column-gap: 20px;
   min-height: 100%; }
-  .Dashboard .Card {
+  .Dashboard .Masonry .Card {
     border-top: 10px solid #333333;
+    display: inline-block;
+    margin: 0 0 20px 0;
     width: 100%; }
-    .Dashboard .Card .Content {
+    .Dashboard .Masonry .Card .Content {
       background: white;
       padding: 15px; }
-  .Dashboard .Location-Card {
-    text-align: center; }
-  .Dashboard .Flight-Card {
+  .Dashboard .Masonry .Flight-Card {
     border-top: 10px solid deeppink; }
-    .Dashboard .Flight-Card .Temperature {
+    .Dashboard .Masonry .Flight-Card .Temperature {
       font-weight: 300; }
-    .Dashboard .Flight-Card .Time {
+    .Dashboard .Masonry .Flight-Card .Time {
       font-weight: 300; }
-    .Dashboard .Flight-Card .Flight-Rule {
+    .Dashboard .Masonry .Flight-Card .Flight-Rule {
       font-weight: 900; }
-  .Dashboard .Wind-Card {
+  .Dashboard .Masonry .Wind-Card {
     border-top: 10px solid turquoise; }
-    .Dashboard .Wind-Card .Wind-Direction {
+    .Dashboard .Masonry .Wind-Card .Wind-Direction {
       font-weight: 300; }
-    .Dashboard .Wind-Card .Wind-Speed {
+    .Dashboard .Masonry .Wind-Card .Wind-Speed {
       font-weight: 300; }
+
+@media screen and (min-width: 600px) {
+  .Dashboard .Masonry {
+    column-count: 2; } }
 
 @media screen and (min-width: 768px) {
-  .Dashboard {
-    grid-column-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-    min-height: initial; }
-    .Dashboard .Location-Card {
-      grid-column: span 2; } }
+  .Dashboard .Masonry {
+    column-count: 3; } }
 
 @media screen and (min-width: 1200px) {
-  .Dashboard {
-    grid-template-columns: 1fr 1fr 1fr; }
-    .Dashboard .Location-Card {
-      grid-column: span 3; } }
+  .Dashboard .Masonry {
+    column-count: 4; } }
