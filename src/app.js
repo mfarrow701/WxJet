@@ -9,6 +9,7 @@ import Authentication from './containers/authentication/authentication';
 import Dashboard from './containers/dashboard/dashboard';
 import Profile from './containers/profile/profile';
 import Settings from './containers/settings/settings';
+import XSection from './containers/x-section/x-section';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 import Logo from './core/assets/logo.svg';
@@ -63,6 +64,7 @@ class App extends Component {
                                     <Route exact path="/" component={Dashboard}/>
                                     <Route path="/profile" component={Profile}/>
                                     <Route path="/authenticate" component={Authentication} />
+                                    <Route path="/x-section" component={XSection}/>
                                     <Route path="/settings" component={Settings}/>
                                     <Route component={NotFound}/>
                                 </Switch>
@@ -75,9 +77,9 @@ class App extends Component {
                             <button onClick={() => this.handleNavigationClick('/profile')}>
                                 <div className={'Profile-Icon Icon ' + themeClass}/>
                             </button>
-                            {/*<button onClick={() => this.handleNavigationClick('/charts')}>*/}
-                                {/*<div className={'Chart-Icon Icon ' + themeClass}/>*/}
-                            {/*</button>*/}
+                            <button onClick={() => this.handleNavigationClick('/x-section')}>
+                                <div className={'Chart-Icon Icon ' + themeClass}/>
+                            </button>
                             <button onClick={() => this.handleNavigationClick('/settings')}>
                                 <div className={'Settings-Icon Icon ' + themeClass}/>
                             </button>
