@@ -1,9 +1,9 @@
 {
-  "main.css": "static/css/main.87e2278d.css",
-  "main.css.map": "static/css/main.87e2278d.css.map",
-  "main.js": "static/js/main.4eeaf365.js",
-  "main.js.map": "static/js/main.4eeaf365.js.map",
-  "static\\media\\chart-icon.svg": "static/media/chart-icon.3860aaab.svg",
+  "main.css": "static/css/main.623c0573.css",
+  "main.css.map": "static/css/main.623c0573.css.map",
+  "main.js": "static/js/main.b886a5e4.js",
+  "main.js.map": "static/js/main.b886a5e4.js.map",
+  "static\\media\\chart-icon.svg": "static/media/chart-icon.7942e703.svg",
   "static\\media\\cloud1.svg": "static/media/cloud1.9bbe729b.svg",
   "static\\media\\cloud2.svg": "static/media/cloud2.ecf30719.svg",
   "static\\media\\cloud3.svg": "static/media/cloud3.0d0b176e.svg",
@@ -13,9 +13,9 @@
   "static\\media\\cloud7.svg": "static/media/cloud7.10781d98.svg",
   "static\\media\\cloud8.svg": "static/media/cloud8.f4bc3805.svg",
   "static\\media\\cloud9.svg": "static/media/cloud9.999bbc13.svg",
-  "static\\media\\home-icon.svg": "static/media/home-icon.212740fa.svg",
-  "static\\media\\logo.svg": "static/media/logo.1eefa41b.svg",
-  "static\\media\\more-icon.svg": "static/media/more-icon.f1bf33d5.svg",
-  "static\\media\\profile-icon.svg": "static/media/profile-icon.4835c869.svg",
-  "static\\media\\search-icon.svg": "static/media/search-icon.222f4cc6.svg"
+  "static\\media\\home-icon.svg": "static/media/home-icon.d5bc6f37.svg",
+  "static\\media\\logo.svg": "static/media/logo.1dde32be.svg",
+  "static\\media\\more-icon.svg": "static/media/more-icon.e30e208e.svg",
+  "static\\media\\profile-icon.svg": "static/media/profile-icon.bc96c6fb.svg",
+  "static\\media\\search-icon.svg": "static/media/search-icon.3d328cd3.svg"
 }
