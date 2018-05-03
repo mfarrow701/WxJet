@@ -1,5 +1,5 @@
 // @flow
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import Logo from '../../core/assets/logo.svg';
 import './authentication.css';
 
@@ -10,7 +10,7 @@ class Authentication extends Component {
             name: '',
             email: '',
             password: '',
-            formErrors: {email: '', password: ''},
+            formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
             formValid: false,
@@ -23,15 +23,15 @@ class Authentication extends Component {
         if (this.state.isSignIn) {
             body = (
                 <Fragment>
-                    {/*<img alt="" src={Logo}/>*/}
+                    <img alt="" src={Logo} />
                     <input onChange={this.onInput} name="email" placeholder="Email" type="email"
-                           value={this.state.email}
-                           style={{borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red'}}/>
+                        value={this.state.email}
+                        style={{ borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red' }} />
                     <input onChange={this.onInput} name="password" placeholder="Password" type="password"
-                           value={this.state.password}
-                           style={{borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red'}}/>
+                        value={this.state.password}
+                        style={{ borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red' }} />
                     <button type="submit" disabled={!this.state.formValid}>Sign in</button>
-                    <FormErrors formErrors={this.state.formErrors}/>
+                    <FormErrors formErrors={this.state.formErrors} />
                     <p onClick={this.onFormSwitch}>Not registered?</p>
                 </Fragment>
             )
@@ -40,15 +40,15 @@ class Authentication extends Component {
                 <Fragment>
                     {/*<img alt="" src=""/>*/}
                     <input onChange={this.onInput} name="name" placeholder="Name (Optional)" type="text"
-                           value={this.state.name}/>
+                        value={this.state.name} />
                     <input onChange={this.onInput} name="email" placeholder="Email" type="email"
-                           value={this.state.email}
-                           style={{borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red'}}/>
+                        value={this.state.email}
+                        style={{ borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red' }} />
                     <input onChange={this.onInput} name="password" placeholder="Password" type="password"
-                           value={this.state.password}
-                           style={{borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red'}}/>
+                        value={this.state.password}
+                        style={{ borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red' }} />
                     <button type="submit" disabled={!this.state.formValid}>Sign up</button>
-                    <FormErrors formErrors={this.state.formErrors}/>
+                    <FormErrors formErrors={this.state.formErrors} />
                     <p onClick={this.onFormSwitch}>Already registered?</p>
                 </Fragment>
             )
@@ -62,7 +62,7 @@ class Authentication extends Component {
 
     onInput = (event) => {
         const fieldName = event.target.name, fieldValue = event.target.value;
-        this.setState({[fieldName]: fieldValue}, () => {
+        this.setState({ [fieldName]: fieldValue }, () => {
             this.validateInput(fieldName, fieldValue)
         });
     };
@@ -82,7 +82,7 @@ class Authentication extends Component {
             name: '',
             email: '',
             password: '',
-            formErrors: {email: '', password: ''},
+            formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
             isSignIn: !this.state.isSignIn

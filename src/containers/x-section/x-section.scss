@@ -1,8 +1,35 @@
 .X-Section {
-  background: #40C5C0;
+  background: white;
   min-height: 100%;
   overflow:   hidden;
   position:   relative;
+
+  &.Dark {
+    background: linear-gradient(to top, #ff6a00, #ee0979);
+  }
+  &.Light {
+    background: linear-gradient(to top, #40C5C0, #1CD8D2);
+  }
+
+  hr {
+    border:none;
+    border-top: 2px dotted white;
+    color: white;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+
+    &:nth-child(1) {
+      border: none;
+    }
+
+    &:after {
+      content: attr(data-content);
+      font-size: 1.6rem;
+    }
+  }
 
   img {
     position: absolute;

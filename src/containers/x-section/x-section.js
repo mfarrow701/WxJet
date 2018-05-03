@@ -1,5 +1,7 @@
 // @flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import classNames from 'classnames';
 import Cloud1 from './assets/cloud1.svg';
 import Cloud2 from './assets/cloud2.svg';
 import Cloud3 from './assets/cloud3.svg';
@@ -19,29 +21,56 @@ class XSection extends Component {
         }
     }
 
-    componentWillMount() {
-        setInterval(() => this.setState({
+    componentDidMount() {
+        this.intervalId = setInterval(() => this.setState({
             data: this.generateData()
         }), 5000);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
+
     render() {
+        const themeClass = classNames(
+            this.props.themeIsDark ? 'Dark' : 'Light'
+        ), maxAltitude = this.props.typeIsFixedWing ? 35000 : 7000;
+        let scale = this.generateScale(maxAltitude);
         return (
-            <div className="X-Section">
+            <div className={'X-Section ' + themeClass}>
+                {scale.map((item, i) => {
+                    return (<hr key={i} data-content={item.altitude + 'ft'} style={{ top: item.position }} />)
+                })}
                 {this.state.data.map((item, i) => {
                     return (<img alt="" key={i} src={item.cloud} style={{
                         top: item.top,
                         left: item.left
-                    }} onMouseOver={this.onMouseOver} data-tag={{key: 'value'}}/> )
+                    }} />)
                 })}
             </div>
         )
     }
 
-    onMouseOver = (event) => {
-        console.log("Mousing over!");
-        console.log(event.target.getAttribute('data-tag'));
-    };
+    generateScale(maxAltitude) {
+        return [
+            {
+                position: '0%',
+                altitude: maxAltitude.toString()
+            },
+            {
+                position: '25%',
+                altitude: (maxAltitude * 0.75).toString()
+            }, {
+                position: '50%',
+                altitude: (maxAltitude * 0.5).toString()
+            }, {
+                position: '75%',
+                altitude: (maxAltitude * 0.25).toString()
+            }, {
+                position: '87.5%',
+                altitude: (maxAltitude * 0.125).toString()
+            }];
+    }
 
     generateData() {
         return [
@@ -139,4 +168,15 @@ class XSection extends Component {
     }
 }
 
-export default XSection;
+const mapStateToProps = state => {
+    return {
+        typeIsFixedWing: state.settings.typeIsFixedWing,
+        themeIsDark: state.settings.themeIsDark
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(XSection);

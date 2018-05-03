@@ -1,6 +1,6 @@
 // @flow
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './profile.css';
 
 class Profile extends Component {
@@ -16,6 +16,7 @@ class Profile extends Component {
                 <div className="Details">
                     <p className="Email"><strong>Email:</strong> N/A</p>
                     <p className="Favourite-Location"><strong>Home location:</strong> {this.props.selectedLocation.name}</p>
+                    <p><strong>My aircraft:</strong> {this.props.typeIsFixedWing ? 'Fixed' : 'Rotary'} wing</p> 
                 </div>
             </div>
         )
@@ -25,7 +26,8 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
     return {
-        selectedLocation: state.locationsReducer.selectedLocation
+        selectedLocation: state.locationsReducer.selectedLocation,
+        typeIsFixedWing: state.settings.typeIsFixedWing
     };
 };
 
