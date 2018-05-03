@@ -9,59 +9,123 @@ class Authentication extends Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            formErrors: {email: '', password: ''},
+            emailValid: false,
+            passwordValid: false,
+            formValid: false,
+            isSignIn: true
         };
     }
 
     render() {
         let body;
-        if (true) {
+        if (this.state.isSignIn) {
             body = (
                 <Fragment>
-                    <img alt="" src={Logo}/>
-                    <input type="text" onChange={this.onEmailChange} placeholder="Email"/>
-                    <input type="password" onChange={this.onPasswordChange} placeholder="Password"/>
-                    <button onClick={this.onSignInClick}>Sign in</button>
-                    <p>Not registered?</p>
+                    {/*<img alt="" src={Logo}/>*/}
+                    <input onChange={this.onInput} name="email" placeholder="Email" type="email"
+                           value={this.state.email}
+                           style={{borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red'}}/>
+                    <input onChange={this.onInput} name="password" placeholder="Password" type="password"
+                           value={this.state.password}
+                           style={{borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red'}}/>
+                    <button type="submit" disabled={!this.state.formValid}>Sign in</button>
+                    <FormErrors formErrors={this.state.formErrors}/>
+                    <p onClick={this.onFormSwitch}>Not registered?</p>
                 </Fragment>
             )
         } else {
             body = (
                 <Fragment>
-                    <img alt="" src=""/>
-                    <input type="text"/>
-                    <input type="password"/>
+                    {/*<img alt="" src=""/>*/}
+                    <input onChange={this.onInput} name="name" placeholder="Name (Optional)" type="text"
+                           value={this.state.name}/>
+                    <input onChange={this.onInput} name="email" placeholder="Email" type="email"
+                           value={this.state.email}
+                           style={{borderBottom: this.state.emailValid ? '4px solid green' : '4px solid red'}}/>
+                    <input onChange={this.onInput} name="password" placeholder="Password" type="password"
+                           value={this.state.password}
+                           style={{borderBottom: this.state.passwordValid ? '4px solid green' : '4px solid red'}}/>
+                    <button type="submit" disabled={!this.state.formValid}>Sign up</button>
+                    <FormErrors formErrors={this.state.formErrors}/>
+                    <p onClick={this.onFormSwitch}>Already registered?</p>
                 </Fragment>
             )
         }
         return (
-            <div className="Authentication">
+            <form autoComplete="on" className="Authentication" onSubmit={this.onFormSubmit}>
                 {body}
-            </div>
+            </form>
         )
     }
 
-    onNameChange = (event) => {
-        this.setState({name: event.target.value});
+    onInput = (event) => {
+        const fieldName = event.target.name, fieldValue = event.target.value;
+        this.setState({[fieldName]: fieldValue}, () => {
+            this.validateInput(fieldName, fieldValue)
+        });
     };
 
-    onEmailChange = (event) => {
-        this.setState({email: event.target.value});
-    };
-
-    onPasswordChange = (event) => {
-        this.setState({password: event.target.value});
-    };
-
-    onSignInClick = (event) => {
+    onFormSubmit = (event) => {
         event.preventDefault();
         event.stopPropagation();
+        if (this.state.isSignIn) {
+            // Sign-in here!
+        } else {
+            // Register here!
+        }
     };
 
-    onSignUpClick = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    onFormSwitch = (event) => {
+        this.setState({
+            name: '',
+            email: '',
+            password: '',
+            formErrors: {email: '', password: ''},
+            emailValid: false,
+            passwordValid: false,
+            isSignIn: !this.state.isSignIn
+        })
     };
+
+    validateInput(fieldName, fieldValue) {
+        let formErrors = this.state.formErrors,
+            emailValid = this.state.emailValid,
+            passwordValid = this.state.passwordValid;
+
+        switch (fieldName) {
+            case 'email':
+                emailValid = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/.test(fieldValue);
+                formErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            case 'password':
+                passwordValid = /^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$/.test(fieldValue);
+                formErrors.password = passwordValid ? '' : ' does not match';
+                break;
+            default:
+                break;
+        }
+
+        this.setState({
+            formErrors: formErrors,
+            emailValid: emailValid,
+            passwordValid: passwordValid,
+            formValid: emailValid && passwordValid
+        })
+    }
+}
+
+export class FormErrors extends Component {
+
+    render() {
+        const formErrors = this.props.formErrors;
+        return (
+            Object.keys(formErrors).map((fieldName, i) => {
+                return formErrors[fieldName].length > 0 ? <p key={i}>{fieldName} {formErrors[fieldName]}</p> : '';
+            })
+        );
+    }
 }
 
 export default Authentication;

@@ -12,30 +12,130 @@ import Cloud9 from './assets/cloud9.svg';
 import './x-section.css';
 
 class XSection extends Component {
+    constructor() {
+        super();
+        this.state = {
+            data: this.generateData()
+        }
+    }
+
+    componentWillMount() {
+        setInterval(() => this.setState({
+            data: this.generateData()
+        }), 5000);
+    }
 
     render() {
         return (
             <div className="X-Section">
-                <img src={Cloud1} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}} />
-                <img src={Cloud2} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud3} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud4} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud5} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud6} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud7} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud8} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud9} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud1} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}} />
-                <img src={Cloud2} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud3} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud4} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud5} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud6} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud7} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud8} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
-                <img src={Cloud9} style={{top: Math.floor(Math.random() * 101).toString() + '%', left: Math.floor(Math.random() * 101).toString() + '%'}}/>
+                {this.state.data.map((item, i) => {
+                    return (<img alt="" key={i} src={item.cloud} style={{
+                        top: item.top,
+                        left: item.left
+                    }} onMouseOver={this.onMouseOver} data-tag={{key: 'value'}}/> )
+                })}
             </div>
         )
+    }
+
+    onMouseOver = (event) => {
+        console.log("Mousing over!");
+        console.log(event.target.getAttribute('data-tag'));
+    };
+
+    generateData() {
+        return [
+            {
+                cloud: Cloud1,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud2,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud3,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud4,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud5,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud6,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud7,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud8,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud9,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud1,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud2,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud3,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud4,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud5,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud6,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud7,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud8,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            },
+            {
+                cloud: Cloud9,
+                top: Math.floor(Math.random() * 101).toString() + '%',
+                left: Math.floor(Math.random() * 101).toString() + '%'
+            }
+        ]
     }
 }
 

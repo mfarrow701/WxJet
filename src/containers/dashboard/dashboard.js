@@ -16,6 +16,7 @@ import './dashboard.css';
 
 class Dashboard extends Component {
 
+
     render() {
         let body,
             updateMessage = 'United Kingdom, updated 7 min ago',
@@ -25,6 +26,10 @@ class Dashboard extends Component {
             }, {key: 'Cumulonimbus', value: '7000-20000ft'}, {key: 'Cirrus', value: '40000ft'}];
         body = (
             <Fragment>
+                <div className="Location-Card">
+                    <City value={this.props.selectedLocation.name}/>
+                    <Country value={updateMessage}/>
+                </div>
                 <div className="Card Flight-Card">
                     <div className="Content">
                         <h5>Flight information</h5>
@@ -62,13 +67,7 @@ class Dashboard extends Component {
         );
         return (
             <div className="Dashboard">
-                <div className="Location-Card">
-                    <City value={this.props.selectedLocation.name}/>
-                    <Country value={updateMessage}/>
-                </div>
-                <div className="Masonry">
-                    {body}
-                </div>
+                {body}
             </div>
         )
     }

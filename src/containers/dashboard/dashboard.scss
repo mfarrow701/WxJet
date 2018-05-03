@@ -1,82 +1,75 @@
 @import "../../core/variables.scss";
 
 .Dashboard {
+  display:               grid;
+  grid-row-gap:          20px;
+  grid-template-columns: 100%;
+  grid-template-rows:    min-content;
+  justify-items:         center;
+  margin:                20px;
+  min-height:            100%;
+
+  .Card {
+    border-top: 10px solid $colour-primary;
+    width:      100%;
+
+    .Content {
+      background: white;
+      padding:    15px;
+    }
+  }
 
   .Location-Card {
     text-align: center;
   }
 
-  .Masonry {
-    column-count: 1;
-    column-gap:   20px;
-    min-height:   100%;
+  .Flight-Card {
+    border-top: 10px solid deeppink;
 
-    .Card {
-      border-top: 10px solid $colour-primary;
-      display:    inline-block;
-      margin:     0 0 20px 0;
-      width:      100%;
-
-      .Content {
-        background: white;
-        padding:    15px;
-      }
+    .Temperature {
+      font-weight: 300;
     }
 
-    .Flight-Card {
-      border-top: 10px solid deeppink;
-
-      .Temperature {
-        font-weight: 300;
-      }
-
-      .Time {
-        font-weight: 300;
-      }
-
-      .Flight-Rule {
-        font-weight: 900;
-      }
+    .Time {
+      font-weight: 300;
     }
 
-    .Wind-Card {
-      border-top: 10px solid turquoise;
-
-      .Wind-Direction {
-        font-weight: 300;
-      }
-
-      .Wind-Speed {
-        font-weight: 300;
-      }
+    .Flight-Rule {
+      font-weight: 900;
     }
   }
-}
 
-@media screen and (min-width: $media-query-sm) {
-  .Dashboard {
+  .Wind-Card {
+    border-top: 10px solid turquoise;
 
-    .Masonry {
-      column-count: 2;
+    .Wind-Direction {
+      font-weight: 300;
+    }
+
+    .Wind-Speed {
+      font-weight: 300;
     }
   }
 }
 
 @media screen and (min-width: $media-query-md) {
   .Dashboard {
+    grid-column-gap:       20px;
+    grid-template-columns: 1fr 1fr;
+    min-height:            initial;
 
-    .Masonry {
-      column-count: 3;
+    .Location-Card {
+      grid-column: span 2;
     }
   }
 }
 
 @media screen and (min-width: $media-query-xl) {
   .Dashboard {
+    grid-template-columns: 1fr 1fr 1fr;
 
-    .Masonry {
-      column-count: 4;
+    .Location-Card {
+      grid-column: span 3;
     }
   }
 }
-

@@ -7,8 +7,7 @@
   grid-template-rows: 48px 1fr 48px;
   min-height: 100vh; }
   .App main {
-    grid-area: main;
-    margin: 20px; }
+    grid-area: main; }
   .App header {
     align-items: center;
     display: flex;

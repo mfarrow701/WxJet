@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setNotificationState, setThemeState} from '../../actions/settings.actions';
 import Switch from '../../components/switch/switch';
+import './settings.css'
 
 class Settings extends Component {
     render() {

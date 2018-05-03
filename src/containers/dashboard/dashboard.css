@@ -1,41 +1,44 @@
-.Dashboard .Location-Card {
-  text-align: center; }
-
-.Dashboard .Masonry {
-  column-count: 1;
-  column-gap: 20px;
+.Dashboard {
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content;
+  justify-items: center;
+  margin: 20px;
   min-height: 100%; }
-  .Dashboard .Masonry .Card {
+  .Dashboard .Card {
     border-top: 10px solid #333333;
-    display: inline-block;
-    margin: 0 0 20px 0;
     width: 100%; }
-    .Dashboard .Masonry .Card .Content {
+    .Dashboard .Card .Content {
       background: white;
       padding: 15px; }
-  .Dashboard .Masonry .Flight-Card {
+  .Dashboard .Location-Card {
+    text-align: center; }
+  .Dashboard .Flight-Card {
     border-top: 10px solid deeppink; }
-    .Dashboard .Masonry .Flight-Card .Temperature {
+    .Dashboard .Flight-Card .Temperature {
       font-weight: 300; }
-    .Dashboard .Masonry .Flight-Card .Time {
+    .Dashboard .Flight-Card .Time {
       font-weight: 300; }
-    .Dashboard .Masonry .Flight-Card .Flight-Rule {
+    .Dashboard .Flight-Card .Flight-Rule {
       font-weight: 900; }
-  .Dashboard .Masonry .Wind-Card {
+  .Dashboard .Wind-Card {
     border-top: 10px solid turquoise; }
-    .Dashboard .Masonry .Wind-Card .Wind-Direction {
+    .Dashboard .Wind-Card .Wind-Direction {
       font-weight: 300; }
-    .Dashboard .Masonry .Wind-Card .Wind-Speed {
+    .Dashboard .Wind-Card .Wind-Speed {
       font-weight: 300; }
-
-@media screen and (min-width: 600px) {
-  .Dashboard .Masonry {
-    column-count: 2; } }
 
 @media screen and (min-width: 768px) {
-  .Dashboard .Masonry {
-    column-count: 3; } }
+  .Dashboard {
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    min-height: initial; }
+    .Dashboard .Location-Card {
+      grid-column: span 2; } }
 
 @media screen and (min-width: 1200px) {
-  .Dashboard .Masonry {
-    column-count: 4; } }
+  .Dashboard {
+    grid-template-columns: 1fr 1fr 1fr; }
+    .Dashboard .Location-Card {
+      grid-column: span 3; } }

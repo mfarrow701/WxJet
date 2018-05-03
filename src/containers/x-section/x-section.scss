@@ -1,11 +1,12 @@
 .X-Section {
-    background: #40c5c0;
-    min-height: 100%;
-    overflow: hidden;
-    position: relative;
+  background: #40C5C0;
+  min-height: 100%;
+  overflow:   hidden;
+  position:   relative;
 
-    img {
-        position: absolute;
-        width: 100px;
-    }
+  img {
+    position: absolute;
+    width:    100px;
+    transition: 0.5s;
+  }
 }

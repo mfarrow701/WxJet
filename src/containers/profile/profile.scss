@@ -1,10 +1,12 @@
 @import "../../core/variables.scss";
+
 .Profile {
   display:               grid;
   grid-row-gap:          20px;
   grid-template-columns: 100%;
   grid-template-rows:    min-content;
   justify-items:         center;
+  margin:                20px;
 
   .Avatar {
     img {
