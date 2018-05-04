@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import classNames from 'classnames';
 import Cloud1 from './assets/cloud1.svg';
 import Cloud2 from './assets/cloud2.svg';
@@ -13,6 +13,8 @@ import Cloud8 from './assets/cloud8.svg';
 import Cloud9 from './assets/cloud9.svg';
 import './x-section.css';
 
+const cloudTypes = ['cirrus', 'cirrocumulus', 'cirrostratus', 'altocumulus', 'altostratus', 'stratocumulus', 'cumulus', 'cumulonimbus', 'nimbostratus', 'stratus'];
+
 class XSection extends Component {
     constructor() {
         super();
@@ -24,7 +26,7 @@ class XSection extends Component {
     componentDidMount() {
         this.intervalId = setInterval(() => this.setState({
             data: this.generateData()
-        }), 5000);
+        }), 10000);
     }
 
     componentWillUnmount() {
@@ -38,17 +40,34 @@ class XSection extends Component {
         let scale = this.generateScale(maxAltitude);
         return (
             <div className={'X-Section ' + themeClass}>
+                {/*<svg width="100%" height="100%" viewBox="0 0 100 100">*/}
+                    {/*<path*/}
+                        {/*d="M0 14.3s6-6.4 13.8-2.5 13.9 5.7 20.7 4 8.3-3.2 13.3-2.3c5.1.9 10.3 9.6 10.3 9.6S68.6 38 79.5 34.5s8.1-11.8 11.2-16S100 14 100 14"*/}
+                        {/*fill="none" stroke="white" strokeWidth="0.2"/>*/}
+                {/*</svg>*/}
                 {scale.map((item, i) => {
-                    return (<hr key={i} data-content={item.altitude + 'ft'} style={{ top: item.position }} />)
+                    return (<hr key={i} data-content={item.altitude + 'ft'} style={{top: item.position}}/>)
                 })}
                 {this.state.data.map((item, i) => {
-                    return (<img alt="" key={i} src={item.cloud} style={{
-                        top: item.top,
-                        left: item.left
-                    }} />)
+                    return (<img alt="" key={i} src={item.cloud}
+                                 style={this.calculatePosition(maxAltitude, item.attributes)}
+                                 onMouseOver={this.onCloudMouseOver}
+                                 data-properties={JSON.stringify(item.attributes)}/>)
                 })}
             </div>
         )
+    }
+
+    onCloudMouseOver = (event) => {
+        let cloudProperties = JSON.parse(event.target.getAttribute('data-properties'));
+        console.table(cloudProperties);
+    };
+
+    calculatePosition(maxAltitude, attributes) {
+        return {
+            top: (100 - ((attributes.altitude / maxAltitude) * 100)).toString() + '%',
+            left: Math.floor(Math.random() * 101).toString() + '%'
+        }
     }
 
     generateScale(maxAltitude) {
@@ -77,92 +96,164 @@ class XSection extends Component {
             {
                 cloud: Cloud1,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud2,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud3,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud4,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud5,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud6,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud7,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud8,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud9,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud1,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud2,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud3,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud4,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud5,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud6,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud7,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud8,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             },
             {
                 cloud: Cloud9,
                 top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%'
+                left: Math.floor(Math.random() * 101).toString() + '%',
+                attributes: {
+                    altitude: Math.floor(Math.random() * 35000),
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                }
             }
         ]
     }

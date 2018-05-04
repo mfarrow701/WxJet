@@ -3,6 +3,8 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
 import loremImpsum from 'lorem-ipsum';
+import {forecastAPIRequest} from '../../actions/forecast.actions';
+import Loading from '../../components/loading/loading';
 import Temperature from '../../components/weather/temperature';
 import Time from '../../components/time/time';
 import FlightRule from '../../components/weather/flight-rule';
@@ -10,55 +12,63 @@ import City from '../../components/location/city';
 import Country from '../../components/location/country';
 import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
-import {generateRandomNumberBetweenValues} from '../../services/utils.service';
 import './dashboard.css';
 
 class Dashboard extends Component {
 
+    componentWillMount() {
+        this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
+    }
 
     render() {
         let body,
-            updateMessage = 'United Kingdom, updated 7 min ago';
-        body = (
-            <Fragment>
-                <div className="Location-Card">
-                    <City value={this.props.selectedLocation.name}/>
-                    <Country value={updateMessage}/>
-                </div>
-                <div className="Card Flight-Card">
-                    <div className="Content">
-                        <h5>Flight information</h5>
-                        <Temperature value={generateRandomNumberBetweenValues(-4, 30)}/>
-                        <Time format={DateTime.TIME_24_WITH_SECONDS}/>
-                        <FlightRule ceiling={generateRandomNumberBetweenValues(0, 20000)}
-                                    visibility={generateRandomNumberBetweenValues(0, 10000)}/>
+            updateMessage, forecast;
+        if (this.props.forecastFetching || this.props.forecastPayload === null) {
+            body = <Loading/>
+        } else {
+            forecast = this.props.forecastPayload.features[0].properties.time_series[0];
+            updateMessage = 'United Kingdom, updated 1 min ago';
+            body = (
+                <Fragment>
+                    <div className="Location-Card">
+                        <City value={this.props.selectedLocation.name}/>
+                        <Country value={updateMessage}/>
                     </div>
-                </div>
-                <div className="Card Wind-Card">
-                    <div className="Content">
-                        <h5>Wind & pressure</h5>
-                        <WindDirection value={generateRandomNumberBetweenValues(0, 360).toString()}/>
-                        <WindSpeed value={generateRandomNumberBetweenValues(0, 25)}/>
+                    <div className="Card Flight-Card">
+                        <div className="Content">
+                            <h5>Flight information</h5>
+                            <Temperature value={Math.round(forecast['screen_temperature'])}/>
+                            <Time format={DateTime.TIME_24_WITH_SECONDS}/>
+                            <FlightRule ceiling={Math.round(forecast['5_okta_cloud_base_height']) * 3.28}
+                                        visibility={Math.round(forecast['visibility'])}/>
+                        </div>
                     </div>
-                </div>
+                    <div className="Card Wind-Card">
+                        <div className="Content">
+                            <h5>Wind & pressure</h5>
+                            <WindDirection value={forecast['10m_wind_direction'].toString()}/>
+                            <WindSpeed value={forecast['10m_wind_speed']}/>
+                        </div>
+                    </div>
 
-                <div className="Card Cloud-Card">
-                    <div className="Content">
-                        <h5>Cloud</h5>
+                    <div className="Card Cloud-Card">
+                        <div className="Content">
+                            <h5>Cloud</h5>
+                        </div>
                     </div>
-                </div>
 
-                <div className="Card Details-Card">
-                    <div className="Content">
-                        <h5>Details</h5>
-                        <p>{loremImpsum({
-                            count: 2,
-                            units: 'paragraphs'
-                        })}</p>
+                    <div className="Card Details-Card">
+                        <div className="Content">
+                            <h5>Details</h5>
+                            <p>{loremImpsum({
+                                count: 2,
+                                units: 'paragraphs'
+                            })}</p>
+                        </div>
                     </div>
-                </div>
-            </Fragment>
-        );
+                </Fragment>
+            );
+        }
         return (
             <div className="Dashboard">
                 {body}
@@ -69,12 +79,16 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
+        forecastPayload: state.forecastReducer.payload,
+        forecastFetching: state.forecastReducer.fetching,
         selectedLocation: state.locationsReducer.selectedLocation
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {};
+    return {
+        requestForecast: selectedLocation => dispatch(forecastAPIRequest(selectedLocation))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
