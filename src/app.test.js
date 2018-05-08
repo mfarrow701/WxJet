@@ -11,9 +11,9 @@ describe('App component', () => {
         history = createMemoryHistory('/');
     let component, store,
         initialState = {
-            flightReducer: {fetching: false, payload: null, error: null},
             locationsReducer: {selectedLocation: null},
-            routerReducer: {location: {pathname: '/'}}
+            routerReducer: {location: {pathname: '/'}},
+            settings: {themeIsDark: true}
         };
 
     const renderWrapper = (state) => {
@@ -39,9 +39,9 @@ describe('App component', () => {
 
     it('should render the default container if there is a selected location', () => {
         initialState = {
-            flightReducer: {fetching: false, payload: null, error: null},
             locationsReducer: {selectedLocation: selectedLocation},
-            routerReducer: {location: {pathname: '/'}}
+            routerReducer: {location: {pathname: '/'}},
+            settings: {themeIsDark: true}
         };
         renderWrapper(initialState);
         expect(component.find(Search).length).toEqual(0);

@@ -9,6 +9,7 @@ yarn.lock
 
 # Testing
 /coverage
+/cypress
 
 # Development
 /src/*.css

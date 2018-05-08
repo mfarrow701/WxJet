@@ -7,6 +7,7 @@ import Profile from './profile';
 describe('Profile container', () => {
     const initialState = {
             locationsReducer: {selectedLocation: selectedLocation},
+            settings: {typeIsFixedWing: true}
         },
         mockStore = configureStore([]);
     let component, store;

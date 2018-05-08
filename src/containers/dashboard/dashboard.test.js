@@ -7,6 +7,7 @@ import Dashboard from './dashboard';
 
 describe('Dashboard container', () => {
     const initialState = {
+            flightReducer: {fetching: false, payload: null, error: null},
             locationsReducer: {selectedLocation: selectedLocation},
         },
         mockStore = configureStore([]);
@@ -19,6 +20,10 @@ describe('Dashboard container', () => {
 
     beforeEach(() => {
         renderWrapper(initialState);
+    });
+
+    it('should render the loading screen before receiving data', () => {
+
     });
 
     it('should render the dashboard container after load', () => {

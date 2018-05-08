@@ -7,7 +7,8 @@ describe('Settings reducer', () => {
     it('should handle the initial state', () => {
         expect(handleSettingsActions(undefined, {})).toEqual({
                 'notificationsEnabled': false,
-                'themeIsDark': true
+                'themeIsDark': true,
+                'typeIsFixedWing': true
             }
         )
     });

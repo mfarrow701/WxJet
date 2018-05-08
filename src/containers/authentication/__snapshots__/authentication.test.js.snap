@@ -17,30 +17,58 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
+      "autoComplete": "on",
       "children": <Unknown>
         <img
+                alt=""
                 src="logo.svg"
         />
         <input
+                name="email"
                 onChange={[Function]}
                 placeholder="Email"
-                type="text"
+                style={
+                        Object {
+                                "borderBottom": "4px solid red",
+                              }
+                }
+                type="email"
+                value=""
         />
         <input
+                name="password"
                 onChange={[Function]}
                 placeholder="Password"
+                style={
+                        Object {
+                                "borderBottom": "4px solid red",
+                              }
+                }
                 type="password"
+                value=""
         />
         <button
-                onClick={[Function]}
+                disabled={true}
+                type="submit"
         >
                 Sign in
         </button>
-        <p>
+        <FormErrors
+                formErrors={
+                        Object {
+                                "email": "",
+                                "password": "",
+                              }
+                }
+        />
+        <p
+                onClick={[Function]}
+        >
                 Not registered?
         </p>
 </Unknown>,
       "className": "Authentication",
+      "onSubmit": [Function],
     },
     "ref": null,
     "rendered": Object {
@@ -50,24 +78,50 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <img
+            alt=""
             src="logo.svg"
 />,
           <input
+            name="email"
             onChange={[Function]}
             placeholder="Email"
-            type="text"
+            style={
+                        Object {
+                                    "borderBottom": "4px solid red",
+                                  }
+            }
+            type="email"
+            value=""
 />,
           <input
+            name="password"
             onChange={[Function]}
             placeholder="Password"
+            style={
+                        Object {
+                                    "borderBottom": "4px solid red",
+                                  }
+            }
             type="password"
+            value=""
 />,
           <button
-            onClick={[Function]}
+            disabled={true}
+            type="submit"
 >
             Sign in
 </button>,
-          <p>
+          <FormErrors
+            formErrors={
+                        Object {
+                                    "email": "",
+                                    "password": "",
+                                  }
+            }
+/>,
+          <p
+            onClick={[Function]}
+>
             Not registered?
 </p>,
         ],
@@ -79,6 +133,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
+            "alt": "",
             "src": "logo.svg",
           },
           "ref": null,
@@ -90,9 +145,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
+            "name": "email",
             "onChange": [Function],
             "placeholder": "Email",
-            "type": "text",
+            "style": Object {
+              "borderBottom": "4px solid red",
+            },
+            "type": "email",
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -103,9 +163,14 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
+            "name": "password",
             "onChange": [Function],
             "placeholder": "Password",
+            "style": Object {
+              "borderBottom": "4px solid red",
+            },
             "type": "password",
+            "value": "",
           },
           "ref": null,
           "rendered": null,
@@ -117,7 +182,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Sign in",
-            "onClick": [Function],
+            "disabled": true,
+            "type": "submit",
           },
           "ref": null,
           "rendered": "Sign in",
@@ -126,9 +192,24 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "formErrors": Object {
+              "email": "",
+              "password": "",
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
           "nodeType": "host",
           "props": Object {
             "children": "Not registered?",
+            "onClick": [Function],
           },
           "ref": null,
           "rendered": "Not registered?",
@@ -137,7 +218,7 @@ ShallowWrapper {
       ],
       "type": Symbol(react.fragment),
     },
-    "type": "div",
+    "type": "form",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -145,30 +226,58 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
+        "autoComplete": "on",
         "children": <Unknown>
           <img
+                    alt=""
                     src="logo.svg"
           />
           <input
+                    name="email"
                     onChange={[Function]}
                     placeholder="Email"
-                    type="text"
+                    style={
+                              Object {
+                                        "borderBottom": "4px solid red",
+                                      }
+                    }
+                    type="email"
+                    value=""
           />
           <input
+                    name="password"
                     onChange={[Function]}
                     placeholder="Password"
+                    style={
+                              Object {
+                                        "borderBottom": "4px solid red",
+                                      }
+                    }
                     type="password"
+                    value=""
           />
           <button
-                    onClick={[Function]}
+                    disabled={true}
+                    type="submit"
           >
                     Sign in
           </button>
-          <p>
+          <FormErrors
+                    formErrors={
+                              Object {
+                                        "email": "",
+                                        "password": "",
+                                      }
+                    }
+          />
+          <p
+                    onClick={[Function]}
+          >
                     Not registered?
           </p>
 </Unknown>,
         "className": "Authentication",
+        "onSubmit": [Function],
       },
       "ref": null,
       "rendered": Object {
@@ -178,24 +287,50 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <img
+              alt=""
               src="logo.svg"
 />,
             <input
+              name="email"
               onChange={[Function]}
               placeholder="Email"
-              type="text"
+              style={
+                            Object {
+                                          "borderBottom": "4px solid red",
+                                        }
+              }
+              type="email"
+              value=""
 />,
             <input
+              name="password"
               onChange={[Function]}
               placeholder="Password"
+              style={
+                            Object {
+                                          "borderBottom": "4px solid red",
+                                        }
+              }
               type="password"
+              value=""
 />,
             <button
-              onClick={[Function]}
+              disabled={true}
+              type="submit"
 >
               Sign in
 </button>,
-            <p>
+            <FormErrors
+              formErrors={
+                            Object {
+                                          "email": "",
+                                          "password": "",
+                                        }
+              }
+/>,
+            <p
+              onClick={[Function]}
+>
               Not registered?
 </p>,
           ],
@@ -207,6 +342,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+              "alt": "",
               "src": "logo.svg",
             },
             "ref": null,
@@ -218,9 +354,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+              "name": "email",
               "onChange": [Function],
               "placeholder": "Email",
-              "type": "text",
+              "style": Object {
+                "borderBottom": "4px solid red",
+              },
+              "type": "email",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -231,9 +372,14 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+              "name": "password",
               "onChange": [Function],
               "placeholder": "Password",
+              "style": Object {
+                "borderBottom": "4px solid red",
+              },
               "type": "password",
+              "value": "",
             },
             "ref": null,
             "rendered": null,
@@ -245,7 +391,8 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": "Sign in",
-              "onClick": [Function],
+              "disabled": true,
+              "type": "submit",
             },
             "ref": null,
             "rendered": "Sign in",
@@ -254,9 +401,24 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "formErrors": Object {
+                "email": "",
+                "password": "",
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
             "nodeType": "host",
             "props": Object {
               "children": "Not registered?",
+              "onClick": [Function],
             },
             "ref": null,
             "rendered": "Not registered?",
@@ -265,7 +427,7 @@ ShallowWrapper {
         ],
         "type": Symbol(react.fragment),
       },
-      "type": "div",
+      "type": "form",
     },
   ],
   Symbol(enzyme.__options__): Object {

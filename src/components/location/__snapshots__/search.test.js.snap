@@ -6,7 +6,6 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Search
     locationsError={null}
-    locationsFetching={null}
     locationsPayload={null}
     requestLocations={[Function]}
     selectLocation={[Function]}

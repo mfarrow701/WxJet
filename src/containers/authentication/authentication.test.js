@@ -15,6 +15,6 @@ describe('Authentication container', () => {
 
     it('should render the authentication container after load', () => {
         expect(component).toMatchSnapshot();
-        expect(component.find('.Authentication h1').text()).toEqual('Not Found!');
+        expect(component.find('.Authentication button').text()).toEqual('Sign in');
     });
 });
