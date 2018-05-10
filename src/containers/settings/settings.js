@@ -6,6 +6,7 @@ import Switch from '../../components/switch/switch';
 import './settings.css'
 
 class Settings extends Component {
+
     render() {
         return (
             <div className="Settings">

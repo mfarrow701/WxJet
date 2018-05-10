@@ -2,7 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
-import loremImpsum from 'lorem-ipsum';
+import openSocket from 'socket.io-client';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
 import Loading from '../../components/loading/loading';
 import Temperature from '../../components/weather/temperature';
@@ -14,10 +14,31 @@ import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import './dashboard.css';
 
-class Dashboard extends Component {
+const socketOptions = {
+    reconnectionAttempts: 3,
+    reconnectionDelay: 3000
+};
+const socket = openSocket('http://localhost:3001', socketOptions);
 
-    componentWillMount() {
+class Dashboard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            notificationType: {
+                colourState: '#333333',
+                message: ''
+            }
+        }
+    }
+
+    componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
+        this.subscribeSocketNotifications();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.notificationsInterval);
+        this.unsubscribeSocketNotifications();
     }
 
     render() {
@@ -51,19 +72,10 @@ class Dashboard extends Component {
                         </div>
                     </div>
 
-                    <div className="Card Cloud-Card">
+                    <div className="Card Cloud-Card"
+                         style={{borderTop: '10px solid ' + this.state.notificationType.colourState}}>
                         <div className="Content">
-                            <h5>Cloud</h5>
-                        </div>
-                    </div>
-
-                    <div className="Card Details-Card">
-                        <div className="Content">
-                            <h5>Details</h5>
-                            <p>{loremImpsum({
-                                count: 2,
-                                units: 'paragraphs'
-                            })}</p>
+                            <h5>{this.state.notificationType.message || 'Unable to retrieve notifications'}</h5>
                         </div>
                     </div>
                 </Fragment>
@@ -75,13 +87,41 @@ class Dashboard extends Component {
             </div>
         )
     }
+
+    subscribeSocketNotifications() {
+        socket.on('notification', notificationType => {
+            if (Notification.permission === 'granted' && notificationType.colourState === '#FF0000') {
+                // Only send a web notification if the API is enabled and
+                // the notification state is 'red' (highest priority)
+                navigator.serviceWorker.getRegistration().then(reg => {
+                    const options = {
+                        badge: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
+                        body: notificationType.message,
+                        icon: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
+                        vibrate: [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]
+                    };
+                    const title = 'Warning!';
+                    reg.showNotification(title, options);
+                });
+            }
+            this.setState({
+                notificationType: notificationType
+            });
+        });
+        socket.emit('subscribeToNotifications');
+    }
+
+    unsubscribeSocketNotifications() {
+        socket.off('notification');
+    }
 }
 
 const mapStateToProps = state => {
     return {
         forecastPayload: state.forecastReducer.payload,
         forecastFetching: state.forecastReducer.fetching,
-        selectedLocation: state.locationsReducer.selectedLocation
+        selectedLocation: state.locationsReducer.selectedLocation,
+        notificationsEnabled: state.settings.notificationsEnabled
     };
 };
 

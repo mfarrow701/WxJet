@@ -1,7 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {getLunarPhase} from '../../services/utils.service';
 import Cloud1 from './assets/cloud1.svg';
 import Cloud2 from './assets/cloud2.svg';
 import Cloud3 from './assets/cloud3.svg';
@@ -36,31 +37,38 @@ class XSection extends Component {
     render() {
         const themeClass = classNames(
             this.props.themeIsDark ? 'Dark' : 'Light'
-        ), maxAltitude = this.props.typeIsFixedWing ? 35000 : 7000;
+            ), maxAltitude = this.props.typeIsFixedWing ? 35000 : 7000,
+            lunarPhase = getLunarPhase();
         let scale = this.generateScale(maxAltitude);
         return (
-            <div className={'X-Section ' + themeClass}>
-                {/*<svg width="100%" height="100%" viewBox="0 0 100 100">*/}
-                    {/*<path*/}
-                        {/*d="M0 14.3s6-6.4 13.8-2.5 13.9 5.7 20.7 4 8.3-3.2 13.3-2.3c5.1.9 10.3 9.6 10.3 9.6S68.6 38 79.5 34.5s8.1-11.8 11.2-16S100 14 100 14"*/}
-                        {/*fill="none" stroke="white" strokeWidth="0.2"/>*/}
-                {/*</svg>*/}
-                {scale.map((item, i) => {
-                    return (<hr key={i} data-content={item.altitude + 'ft'} style={{top: item.position}}/>)
-                })}
-                {this.state.data.map((item, i) => {
-                    return (<img alt="" key={i} src={item.cloud}
-                                 style={this.calculatePosition(maxAltitude, item.attributes)}
-                                 onMouseOver={this.onCloudMouseOver}
-                                 data-properties={JSON.stringify(item.attributes)}/>)
-                })}
-            </div>
+            <Fragment>
+                <div className={'X-Section ' + themeClass}>
+                    {scale.map((item, i) => {
+                        return (<hr key={i} data-content={item.altitude + 'ft'} style={{top: item.position}}/>)
+                    })}
+                    {this.state.data.map((item, i) => {
+                        return (<img alt="" className="Cloud" key={i} src={item.cloud}
+                                     style={this.calculatePosition(maxAltitude, item.attributes)}
+                                     onMouseOver={this.onCloudMouseOver}
+                                     data-properties={JSON.stringify(item.attributes)}/>)
+                    })}
+                </div>
+                <div className={'Location-Bar ' + themeClass}>
+                        <img alt="Moon phase" className="Lunar-Phase"
+                             src={process.env.PUBLIC_URL + '/assets/lunar-phase/' + lunarPhase['img'] + '.svg'}
+                             title={lunarPhase['phase'] + ', ' + lunarPhase['luminosity'] + '% luminosity'}/>
+                        <div className="Locality">
+                            <h5>{this.props.selectedLocation.name}</h5>
+                            <p>13.00 - 15.00</p>
+                        </div>
+                </div>
+            </Fragment>
         )
     }
 
     onCloudMouseOver = (event) => {
         let cloudProperties = JSON.parse(event.target.getAttribute('data-properties'));
-        console.table(cloudProperties);
+        // console.table(cloudProperties);
     };
 
     calculatePosition(maxAltitude, attributes) {
@@ -261,6 +269,7 @@ class XSection extends Component {
 
 const mapStateToProps = state => {
     return {
+        selectedLocation: state.locationsReducer.selectedLocation,
         typeIsFixedWing: state.settings.typeIsFixedWing,
         themeIsDark: state.settings.themeIsDark
     };

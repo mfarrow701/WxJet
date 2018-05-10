@@ -1,4 +1,5 @@
 // @flow
+import {getMoonIllumination} from 'suncalc';
 
 /**
  * Generates a random hash code
@@ -37,4 +38,52 @@ export function generateRandomNumberBetweenValues(min, max) {
  */
 export function isNullOrUndefined(value) {
     return value == null;
+}
+
+export function getLunarPhase() {
+    const lunarIllumination = getMoonIllumination(new Date()),
+        isWaxing = lunarIllumination.angle < 0, luminosity = Math.round(lunarIllumination.fraction * 100);
+    let lunarPhase;
+    if (lunarIllumination.phase >= 0 && lunarIllumination.phase < 0.25) {
+        lunarPhase = isWaxing ? {
+            img: 'waxingCrescent',
+            phase: 'Waxing crescent',
+            luminosity: luminosity
+        } : {
+            img: 'newMoon',
+            phase: 'New moon',
+            luminosity: luminosity
+        };
+    } else if (lunarIllumination.phase >= 0.25 && lunarIllumination.phase < 0.5) {
+        lunarPhase = isWaxing ? {
+            img: 'waxingGibbous',
+            phase: 'Waxing gibbous',
+            luminosity: luminosity
+        } : {
+            img: 'firstQuarter',
+            phase: 'First quarter',
+            luminosity: luminosity
+        };
+    } else if (lunarIllumination.phase >= 0.5 && lunarIllumination.phase < 0.75) {
+        lunarPhase = !isWaxing ? {
+            img: 'waningGibbous',
+            phase: 'Waning gibbous',
+            luminosity: luminosity
+        } : {
+            img: 'fullMoon',
+            phase: 'Full moon',
+            luminosity: luminosity
+        };
+    } else {
+        lunarPhase = !isWaxing ? {
+            img: 'waningCrescent',
+            phase: 'Waning crescent',
+            luminosity: luminosity
+        } : {
+            img: 'thirdQuarter',
+            phase: 'Third quarter',
+            luminosity: luminosity
+        };
+    }
+    return lunarPhase;
 }

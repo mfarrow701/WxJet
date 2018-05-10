@@ -2,7 +2,7 @@
 
 .X-Section {
   background: white;
-  min-height: 100%;
+  min-height: calc(100% - 48px);
   overflow:   hidden;
   position:   relative;
 
@@ -33,12 +33,57 @@
     }
   }
 
-  img {
+  .Cloud {
     position:   absolute;
     width:      70px;
     transition: 0.5s;
     transform:  translate(-35px, -35px);
   }
+}
+
+.Location-Bar {
+  align-items:     center;
+  display:         flex;
+  flex-direction:  row;
+  height:          48px;
+  justify-content: flex-start;
+  width:           100%;
+
+  &.Dark {
+    background: $background-secondary;
+  }
+  &.Light {
+    background: $background-primary;
+
+    .Locality {
+      h5, p { color: white }
+    }
+  }
+
+  .Lunar-Phase {
+    margin-left: 10px;
+    filter:      drop-shadow(0 0 2px $colour-ternary);
+    height:      38px;
+    transform:   rotate(5deg);
+  }
+
+  .Locality {
+    display:         flex;
+    flex-direction:  column;
+    justify-content: center;
+    padding-left:    10px;
+
+    h5 {
+      color:  #7D7D7D;
+      margin: 0;
+    }
+
+    p {
+      color:  #7D7D7D;
+      margin: 0;
+    }
+  }
+
 }
 
 @media screen and (min-width: $media-query-sm) {

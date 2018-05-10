@@ -4,8 +4,7 @@
   grid-template-columns: 100%;
   grid-template-rows: min-content;
   justify-items: center;
-  margin: 20px;
-  min-height: 100%; }
+  margin: 20px; }
   .Dashboard .Card {
     border-top: 10px solid #333333;
     width: 100%; }
@@ -32,8 +31,7 @@
 @media screen and (min-width: 768px) {
   .Dashboard {
     grid-column-gap: 20px;
-    grid-template-columns: 1fr 1fr;
-    min-height: initial; }
+    grid-template-columns: 1fr 1fr; }
     .Dashboard .Location-Card {
       grid-column: span 2; } }
 

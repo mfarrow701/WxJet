@@ -22,7 +22,8 @@ class List extends Component {
                         }}>
                             {!isNullOrUndefined(item.icon) ? (
                                 <Fragment>
-                                    <img alt="" className="List-Icon" src={item.icon}/>
+                                    <img alt="" className="List-Icon"
+                                         src={typeof item.icon === 'string' ? item.icon : ''}/>
                                     {listContent}
                                 </Fragment>
                             ) : listContent}
