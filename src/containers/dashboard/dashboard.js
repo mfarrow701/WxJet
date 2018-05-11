@@ -2,7 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
-import openSocket from 'socket.io-client';
+import io from 'socket.io-client';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
 import Loading from '../../components/loading/loading';
 import Temperature from '../../components/weather/temperature';
@@ -14,11 +14,10 @@ import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import './dashboard.css';
 
-const socketOptions = {
+let socket, socketOptions = {
     reconnectionAttempts: 3,
     reconnectionDelay: 3000
 };
-const socket = openSocket('http://localhost:3001', socketOptions);
 
 class Dashboard extends Component {
     constructor() {
@@ -37,7 +36,6 @@ class Dashboard extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.notificationsInterval);
         this.unsubscribeSocketNotifications();
     }
 
@@ -89,6 +87,7 @@ class Dashboard extends Component {
     }
 
     subscribeSocketNotifications() {
+        socket = io('http://localhost:3001', socketOptions);
         socket.on('notification', notificationType => {
             if (Notification.permission === 'granted' && notificationType.colourState === '#FF0000') {
                 // Only send a web notification if the API is enabled and
@@ -113,6 +112,7 @@ class Dashboard extends Component {
 
     unsubscribeSocketNotifications() {
         socket.off('notification');
+        socket.disconnect();
     }
 }
 

@@ -1,9 +1,11 @@
 import React from 'react';
+import {DateTime} from 'luxon';
 import {
     isNullOrUndefined,
     generateRandomHexCode,
     generateRandomHash,
-    generateRandomNumberBetweenValues
+    generateRandomNumberBetweenValues,
+    getLunarPhase
 } from './utils.service';
 
 describe('Utils service', () => {
@@ -39,6 +41,15 @@ describe('Utils service', () => {
 
     it('should generate a random hash code', () => {
         spyOn(Math, 'random').and.returnValue(0.7);
-        expect(generateRandomHash()).toEqual("77777");
+        expect(generateRandomHash()).toEqual('77777');
+    });
+
+    it('should get the appropriate lunar phase on a given date', () => {
+        let dateTime = DateTime.utc(2017, 1, 9).toJSDate();
+        expect(getLunarPhase(dateTime)).toEqual({'img': 'waxingGibbous', 'luminosity': 85, 'phase': 'Waxing gibbous'});
+        dateTime = DateTime.local(2017, 4, 30).toJSDate();
+        expect(getLunarPhase(dateTime)).toEqual({'img': 'waxingCrescent', 'luminosity': 16, 'phase': 'Waxing crescent'});
+        dateTime = DateTime.local(2017, 7, 10).toJSDate();
+        expect(getLunarPhase(dateTime)).toEqual({'img': 'waningGibbous', 'luminosity': 99, 'phase': 'Waning gibbous'});
     });
 });

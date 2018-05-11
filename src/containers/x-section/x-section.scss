@@ -61,8 +61,9 @@
   }
 
   .Lunar-Phase {
+    animation:   Lunar-Phase-Pulse 2s infinite;
     margin-left: 10px;
-    filter:      drop-shadow(0 0 2px $colour-ternary);
+    filter:      drop-shadow(0 0 2px $colour-primary);
     height:      38px;
     transform:   rotate(5deg);
   }
@@ -84,6 +85,18 @@
     }
   }
 
+}
+
+@keyframes Lunar-Phase-Pulse {
+  0% {
+    filter: drop-shadow(0 0 2px $colour-primary);
+  }
+  50% {
+    filter: drop-shadow(0 0 5px $colour-primary);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px $colour-primary);
+  }
 }
 
 @media screen and (min-width: $media-query-sm) {

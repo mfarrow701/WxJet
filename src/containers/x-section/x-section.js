@@ -2,6 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {DateTime} from 'luxon';
 import {getLunarPhase} from '../../services/utils.service';
 import Cloud1 from './assets/cloud1.svg';
 import Cloud2 from './assets/cloud2.svg';
@@ -38,7 +39,7 @@ class XSection extends Component {
         const themeClass = classNames(
             this.props.themeIsDark ? 'Dark' : 'Light'
             ), maxAltitude = this.props.typeIsFixedWing ? 35000 : 7000,
-            lunarPhase = getLunarPhase();
+            lunarPhase = getLunarPhase(DateTime.utc().toJSDate());
         let scale = this.generateScale(maxAltitude);
         return (
             <Fragment>
@@ -54,21 +55,20 @@ class XSection extends Component {
                     })}
                 </div>
                 <div className={'Location-Bar ' + themeClass}>
-                        <img alt="Moon phase" className="Lunar-Phase"
-                             src={process.env.PUBLIC_URL + '/assets/lunar-phase/' + lunarPhase['img'] + '.svg'}
-                             title={lunarPhase['phase'] + ', ' + lunarPhase['luminosity'] + '% luminosity'}/>
-                        <div className="Locality">
-                            <h5>{this.props.selectedLocation.name}</h5>
-                            <p>13.00 - 15.00</p>
-                        </div>
+                    <img alt="Moon phase" className="Lunar-Phase"
+                         src={process.env.PUBLIC_URL + '/assets/lunar-phase/' + lunarPhase['img'] + '.svg'}
+                         title={lunarPhase['phase'] + ', ' + lunarPhase['luminosity'] + '% luminosity'}/>
+                    <div className="Locality">
+                        <h5>{this.props.selectedLocation.name}</h5>
+                        <p>13.00 - 15.00</p>
+                    </div>
                 </div>
             </Fragment>
         )
     }
 
     onCloudMouseOver = (event) => {
-        let cloudProperties = JSON.parse(event.target.getAttribute('data-properties'));
-        // console.table(cloudProperties);
+        console.table(JSON.parse(event.target.getAttribute('data-properties')));
     };
 
     calculatePosition(maxAltitude, attributes) {
