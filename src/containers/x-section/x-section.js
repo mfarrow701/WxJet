@@ -28,7 +28,7 @@ class XSection extends Component {
     componentDidMount() {
         this.intervalId = setInterval(() => this.setState({
             data: this.generateData()
-        }), 10000);
+        }), 20000);
     }
 
     componentWillUnmount() {
@@ -60,7 +60,7 @@ class XSection extends Component {
                          title={lunarPhase['phase'] + ', ' + lunarPhase['luminosity'] + '% luminosity'}/>
                     <div className="Locality">
                         <h5>{this.props.selectedLocation.name}</h5>
-                        <p>13.00 - 15.00</p>
+                        <p>{DateTime.utc().toLocaleString(DateTime.TIME_24_SIMPLE) + ' - ' + DateTime.utc().plus({hours: 3}).toLocaleString(DateTime.TIME_24_SIMPLE)}</p>
                     </div>
                 </div>
             </Fragment>

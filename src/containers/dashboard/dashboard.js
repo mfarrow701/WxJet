@@ -37,7 +37,6 @@ class Dashboard extends Component {
     }
 
     componentWillUnmount() {
-        console.log('Will unmount!');
         this.unsubscribeSocketNotifications();
     }
 
@@ -69,7 +68,7 @@ class Dashboard extends Component {
                             <h5>Wind & pressure</h5>
                             <WindDirection value={forecast['10m_wind_direction'].toString()}/>
                             <WindSpeed value={forecast['10m_wind_speed']}/>
-                            <Pressure value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2))}
+                            <Pressure value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2), 10)}
                                       altitude={this.props.forecastPayload.features[0].properties.altitude}/>
                         </div>
                     </div>
@@ -93,7 +92,7 @@ class Dashboard extends Component {
     subscribeSocketNotifications() {
         socket = io('http://localhost:3001', socketOptions);
         socket.on('notification', notificationType => {
-            if (Notification.permission === 'granted' && notificationType.colourState === '#FF0000') {
+            if (Notification.permission === 'granted' && notificationType.colourState === '#9932CC') {
                 // Only send a web notification if the API is enabled and
                 // the notification state is 'red' (highest priority)
                 navigator.serviceWorker.getRegistration().then(reg => {

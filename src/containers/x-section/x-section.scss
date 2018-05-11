@@ -61,9 +61,9 @@
   }
 
   .Lunar-Phase {
-    animation:   Lunar-Phase-Pulse 2s infinite;
+    //animation:   Lunar-Phase-Pulse 2s infinite;
     margin-left: 10px;
-    filter:      drop-shadow(0 0 2px $colour-primary);
+    //filter:      drop-shadow(0 0 2px $colour-primary);
     height:      38px;
     transform:   rotate(5deg);
   }

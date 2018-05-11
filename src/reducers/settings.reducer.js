@@ -3,7 +3,7 @@ import {SET_NOTIFICATION_STATE, SET_THEME_STATE, SET_AIRCRAFT_TYPE} from '../act
 
 const initialState = {
     notificationsEnabled: false,
-    themeIsDark: true,
+    themeIsDark: false,
     typeIsFixedWing: true
 };
 
