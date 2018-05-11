@@ -13,6 +13,7 @@ import Country from '../../components/location/country';
 import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import './dashboard.css';
+import Pressure from '../../components/weather/pressure';
 
 let socket, socketOptions = {
     reconnectionAttempts: 3,
@@ -36,6 +37,7 @@ class Dashboard extends Component {
     }
 
     componentWillUnmount() {
+        console.log('Will unmount!');
         this.unsubscribeSocketNotifications();
     }
 
@@ -67,6 +69,8 @@ class Dashboard extends Component {
                             <h5>Wind & pressure</h5>
                             <WindDirection value={forecast['10m_wind_direction'].toString()}/>
                             <WindSpeed value={forecast['10m_wind_speed']}/>
+                            <Pressure value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2))}
+                                      altitude={this.props.forecastPayload.features[0].properties.altitude}/>
                         </div>
                     </div>
 

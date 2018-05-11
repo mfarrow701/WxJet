@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {isNullOrUndefined} from '../../services/utils.service';
+import './wind-speed.css';
 
 class WindSpeed extends Component {
     constructor(props) {

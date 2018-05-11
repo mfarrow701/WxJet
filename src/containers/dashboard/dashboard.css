@@ -27,6 +27,8 @@
       font-weight: 300; }
     .Dashboard .Wind-Card .Wind-Speed {
       font-weight: 300; }
+    .Dashboard .Wind-Card .Pressure {
+      font-weight: 300; }
 
 @media screen and (min-width: 768px) {
   .Dashboard {

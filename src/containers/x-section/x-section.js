@@ -15,7 +15,7 @@ import Cloud8 from './assets/cloud8.svg';
 import Cloud9 from './assets/cloud9.svg';
 import './x-section.css';
 
-const cloudTypes = ['cirrus', 'cirrocumulus', 'cirrostratus', 'altocumulus', 'altostratus', 'stratocumulus', 'cumulus', 'cumulonimbus', 'nimbostratus', 'stratus'];
+const cloudTypes = ['Cirrus', 'Cirrocumulus', 'Cirrostratus', 'Altocumulus', 'Altostratus', 'Stratocumulus', 'Cumulus', 'Cumulonimbus', 'Nimbostratus', 'Stratus'];
 
 class XSection extends Component {
     constructor() {
@@ -50,8 +50,8 @@ class XSection extends Component {
                     {this.state.data.map((item, i) => {
                         return (<img alt="" className="Cloud" key={i} src={item.cloud}
                                      style={this.calculatePosition(maxAltitude, item.attributes)}
-                                     onMouseOver={this.onCloudMouseOver}
-                                     data-properties={JSON.stringify(item.attributes)}/>)
+                                     data-properties={JSON.stringify(item.attributes)}
+                                     title={item.attributes.type + ' at ' + item.attributes.altitude + 'ft'}/>)
                     })}
                 </div>
                 <div className={'Location-Bar ' + themeClass}>
@@ -66,10 +66,6 @@ class XSection extends Component {
             </Fragment>
         )
     }
-
-    onCloudMouseOver = (event) => {
-        console.table(JSON.parse(event.target.getAttribute('data-properties')));
-    };
 
     calculatePosition(maxAltitude, attributes) {
         return {
