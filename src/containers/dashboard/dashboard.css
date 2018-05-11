@@ -35,10 +35,14 @@
     grid-column-gap: 20px;
     grid-template-columns: 1fr 1fr; }
     .Dashboard .Location-Card {
+      grid-column: span 2; }
+    .Dashboard .Loading {
       grid-column: span 2; } }
 
 @media screen and (min-width: 1200px) {
   .Dashboard {
     grid-template-columns: 1fr 1fr 1fr; }
     .Dashboard .Location-Card {
+      grid-column: span 3; }
+    .Dashboard .Loading {
       grid-column: span 3; } }

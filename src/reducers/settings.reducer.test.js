@@ -1,6 +1,6 @@
 import React from 'react';
 import {handleSettingsActions} from './settings.reducer';
-import {setNotificationState, setThemeState} from '../actions/settings.actions';
+import {setNotificationState, setThemeState, setAircraftType} from '../actions/settings.actions';
 
 describe('Settings reducer', () => {
 
@@ -24,7 +24,7 @@ describe('Settings reducer', () => {
         });
     });
 
-    it('should handle the set notification state action', () => {
+    it('should handle the set theme state action', () => {
         expect(handleSettingsActions({}, setThemeState())).toEqual({
             'themeIsDark': true
         });
@@ -33,5 +33,16 @@ describe('Settings reducer', () => {
         }, setThemeState())).toEqual({
             'themeIsDark': false
         });
+    });
+
+    it('should handle the set aircraft type action', () => {
+        expect(handleSettingsActions({}, setAircraftType())).toEqual({
+            'typeIsFixedWing': true
+        });
+        expect(handleSettingsActions({
+            'typeIsFixedWing': true
+        }, setAircraftType())).toEqual({
+            'typeIsFixedWing': false
+        })
     });
 });
