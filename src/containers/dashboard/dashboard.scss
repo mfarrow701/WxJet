@@ -11,6 +11,7 @@
   .Card {
     border-top: 10px solid $colour-primary;
     width:      100%;
+    transition: border 0.5s;
 
     .Content {
       background: white;
