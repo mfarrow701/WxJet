@@ -18,7 +18,7 @@ import Pressure from '../../components/weather/pressure';
 let socket, socketOptions = {
     reconnectionAttempts: 3,
     reconnectionDelay: 3000
-}, sse, proxyService = 'http://localhost:3001/';
+}, sse, sseErrorCount = 0, proxyService = 'http://localhost:3001/';
 
 class Dashboard extends Component {
     constructor() {
@@ -124,6 +124,10 @@ class Dashboard extends Component {
                     sseNotification: JSON.parse(event.data)
                 });
             };
+            sse.onerror = (event) => {
+                sseErrorCount++;
+                if (sseErrorCount >= 3) sse.close();
+            }
         } else {
             console.log('Your browser does not support server-sent events!');
         }
