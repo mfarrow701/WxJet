@@ -1,6 +1,15 @@
 {
   "locations": [
     {
+      "elevation": "145.0",
+      "id": "0",
+      "latitude": "32.8701",
+      "longitude": "117.1441",
+      "name": "MCAS Miramar",
+      "region": "CA",
+      "unitaryAuthArea": "San Diego"
+    },
+    {
       "elevation": "50.0",
       "id": "14",
       "latitude": "54.9375",
