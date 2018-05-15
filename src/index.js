@@ -16,23 +16,34 @@ const history = createHistory({basename: process.env.PUBLIC_URL}),
     sagaMiddleware = createSagaMiddleware(),
     rootElement = document.getElementById('root');
 
-const middleware = applyMiddleware(
-    // reduxLogger,
-    routerMiddleware(history),
-    sagaMiddleware
-);
+const localStorageMiddleware = ({getState}) => {
+    return (next) => (action) => {
+        const result = next(action);
+        localStorage.setItem('reduxState', JSON.stringify(
+            getState()
+        ));
+        return result;
+    };
+};
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {};
+const reHydrateStore = () => {
+
+    if (localStorage.getItem('reduxState') !== null) {
+        return JSON.parse(localStorage.getItem('reduxState'))
+    }
+};
+
+const middleware = applyMiddleware(
+    routerMiddleware(history),
+    sagaMiddleware,
+    localStorageMiddleware
+);
 
 const store = createStore(
     rootReducer,
-    persistedState,
+    reHydrateStore(),
     middleware
 );
-
-store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-});
 
 sagaMiddleware.run(rootSaga);
 

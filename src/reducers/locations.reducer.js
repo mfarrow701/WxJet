@@ -15,7 +15,6 @@ const initialState = {
 
 export function handleLocationsAPIActions(state = initialState, action) { // NOSONAR
     const {payload, type} = action;
-
     switch (type) {
         case LOCATIONS_API_REQUEST:
             return {...state, fetching: true, payload: null, error: null};

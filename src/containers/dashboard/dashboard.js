@@ -18,13 +18,14 @@ import Pressure from '../../components/weather/pressure';
 let socket, socketOptions = {
     reconnectionAttempts: 3,
     reconnectionDelay: 3000
-}, sse;
+}, sse, proxyService = 'http://localhost:3001/';
 
 class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
             sseNotification: {
+                colourState: '#333333',
                 message: ''
             },
             socketNotification: {
@@ -51,7 +52,7 @@ class Dashboard extends Component {
         if (this.props.forecastFetching || this.props.forecastPayload === null) {
             body = <Loading/>
         } else {
-            forecast = this.props.forecastPayload.features[0].properties.time_series[0];
+            forecast = this.props.forecastPayload;
             updateMessage = 'United Kingdom, updated 1 min ago';
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
@@ -76,14 +77,14 @@ class Dashboard extends Component {
                             <WindDirection value={forecast['10m_wind_direction'].toString()}/>
                             <WindSpeed value={forecast['10m_wind_speed']}/>
                             <Pressure value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2), 10)}
-                                      altitude={this.props.forecastPayload.features[0].properties.altitude}/>
+                                      altitude={this.props.forecastPayload.altitude}/>
                         </div>
                     </div>
 
                     {isThresholdExceeded &&
                     <div className="Card">
                         <div className="Content">
-                            <h5>{'Your ' + this.props.notificationsThreshold + 'ft threshold has been exceeded'}</h5>
+                            <h5>{this.props.notificationsThreshold}ft cloud threshold exceeded</h5>
                         </div>
                     </div>
                     }
@@ -117,7 +118,7 @@ class Dashboard extends Component {
 
     subscribeSSENotifications() {
         if (typeof(EventSource) !== 'undefined') {
-            sse = new EventSource('http://localhost:3001/sse-notifications', {withCredentials: true});
+            sse = new EventSource(proxyService + 'sse-notifications', {withCredentials: true});
             sse.onmessage = (event) => {
                 this.setState({
                     sseNotification: JSON.parse(event.data)
@@ -136,7 +137,7 @@ class Dashboard extends Component {
 
     subscribeSocketNotifications() {
         if ('WebSocket' in window) {
-            socket = io('http://localhost:3001', socketOptions);
+            socket = io(proxyService, socketOptions);
             socket.on('notification', notificationType => {
                 if (Notification.permission === 'granted' && notificationType.colourState === '#9932CC') {
                     // Only send a web notification if the API is enabled and
