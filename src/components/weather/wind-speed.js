@@ -14,8 +14,8 @@ class WindSpeed extends Component {
 
     render() {
         return (
-            <h3 className="Wind-Speed"
-                onClick={this.onClick}>{this.convertValue(this.props.value)}</h3>
+            <h1 className="Wind-Speed"
+                onClick={this.onClick}>{this.convertValue(this.props.value)}</h1>
         )
     }
 

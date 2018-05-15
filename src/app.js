@@ -25,13 +25,6 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
-        let storedLocation = localStorage.getItem('storedLocation');
-        if (storedLocation) {
-            this.props.selectLocation(JSON.parse(storedLocation));
-        }
-    }
-
     componentDidMount() {
         this.setState({
             appLaunched: true
@@ -110,8 +103,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearLocation: location => dispatch(locationSelected(null)),
-        selectLocation: location => dispatch(locationSelected(location))
+        clearLocation: location => dispatch(locationSelected(null))
     };
 };
 

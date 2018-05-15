@@ -53,6 +53,8 @@ class Dashboard extends Component {
         } else {
             forecast = this.props.forecastPayload.features[0].properties.time_series[0];
             updateMessage = 'United Kingdom, updated 1 min ago';
+            const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
+                isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
             body = (
                 <Fragment>
                     <div className="Location-Card">
@@ -78,18 +80,28 @@ class Dashboard extends Component {
                         </div>
                     </div>
 
-                    <div className="Card Cloud-Card"
+                    {isThresholdExceeded &&
+                    <div className="Card">
+                        <div className="Content">
+                            <h5>{'Your ' + this.props.notificationsThreshold + 'ft threshold has been exceeded'}</h5>
+                        </div>
+                    </div>
+                    }
+
+                    <div className="Card"
                          style={{borderTop: '10px solid ' + this.state.socketNotification.colourState}}>
                         <div className="Content">
-                            <h5>{this.state.socketNotification.message || 'Unable to retrieve socket notifications'}</h5>
+                            <h5>Websocket notifications</h5>
+                            <p>{this.state.socketNotification.message || 'Unable to retrieve socket notifications'}</p>
                         </div>
                     </div>
 
-                    {this.props.selectedLocation['name'].toLowerCase().includes('airport') &&
-                    <div className="Card Runway-Card"
+                    {isAirfield &&
+                    <div className="Card"
                          style={{borderTop: '10px solid ' + this.state.sseNotification.colourState}}>
                         <div className="Content">
-                            <h5>{this.state.sseNotification.message || 'Unable to retrieve SSE notifications'}</h5>
+                            <h5>Server-sent notifications</h5>
+                            <p>{this.state.sseNotification.message || 'Unable to retrieve SSE notifications'}</p>
                         </div>
                     </div>
                     }
@@ -162,7 +174,7 @@ const mapStateToProps = state => {
         forecastPayload: state.forecastReducer.payload,
         forecastFetching: state.forecastReducer.fetching,
         selectedLocation: state.locationsReducer.selectedLocation,
-        notificationsEnabled: state.settings.notificationsEnabled
+        notificationsThreshold: state.settings.notificationsThreshold
     };
 };
 

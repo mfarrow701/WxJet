@@ -95,16 +95,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         requestLocations: () => dispatch(locationsAPIRequest()),
-        selectLocation: location => {
-            let selectedLocation = location.data,
-                storedLocation = localStorage.getItem('storedLocation');
-            if (storedLocation && JSON.parse(storedLocation)) {
-                // Clear the previously selected location from local storage
-                localStorage.removeItem('storedLocation');
-            }
-            localStorage.setItem('storedLocation', JSON.stringify(selectedLocation));
-            dispatch(locationSelected(selectedLocation));
-        }
+        selectLocation: location => dispatch(locationSelected(location.data))
     };
 };
 
