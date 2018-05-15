@@ -21,7 +21,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            appLoaded: false
+            appLaunched: false
         }
     }
 
@@ -34,12 +34,12 @@ class App extends Component {
 
     componentDidMount() {
         this.setState({
-            appLoaded: true,
+            appLaunched: true
         })
     }
 
     render() {
-        if (this.state.appLoaded) {
+        if (this.state.appLaunched) {
             const themeClass = classNames(
                 this.props.themeIsDark ? 'Dark' : 'Light'
             );
@@ -62,8 +62,9 @@ class App extends Component {
                             ) : (
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
+                                    <Route path="/dashboard" component={Dashboard}/>
                                     <Route path="/profile" component={Profile}/>
-                                    <Route path="/authenticate" component={Authentication} />
+                                    <Route path="/authenticate" component={Authentication}/>
                                     <Route path="/x-section" component={XSection}/>
                                     <Route path="/settings" component={Settings}/>
                                     <Route component={NotFound}/>
@@ -71,7 +72,7 @@ class App extends Component {
                             )}
                         </main>
                         <footer className={themeClass}>
-                            <button onClick={() => this.handleNavigationClick('/')}>
+                            <button onClick={() => this.handleNavigationClick('/dashboard')}>
                                 <div className={'Home-Icon Icon ' + themeClass}/>
                             </button>
                             <button onClick={() => this.handleNavigationClick('/profile')}>
@@ -88,7 +89,8 @@ class App extends Component {
                 </ConnectedRouter>
             )
         } else {
-            return <h1>Loading</h1>
+            // return <Portal navigateToApp={() => this.setState({appLaunched: true})}/>
+            return <h1>Loading...</h1>
         }
     }
 

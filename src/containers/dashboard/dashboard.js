@@ -18,13 +18,16 @@ import Pressure from '../../components/weather/pressure';
 let socket, socketOptions = {
     reconnectionAttempts: 3,
     reconnectionDelay: 3000
-};
+}, sse;
 
 class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            notificationType: {
+            sseNotification: {
+                message: ''
+            },
+            socketNotification: {
                 colourState: '#333333',
                 message: ''
             }
@@ -33,11 +36,13 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
+        this.subscribeSSENotifications();
         this.subscribeSocketNotifications();
     }
 
     componentWillUnmount() {
         this.unsubscribeSocketNotifications();
+        this.unsubscribeSSENotifications();
     }
 
     render() {
@@ -74,11 +79,20 @@ class Dashboard extends Component {
                     </div>
 
                     <div className="Card Cloud-Card"
-                         style={{borderTop: '10px solid ' + this.state.notificationType.colourState}}>
+                         style={{borderTop: '10px solid ' + this.state.socketNotification.colourState}}>
                         <div className="Content">
-                            <h5>{this.state.notificationType.message || 'Unable to retrieve notifications'}</h5>
+                            <h5>{this.state.socketNotification.message || 'Unable to retrieve socket notifications'}</h5>
                         </div>
                     </div>
+
+                    {this.props.selectedLocation['name'].toLowerCase().includes('airport') &&
+                    <div className="Card Runway-Card"
+                         style={{borderTop: '10px solid ' + this.state.sseNotification.colourState}}>
+                        <div className="Content">
+                            <h5>{this.state.sseNotification.message || 'Unable to retrieve SSE notifications'}</h5>
+                        </div>
+                    </div>
+                    }
                 </Fragment>
             );
         }
@@ -89,33 +103,57 @@ class Dashboard extends Component {
         )
     }
 
-    subscribeSocketNotifications() {
-        socket = io('http://localhost:3001', socketOptions);
-        socket.on('notification', notificationType => {
-            if (Notification.permission === 'granted' && notificationType.colourState === '#9932CC') {
-                // Only send a web notification if the API is enabled and
-                // the notification state is 'red' (highest priority)
-                navigator.serviceWorker.getRegistration().then(reg => {
-                    const options = {
-                        badge: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
-                        body: notificationType.message,
-                        icon: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
-                        vibrate: [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]
-                    };
-                    const title = 'Warning!';
-                    reg.showNotification(title, options);
+    subscribeSSENotifications() {
+        if (typeof(EventSource) !== 'undefined') {
+            sse = new EventSource('http://localhost:3001/sse-notifications', {withCredentials: true});
+            sse.onmessage = (event) => {
+                this.setState({
+                    sseNotification: JSON.parse(event.data)
                 });
-            }
-            this.setState({
-                notificationType: notificationType
+            };
+        } else {
+            console.log('Your browser does not support server-sent events!');
+        }
+    }
+
+    unsubscribeSSENotifications() {
+        if (typeof(EventSource) !== 'undefined') {
+            sse.close();
+        }
+    }
+
+    subscribeSocketNotifications() {
+        if ('WebSocket' in window) {
+            socket = io('http://localhost:3001', socketOptions);
+            socket.on('notification', notificationType => {
+                if (Notification.permission === 'granted' && notificationType.colourState === '#9932CC') {
+                    // Only send a web notification if the API is enabled and
+                    // the notification state is 'red' (highest priority)
+                    navigator.serviceWorker.getRegistration().then(reg => {
+                        const options = {
+                            badge: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
+                            body: notificationType.message,
+                            icon: process.env.PUBLIC_URL + '/favicons/apple-touch-icon.png',
+                            vibrate: [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500]
+                        };
+                        reg.showNotification('Warning!', options);
+                    });
+                }
+                this.setState({
+                    socketNotification: notificationType
+                });
             });
-        });
-        socket.emit('subscribeToNotifications');
+            socket.emit('subscribeToNotifications');
+        } else {
+            console.log('Your browser does not support websockets!');
+        }
     }
 
     unsubscribeSocketNotifications() {
-        socket.off('notification');
-        socket.disconnect();
+        if ('WebSocket' in window) {
+            socket.off('notification');
+            socket.disconnect();
+        }
     }
 }
 
