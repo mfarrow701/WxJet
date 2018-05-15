@@ -53,7 +53,7 @@ class Dashboard extends Component {
             body = <Loading/>
         } else {
             forecast = this.props.forecastPayload;
-            updateMessage = 'United Kingdom, updated 1 min ago';
+            updateMessage = this.props.selectedLocation.unitaryAuthArea + ', updated 1 min ago';
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
             body = (
