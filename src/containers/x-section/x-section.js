@@ -56,7 +56,7 @@ class XSection extends Component {
                 </div>
                 <div className={'Location-Bar ' + themeClass}>
                     <img alt="Moon phase" className="Lunar-Phase"
-                         src={process.env.PUBLIC_URL + '/assets/lunar-phase/' + lunarPhase['img'] + '.svg'}
+                         src={require('./assets/lunar-phase/' + lunarPhase['img'] + '.svg')}
                          title={lunarPhase['phase'] + ', ' + lunarPhase['luminosity'] + '% luminosity'}/>
                     <div className="Locality">
                         <h5>{this.props.selectedLocation.name}</h5>
