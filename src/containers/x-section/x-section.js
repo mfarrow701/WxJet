@@ -4,15 +4,6 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {DateTime} from 'luxon';
 import {getLunarPhase} from '../../services/utils.service';
-import Cloud1 from './assets/cloud1.svg';
-import Cloud2 from './assets/cloud2.svg';
-import Cloud3 from './assets/cloud3.svg';
-import Cloud4 from './assets/cloud4.svg';
-import Cloud5 from './assets/cloud5.svg';
-import Cloud6 from './assets/cloud6.svg';
-import Cloud7 from './assets/cloud7.svg';
-import Cloud8 from './assets/cloud8.svg';
-import Cloud9 from './assets/cloud9.svg';
 import './x-section.css';
 
 const cloudTypes = ['Cirrus', 'Cirrocumulus', 'Cirrostratus', 'Altocumulus', 'Altostratus', 'Stratocumulus', 'Cumulus', 'Cumulonimbus', 'Nimbostratus', 'Stratus'];
@@ -48,7 +39,8 @@ class XSection extends Component {
                         return (<hr key={i} data-content={item.altitude + 'ft'} style={{top: item.position}}/>)
                     })}
                     {this.state.data.map((item, i) => {
-                        return (<img alt="" className="Cloud" key={i} src={item.cloud}
+                        return (<img alt="" className="Cloud" key={i}
+                                     src={require('./assets/cloud-types/cloud' + item.cloud + '.svg')}
                                      style={this.calculatePosition(maxAltitude, item.attributes)}
                                      data-properties={JSON.stringify(item.attributes)}
                                      title={item.attributes.type + ' at ' + item.attributes.altitude + 'ft'}/>)
@@ -98,7 +90,7 @@ class XSection extends Component {
     generateData() {
         return [
             {
-                cloud: Cloud1,
+                cloud: '1',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -107,7 +99,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud2,
+                cloud: '2',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -116,7 +108,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud3,
+                cloud: '3',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -125,7 +117,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud4,
+                cloud: '4',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -134,7 +126,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud5,
+                cloud: '5',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -143,7 +135,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud6,
+                cloud: '6',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -152,7 +144,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud7,
+                cloud: '7',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -161,7 +153,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud8,
+                cloud: '8',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -170,7 +162,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud9,
+                cloud: '9',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -179,7 +171,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud1,
+                cloud: '1',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -188,7 +180,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud2,
+                cloud: '2',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -197,7 +189,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud3,
+                cloud: '3',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -206,7 +198,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud4,
+                cloud: '4',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -215,7 +207,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud5,
+                cloud: '5',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -224,7 +216,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud6,
+                cloud: '6',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -233,7 +225,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud7,
+                cloud: '7',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -242,7 +234,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud8,
+                cloud: '8',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
@@ -251,7 +243,7 @@ class XSection extends Component {
                 }
             },
             {
-                cloud: Cloud9,
+                cloud: '9',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
