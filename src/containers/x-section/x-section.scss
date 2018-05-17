@@ -34,7 +34,7 @@
   }
 
   .Cloud {
-    cursor: pointer;
+    cursor:     pointer;
     position:   absolute;
     width:      70px;
     transition: 0.5s;
@@ -48,14 +48,14 @@
   position:         absolute;
   left:             0;
   top:              $navbar-height;
-  width:            400px;
+  width:            100%;
   z-index:          $index-x-section-details;
   transition:       left 0.5s;
 
   .Cloud-Type-Bar {
     align-items:     center;
     border-bottom:   5px solid darkturquoise;
-    cursor: pointer;
+    cursor:          pointer;
     display:         flex;
     flex-direction:  row;
     height:          48px;
@@ -214,5 +214,9 @@
       width:     100px;
       transform: translate(-50px, -50px);
     }
+  }
+
+  .X-Section-Details {
+    width: 400px;
   }
 }
