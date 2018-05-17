@@ -53,28 +53,31 @@ class XSection extends Component {
                     })}
                 </div>
 
-                {this.state.selectedElement &&
                 <div className='X-Section-Details'
                      style={{'left': this.state.selectedElement !== null ? '0' : '-500px'}}>
                     <div className={'Cloud-Type-Bar ' + themeClass}
                          onClick={() => this.setState({
-                             selectedElement: null
+                             selectedElement: null,
+                             updateForm: {
+                                 type: '',
+                                 altitude: ''
+                             }
                          })}>
-                        <h5>{this.state.selectedElement.attributes.type}</h5>
+                        <h5>{ this.state.selectedElement !== null ? this.state.selectedElement.attributes.type + ' at ' +
+                            this.state.selectedElement.attributes.altitude + 'ft' : ''}</h5>
                     </div>
                     <form className="Content" onSubmit={this.onFormSubmit}>
                         <h5>Cloud Type</h5>
-                        <input onChange={this.onInput} value={this.state.updateForm.type} name="type"
+                        <input onChange={this.onInput} value={this.state.updateForm.type} name="type" type="number"
                                min="1" max="9"
-                               placeholder={'Currently: ' + this.state.selectedElement.cloud}/>
-                        <h5>Cloud Base</h5>
+                               placeholder='Enter a value between 1 & 9' required/>
+                        <h5>Cloud Altitude</h5>
                         <input onChange={this.onInput} value={this.state.updateForm.altitude} name="altitude"
                                type="number" min="1000" max="35000"
-                               placeholder={'Currently: ' + this.state.selectedElement.attributes.altitude}/>
+                               placeholder='Enter a value between 1000 & 35000 ft' required/>
                         <button type="submit">Update cloud</button>
                     </form>
                 </div>
-                }
 
                 <div className={'Location-Bar ' + themeClass}>
                     <img alt="Moon phase" className="Lunar-Phase"
@@ -110,19 +113,19 @@ class XSection extends Component {
         event.preventDefault();
         event.stopPropagation();
 
-        let stateCopy = Object.assign({}, this.state), selectedItemId = this.state.selectedElement.id,
-            cloudData = stateCopy.data;
-        cloudData.filter((elem, index) => {
-            if (elem.id === selectedItemId) {
+        let stateCopy = Object.assign({}, this.state), modifiedState;
+        modifiedState = stateCopy.data.filter((elem, index) => {
+            if (elem.id === this.state.selectedElement.id) {
                 let percentageAltidue, altitude = this.state.updateForm.altitude;
                 percentageAltidue = (100 - ((altitude / 35000) * 100)).toString() + '%';
-                cloudData[index].cloud = this.state.updateForm.type;
-                cloudData[index].top = percentageAltidue;
-                cloudData[index].attributes.altitude = altitude;
+                stateCopy.data[index].cloud = this.state.updateForm.type;
+                stateCopy.data[index].top = percentageAltidue;
+                stateCopy.data[index].attributes.altitude = altitude;
             }
+            return stateCopy.data;
         });
         this.setState({
-            data: cloudData,
+            data: modifiedState,
             selectedElement: null,
             updateForm: {
                 type: '',
