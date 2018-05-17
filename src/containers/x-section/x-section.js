@@ -54,7 +54,7 @@ class XSection extends Component {
                 </div>
 
                 <div className='X-Section-Details'
-                     style={{'left': this.state.selectedElement !== null ? '0' : '-500px'}}>
+                     style={{'left': this.state.selectedElement !== null ? '0' : '-400px'}}>
                     <div className={'Cloud-Type-Bar ' + themeClass}
                          onClick={() => this.setState({
                              selectedElement: null,
@@ -68,9 +68,8 @@ class XSection extends Component {
                     </div>
                     <form className="Content" onSubmit={this.onFormSubmit}>
                         <h5>Cloud Type</h5>
-                        <input onChange={this.onInput} value={this.state.updateForm.type} name="type" type="number"
-                               min="1" max="9"
-                               placeholder='Enter a value between 1 & 9' required/>
+                        <select name="type" onChange={this.onInput}>{cloudTypes.map((x, i) => <option
+                            value={i + 1} key={i}>{x}</option>)}</select>
                         <h5>Cloud Altitude</h5>
                         <input onChange={this.onInput} value={this.state.updateForm.altitude} name="altitude"
                                type="number" min="1000" max="35000"
