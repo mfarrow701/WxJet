@@ -6,7 +6,7 @@ import {DateTime} from 'luxon';
 import {getLunarPhase} from '../../services/utils.service';
 import './x-section.css';
 
-const cloudTypes = ['Cirrus', 'Cirrocumulus', 'Cirrostratus', 'Altocumulus', 'Altostratus', 'Stratocumulus', 'Cumulus', 'Cumulonimbus', 'Nimbostratus', 'Stratus'];
+const cloudTypes = ['Cirrus', 'Cirrocumulus', 'Cirrostratus', 'Altocumulus', 'Altostratus', 'Stratocumulus', 'Cumulus', 'Cumulonimbus', 'Nimbostratus'];
 
 class XSection extends Component {
     constructor() {
