@@ -12,14 +12,19 @@ class XSection extends Component {
     constructor() {
         super();
         this.state = {
-            data: this.generateData()
+            data: this.generateData(),
+            selectedElement: null,
+            updateForm: {
+                type: '',
+                altitude: ''
+            }
         }
     }
 
     componentDidMount() {
-        this.intervalId = setInterval(() => this.setState({
-            data: this.generateData()
-        }), 20000);
+        // this.intervalId = setInterval(() => this.setState({
+        //     data: this.generateData()
+        // }), 20000);
     }
 
     componentWillUnmount() {
@@ -40,12 +45,37 @@ class XSection extends Component {
                     })}
                     {this.state.data.map((item, i) => {
                         return (<img alt="" className="Cloud" key={i}
+                                     onClick={() => this.onClick(item, i)}
                                      src={require('./assets/cloud-types/cloud' + item.cloud + '.svg')}
-                                     style={this.calculatePosition(maxAltitude, item.attributes)}
+                                     style={this.calculatePosition(maxAltitude, item)}
                                      data-properties={JSON.stringify(item.attributes)}
                                      title={item.attributes.type + ' at ' + item.attributes.altitude + 'ft'}/>)
                     })}
                 </div>
+
+                {this.state.selectedElement &&
+                <div className='X-Section-Details'
+                     style={{'left': this.state.selectedElement !== null ? '0' : '-500px'}}>
+                    <div className={'Cloud-Type-Bar ' + themeClass}
+                         onClick={() => this.setState({
+                             selectedElement: null
+                         })}>
+                        <h5>{this.state.selectedElement.attributes.type}</h5>
+                    </div>
+                    <form className="Content" onSubmit={this.onFormSubmit}>
+                        <h5>Cloud Type</h5>
+                        <input onChange={this.onInput} value={this.state.updateForm.type} name="type"
+                               min="1" max="9"
+                               placeholder={'Currently: ' + this.state.selectedElement.cloud}/>
+                        <h5>Cloud Base</h5>
+                        <input onChange={this.onInput} value={this.state.updateForm.altitude} name="altitude"
+                               type="number" min="1000" max="35000"
+                               placeholder={'Currently: ' + this.state.selectedElement.attributes.altitude}/>
+                        <button type="submit">Update cloud</button>
+                    </form>
+                </div>
+                }
+
                 <div className={'Location-Bar ' + themeClass}>
                     <img alt="Moon phase" className="Lunar-Phase"
                          src={require('./assets/lunar-phase/' + lunarPhase['img'] + '.svg')}
@@ -59,10 +89,52 @@ class XSection extends Component {
         )
     }
 
-    calculatePosition(maxAltitude, attributes) {
+    onClick = (item, index) => {
+        this.setState({
+            selectedElement: item
+        })
+    };
+
+
+    onInput = (event) => {
+        const fieldName = event.target.name, fieldValue = event.target.value;
+        this.setState({
+            updateForm: {
+                ...this.state.updateForm,
+                [fieldName]: fieldValue
+            }
+        });
+    };
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        let stateCopy = Object.assign({}, this.state), selectedItemId = this.state.selectedElement.id,
+            cloudData = stateCopy.data;
+        cloudData.filter((elem, index) => {
+            if (elem.id === selectedItemId) {
+                let percentageAltidue, altitude = this.state.updateForm.altitude;
+                percentageAltidue = (100 - ((altitude / 35000) * 100)).toString() + '%';
+                cloudData[index].cloud = this.state.updateForm.type;
+                cloudData[index].top = percentageAltidue;
+                cloudData[index].attributes.altitude = altitude;
+            }
+        });
+        this.setState({
+            data: cloudData,
+            selectedElement: null,
+            updateForm: {
+                type: '',
+                altitude: ''
+            }
+        });
+    };
+
+    calculatePosition(maxAltitude, element) {
         return {
-            top: (100 - ((attributes.altitude / maxAltitude) * 100)).toString() + '%',
-            left: Math.floor(Math.random() * 101).toString() + '%'
+            top: (100 - ((element.attributes.altitude / maxAltitude) * 100)).toString() + '%',
+            left: element.left
         }
     }
 
@@ -90,6 +162,7 @@ class XSection extends Component {
     generateData() {
         return [
             {
+                id: '1',
                 cloud: '1',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -99,6 +172,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '2',
                 cloud: '2',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -108,6 +182,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '3',
                 cloud: '3',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -117,6 +192,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '4',
                 cloud: '4',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -126,6 +202,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '5',
                 cloud: '5',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -135,6 +212,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '6',
                 cloud: '6',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -144,6 +222,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '7',
                 cloud: '7',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -153,6 +232,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '8',
                 cloud: '8',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -162,6 +242,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '9',
                 cloud: '9',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -171,6 +252,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '10',
                 cloud: '1',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -180,6 +262,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '111',
                 cloud: '2',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -189,6 +272,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '12',
                 cloud: '3',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -198,6 +282,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '13',
                 cloud: '4',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -207,6 +292,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '14',
                 cloud: '5',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -216,6 +302,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '15',
                 cloud: '6',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -225,6 +312,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '16',
                 cloud: '7',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -234,6 +322,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '17',
                 cloud: '8',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',
@@ -243,6 +332,7 @@ class XSection extends Component {
                 }
             },
             {
+                id: '18',
                 cloud: '9',
                 top: Math.floor(Math.random() * 101).toString() + '%',
                 left: Math.floor(Math.random() * 101).toString() + '%',

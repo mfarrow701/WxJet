@@ -34,10 +34,94 @@
   }
 
   .Cloud {
+    cursor: pointer;
     position:   absolute;
     width:      70px;
     transition: 0.5s;
     transform:  translate(-35px, -35px);
+  }
+}
+
+.X-Section-Details {
+  background-color: $background-ternary;
+  height:           calc(100% - 144px);
+  position:         absolute;
+  left:             0;
+  top:              $navbar-height;
+  width:            500px;
+  z-index:          $index-x-section-details;
+  transition:       left 0.5s;
+
+  .Cloud-Type-Bar {
+    align-items:     center;
+    border-bottom:   5px solid darkturquoise;
+    cursor: pointer;
+    display:         flex;
+    flex-direction:  row;
+    height:          48px;
+    justify-content: space-between;
+    width:           100%;
+
+    &.Dark {
+      background: $background-secondary;
+    }
+    &.Light {
+      background: $background-primary;
+
+      h5, p { color: white }
+    }
+
+    h5 {
+      padding-left: 10px;
+    }
+  }
+
+  .Content {
+    padding: 20px;
+
+    input {
+      background-color:   $colour-primary;
+      border:             none;
+      color:              white;
+      margin:             8px 0;
+      outline:            none;
+      padding:            12px 20px;
+      transition:         0.5s;
+      width:              100%;
+      -webkit-appearance: none;
+
+      &:focus {
+        background-color: $colour-ternary;
+      }
+
+      &:hover {
+        background-color: $colour-secondary;
+      }
+
+      &::placeholder {
+        color: white;
+      }
+    }
+
+    button {
+      background-color: $colour-primary;
+      border:           none;
+      color:            white;
+      cursor:           pointer;
+      margin:           8px 0;
+      padding:          12px 20px;
+      transition:       0.5s;
+      width:            100%;
+
+      &:focus {
+        background-color: $colour-ternary;
+        outline:          none;
+      }
+
+      &:hover {
+        background-color: $colour-secondary;
+      }
+    }
   }
 }
 
@@ -102,7 +186,7 @@
 @media screen and (min-width: $media-query-sm) {
   .X-Section {
 
-    img {
+    .Cloud {
       width:     100px;
       transform: translate(-50px, -50px);
     }
@@ -112,9 +196,9 @@
 @media screen and (min-width: $media-query-md) {
   .X-Section {
 
-    img {
+    .Cloud {
       transform: translate(-85px, -85px);
-      width:     170px;
+      width:     150px;
     }
   }
 }
