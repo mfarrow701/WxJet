@@ -7,6 +7,8 @@ import {filterLocations} from '../../services/locations.service';
 import './search.css';
 import Loading from '../loading/loading';
 import List from '../core/list/list';
+import SearchInput from '../core/input/search-input';
+import Button from '../core/button/button';
 
 class Search extends Component {
     constructor(props) {
@@ -36,14 +38,16 @@ class Search extends Component {
             } else if (this.state.filteredLocations.length === 0) {
                 body = (
                     <Fragment>
-                        <input onChange={this.handleSearchChange} placeholder="Search for a location..." type="search"/>
+                        <SearchInput name="locationSearch" onChange={this.handleSearchChange}
+                                     placeholder='Search for a location...'/>
                         <h5>No matching locations</h5>
                     </Fragment>
                 )
             } else {
                 body = (
                     <Fragment>
-                        <input onChange={this.handleSearchChange} placeholder="Search for a location..." type="search"/>
+                        <SearchInput name="locationSearch" onChange={this.handleSearchChange}
+                                     placeholder='Search for a location...'/>
                         <List data={this.populateSearchList(this.state.filteredLocations)}
                               onClick={this.props.selectLocation}/>
                     </Fragment>
@@ -53,7 +57,7 @@ class Search extends Component {
             body = (
                 <Fragment>
                     <h5>Error with the locations API</h5>
-                    <button onClick={() => this.props.requestLocations()}>Request locations</button>
+                    <Button onClick={() => this.props.requestLocations()} placeholder='Request locations'/>
                 </Fragment>
             )
         }

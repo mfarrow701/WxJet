@@ -1,0 +1,21 @@
+@import "../../../core/variables.scss";
+
+.Button {
+  background-color: $colour-primary;
+  border:           none;
+  color:            white;
+  cursor:           pointer;
+  margin:           8px 0;
+  padding:          12px 20px;
+  transition:       0.5s;
+  width:            280px;
+
+  &:focus {
+    background-color: $colour-ternary;
+    outline:          none;
+  }
+
+  &:hover {
+    background-color: $colour-secondary;
+  }
+}

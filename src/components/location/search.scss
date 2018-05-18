@@ -4,52 +4,8 @@
   margin:     20px;
   min-height: 100%;
 
-  button {
-    background-color: $colour-primary;
-    border:           none;
-    color:            white;
-    cursor:           pointer;
-    margin:           8px 0;
-    padding:          12px 20px;
-    transition:       0.5s;
-    width:            100%;
-
-    &:focus {
-      background-color: $colour-ternary;
-      outline:          none;
-    }
-
-    &:hover {
-      background-color: $colour-secondary;
-    }
-  }
-
-  input[type=search] {
-    background-color:   $colour-primary;
-    border:             none;
-    color:              white;
-    margin:             8px 0;
-    outline:            none;
-    padding:            12px 20px;
-    transition:         0.5s;
-    width:              100%;
-    -webkit-appearance: none;
-
-    &:focus {
-      background-color: $colour-ternary;
-    }
-
-    &:hover {
-      background-color: $colour-secondary;
-    }
-
-    &::placeholder {
-      color: white;
-    }
-
-    &::-webkit-search-cancel-button {
-      display: none;
-    }
+  .Button {
+    width: 100%;
   }
 
   .List {

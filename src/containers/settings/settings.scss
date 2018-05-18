@@ -3,42 +3,15 @@
 .Settings {
   margin: 20px;
 
-  input[type="number"] {
-    background-color:   $colour-primary;
-    border:             none;
-    color:              white;
-    margin:             0 0 1rem 0;
-    outline:            none;
-    padding:            12px 20px;
-    transition:         0.5s;
-    width:              100%;
-    -webkit-appearance: none;
-    -moz-appearance:    textfield;
-
-    &:focus {
-      background-color: $colour-ternary;
-    }
-
-    &:hover {
-      background-color: $colour-secondary;
-    }
-
-    &::placeholder {
-      color: white;
-    }
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin:             0;
-    }
+  .Number-Input {
+    width: 100%;
   }
 }
 
 @media screen and (min-width: $media-query-sm) {
   .Settings {
 
-    input[type="number"]{
+    .Number-Input {
       width: 280px;
     }
   }

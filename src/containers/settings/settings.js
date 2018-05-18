@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {setNotificationThreshold, setThemeState, setAircraftType} from '../../actions/settings.actions';
 import Switch from '../../components/switch/switch';
 import './settings.css'
+import NumberInput from '../../components/core/input/number-input';
 
 class Settings extends Component {
 
@@ -12,7 +13,7 @@ class Settings extends Component {
             <div className="Settings">
                 <h1>Settings</h1>
                 <p>Notification threshold</p>
-                <input onChange={this.props.setNotificationThreshold} type="number" value={this.props.notificationsThreshold || '' }/>
+                <NumberInput name="notificationsThreshold" onChange={this.props.setNotificationThreshold} value={this.props.notificationsThreshold.toString() || '' }/>
                 <p>{this.props.themeIsDark ? 'Dark' : 'Light'} theme</p>
                 <Switch checked={this.props.themeIsDark} handleChange={this.props.setThemeState}/>
                 <p>{this.props.typeIsFixedWing ? 'Fixed' : 'Rotary'} wing</p>

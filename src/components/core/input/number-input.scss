@@ -1,0 +1,32 @@
+@import "../../../core/variables.scss";
+
+.Number-Input {
+  background-color:   $colour-primary;
+  border:             none;
+  color:              white;
+  margin:             0 0 1rem 0;
+  outline:            none;
+  padding:            12px 20px;
+  transition:         0.5s;
+  width:              280px;
+  -webkit-appearance: none;
+  -moz-appearance:    textfield;
+
+  &:focus {
+    background-color: $colour-ternary;
+  }
+
+  &:hover {
+    background-color: $colour-secondary;
+  }
+
+  &::placeholder {
+    color: white;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin:             0;
+  }
+}

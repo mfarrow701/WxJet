@@ -5,8 +5,38 @@ import classNames from 'classnames';
 import {DateTime} from 'luxon';
 import {getLunarPhase} from '../../services/utils.service';
 import './x-section.css';
+import NumberInput from '../../components/core/input/number-input';
+import Button from '../../components/core/button/button';
+import SelectInput from '../../components/core/input/select-input';
 
-const cloudTypes = ['Cirrus', 'Cirrocumulus', 'Cirrostratus', 'Altocumulus', 'Altostratus', 'Stratocumulus', 'Cumulus', 'Cumulonimbus', 'Nimbostratus'];
+const cloudTypes = [{
+    'option': 'Cirrus',
+    'value': 1
+}, {
+    'option': 'Cirrocumulus',
+    'value': 2
+}, {
+    'option': 'Cirrostratus',
+    'value': 3
+}, {
+    'option': 'Altocumulus',
+    'value': 4
+}, {
+    'option': 'Altostratus',
+    'value': 5
+}, {
+    'option': 'Stratocumulus',
+    'value': 6
+}, {
+    'option': 'Cumulus',
+    'value': 7
+}, {
+    'option': 'Cumulonimbus',
+    'value': 8
+}, {
+    'option': 'Nimbostratus',
+    'value': 9
+}];
 
 class XSection extends Component {
     constructor() {
@@ -68,13 +98,16 @@ class XSection extends Component {
                     </div>
                     <form className="Content" onSubmit={this.onFormSubmit}>
                         <h5>Cloud Type</h5>
-                        <select name="type" onChange={this.onInput}>{cloudTypes.map((x, i) => <option
-                            value={i + 1} key={i}>{x}</option>)}</select>
+                        <SelectInput iterator={cloudTypes} name="type" onChange={this.onInput} required={true}/>
                         <h5>Cloud Altitude</h5>
-                        <input onChange={this.onInput} value={this.state.updateForm.altitude} name="altitude"
-                               type="number" min="1000" max="35000"
-                               placeholder='Enter a value between 1000 & 35000 ft' required/>
-                        <button type="submit">Update cloud</button>
+                        <NumberInput maxValue={maxAltitude.toString()}
+                                     minValue={'1'}
+                                     name="altitude"
+                                     onChange={this.onInput}
+                                     placeholder={'Enter a value between 1 & ' + maxAltitude + 'ft'}
+                                     required={true}
+                                     value={this.state.updateForm.altitude}/>
+                        <Button placeholder="Update cloud" type="submit"/>
                     </form>
                 </div>
 
@@ -170,7 +203,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -180,7 +213,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -190,7 +223,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -200,7 +233,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -210,7 +243,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -220,7 +253,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -230,7 +263,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -240,7 +273,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -250,7 +283,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -260,7 +293,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -270,7 +303,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -280,7 +313,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -290,7 +323,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -300,7 +333,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -310,7 +343,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -320,7 +353,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -330,7 +363,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             },
             {
@@ -340,7 +373,7 @@ class XSection extends Component {
                 left: Math.floor(Math.random() * 101).toString() + '%',
                 attributes: {
                     altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]
+                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
                 }
             }
         ]
