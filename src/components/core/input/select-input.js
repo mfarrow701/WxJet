@@ -23,7 +23,7 @@ class SelectInput extends Component {
 SelectInput.propTypes = {
     iterator: PropTypes.arrayOf(PropTypes.shape({
         option: PropTypes.string,
-        value: PropTypes.number
+        value: PropTypes.string
     })).isRequired,
     name: PropTypes.string,
     onChange: PropTypes.func.isRequired,

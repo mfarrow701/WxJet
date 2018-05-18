@@ -3,58 +3,35 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {DateTime} from 'luxon';
-import {getLunarPhase} from '../../services/utils.service';
+import {
+    calculatePercentagePosition,
+    cloudTypes,
+    generateXSectionScale,
+    generateXSectionWeather,
+    getLunarPhase,
+} from '../../services/x-section-service';
 import './x-section.css';
 import NumberInput from '../../components/core/input/number-input';
 import Button from '../../components/core/button/button';
 import SelectInput from '../../components/core/input/select-input';
 
-const cloudTypes = [{
-    'option': 'Cirrus',
-    'value': 1
-}, {
-    'option': 'Cirrocumulus',
-    'value': 2
-}, {
-    'option': 'Cirrostratus',
-    'value': 3
-}, {
-    'option': 'Altocumulus',
-    'value': 4
-}, {
-    'option': 'Altostratus',
-    'value': 5
-}, {
-    'option': 'Stratocumulus',
-    'value': 6
-}, {
-    'option': 'Cumulus',
-    'value': 7
-}, {
-    'option': 'Cumulonimbus',
-    'value': 8
-}, {
-    'option': 'Nimbostratus',
-    'value': 9
-}];
-
 class XSection extends Component {
     constructor() {
         super();
         this.state = {
-            data: this.generateData(),
+            data: generateXSectionWeather(),
             selectedElement: null,
             updateForm: {
-                type: '',
+                type: '1',
                 altitude: ''
             }
         }
     }
 
     componentDidMount() {
-        // this.intervalId = setInterval(() => this.setState({
-        //     data: this.generateData()
-        // }), 20000);
+        this.intervalId = setInterval(() => this.setState({
+            data: generateXSectionWeather()
+        }), 60000);
     }
 
     componentWillUnmount() {
@@ -66,7 +43,7 @@ class XSection extends Component {
             this.props.themeIsDark ? 'Dark' : 'Light'
             ), maxAltitude = this.props.typeIsFixedWing ? 35000 : 7000,
             lunarPhase = getLunarPhase(DateTime.utc().toJSDate());
-        let scale = this.generateScale(maxAltitude);
+        let scale = generateXSectionScale(maxAltitude);
         return (
             <Fragment>
                 <div className={'X-Section ' + themeClass}>
@@ -75,9 +52,9 @@ class XSection extends Component {
                     })}
                     {this.state.data.map((item, i) => {
                         return (<img alt="" className="Cloud" key={i}
-                                     onClick={() => this.onClick(item, i)}
+                                     onClick={() => this.setState({selectedElement: item})}
                                      src={require('./assets/cloud-types/cloud' + item.cloud + '.svg')}
-                                     style={this.calculatePosition(maxAltitude, item)}
+                                     style={calculatePercentagePosition(maxAltitude, item)}
                                      data-properties={JSON.stringify(item.attributes)}
                                      title={item.attributes.type + ' at ' + item.attributes.altitude + 'ft'}/>)
                     })}
@@ -89,10 +66,10 @@ class XSection extends Component {
                          onClick={() => this.setState({
                              selectedElement: null,
                              updateForm: {
-                                 type: '',
+                                 type: '1',
                                  altitude: ''
                              }
-                         })}>
+                         })} title="Close panel">
                         <h5>{ this.state.selectedElement !== null ? this.state.selectedElement.attributes.type + ' at ' +
                             this.state.selectedElement.attributes.altitude + 'ft' : ''}</h5>
                     </div>
@@ -124,13 +101,6 @@ class XSection extends Component {
         )
     }
 
-    onClick = (item, index) => {
-        this.setState({
-            selectedElement: item
-        })
-    };
-
-
     onInput = (event) => {
         const fieldName = event.target.name, fieldValue = event.target.value;
         this.setState({
@@ -160,224 +130,11 @@ class XSection extends Component {
             data: modifiedState,
             selectedElement: null,
             updateForm: {
-                type: '',
+                type: '1',
                 altitude: ''
             }
         });
     };
-
-    calculatePosition(maxAltitude, element) {
-        return {
-            top: (100 - ((element.attributes.altitude / maxAltitude) * 100)).toString() + '%',
-            left: element.left
-        }
-    }
-
-    generateScale(maxAltitude) {
-        return [
-            {
-                position: '0%',
-                altitude: maxAltitude.toString()
-            },
-            {
-                position: '25%',
-                altitude: (maxAltitude * 0.75).toString()
-            }, {
-                position: '50%',
-                altitude: (maxAltitude * 0.5).toString()
-            }, {
-                position: '75%',
-                altitude: (maxAltitude * 0.25).toString()
-            }, {
-                position: '87.5%',
-                altitude: (maxAltitude * 0.125).toString()
-            }];
-    }
-
-    generateData() {
-        return [
-            {
-                id: '1',
-                cloud: '1',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '2',
-                cloud: '2',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '3',
-                cloud: '3',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '4',
-                cloud: '4',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '5',
-                cloud: '5',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '6',
-                cloud: '6',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '7',
-                cloud: '7',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '8',
-                cloud: '8',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '9',
-                cloud: '9',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '10',
-                cloud: '1',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '111',
-                cloud: '2',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '12',
-                cloud: '3',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '13',
-                cloud: '4',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '14',
-                cloud: '5',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '15',
-                cloud: '6',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '16',
-                cloud: '7',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '17',
-                cloud: '8',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            },
-            {
-                id: '18',
-                cloud: '9',
-                top: Math.floor(Math.random() * 101).toString() + '%',
-                left: Math.floor(Math.random() * 101).toString() + '%',
-                attributes: {
-                    altitude: Math.floor(Math.random() * 35000),
-                    type: cloudTypes[Math.floor(Math.random() * cloudTypes.length)]['option']
-                }
-            }
-        ]
-    }
 }
 
 const mapStateToProps = state => {

@@ -1,5 +1,4 @@
 // @flow
-import {getMoonIllumination} from 'suncalc';
 
 /**
  * Generates a random hash code
@@ -38,56 +37,4 @@ export function generateRandomNumberBetweenValues(min, max) {
  */
 export function isNullOrUndefined(value) {
     return value == null;
-}
-
-/**
- *
- * @param date
- * @returns {*}
- */
-export function getLunarPhase(date) {
-    const lunarIllumination = getMoonIllumination(date),
-        lunarPhase = Math.round(lunarIllumination.phase * 28) / 28,
-        lunarLuminosity = Math.round(lunarIllumination.fraction * 100);
-
-    if (lunarPhase === 0 || lunarPhase === 1) return {
-        img: 'newMoon',
-        phase: 'New moon',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase > 0 && lunarPhase < 0.25) return {
-        img: 'waxingCrescent',
-        phase: 'Waxing crescent',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase === 0.25) return {
-        img: 'firstQuarter',
-        phase: 'First quarter',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase > 0.25 && lunarPhase < 0.5) return {
-        img: 'waxingGibbous',
-        phase: 'Waxing gibbous',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase === 0.5) return {
-        img: 'fullMoon',
-        phase: 'Full moon',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase > 0.5 && lunarPhase < 0.75) return {
-        img: 'waningGibbous',
-        phase: 'Waning gibbous',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase === 0.75) return {
-        img: 'thirdQuarter',
-        phase: 'Third quarter',
-        luminosity: lunarLuminosity
-    };
-    if (lunarPhase > 0.75 && lunarPhase < 1) return {
-        img: 'waningCrescent',
-        phase: 'Waning crescent',
-        luminosity: lunarLuminosity
-    };
 }
