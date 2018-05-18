@@ -32,15 +32,13 @@
     }
 
     .Logo {
+      cursor: pointer;
       height: 30px;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
 
     .Search-Icon {
-      mask: url('./core/assets/search-icon.svg') no-repeat center;
+      cursor: pointer;
+      height: 25px;
     }
   }
 
@@ -72,6 +70,8 @@
       transition:       0.5s;
       width:            100%;
 
+      img { height: 25px }
+
       &:hover {
         background-color: $colour-secondary;
       }
@@ -80,40 +80,6 @@
         background-color: $colour-ternary;
         outline:          none;
       }
-
-      .Home-Icon {
-        mask: url('./core/assets/home-icon.svg') no-repeat center;
-      }
-
-      .Profile-Icon {
-        mask: url('./core/assets/profile-icon.svg') no-repeat center;
-      }
-
-      .Chart-Icon {
-        mask: url('./core/assets/chart-icon.svg') no-repeat center;
-      }
-
-      .Settings-Icon {
-        mask: url('./core/assets/more-icon.svg') no-repeat center;
-      }
-    }
-  }
-
-  .Icon {
-    height:     25px;
-    transition: 0.5s;
-    width:      25px;
-
-    &.Dark {
-      background-color: white;
-    }
-
-    &.Light {
-      background-color: $colour-primary;
-    }
-
-    &:hover {
-      cursor: pointer;
     }
   }
 }

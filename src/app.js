@@ -33,9 +33,8 @@ class App extends Component {
 
     render() {
         if (this.state.appLaunched) {
-            const themeClass = classNames(
-                this.props.themeIsDark ? 'Dark' : 'Light'
-            );
+            const theme = this.props.themeIsDark ? 'Dark' : 'Light',
+                themeClass = classNames(theme);
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
@@ -46,8 +45,11 @@ class App extends Component {
                                  src={Logo}
                                  title={this.logoMessage}/>
                             {this.props.selectedLocation !== null &&
-                            <div className={'Search-Icon Icon ' + themeClass}
-                                 onClick={this.props.clearLocation}/>}
+                            <img alt="Search for a location..."
+                                 className="Search-Icon"
+                                 onClick={this.props.clearLocation}
+                                 src={require('./core/assets/search-icon-' + theme.toLowerCase() + '.svg')}
+                                 title="Search for a location..."/> }
                         </header>
                         <main>
                             {this.props.selectedLocation === null ? (
@@ -66,16 +68,23 @@ class App extends Component {
                         </main>
                         <footer className={themeClass}>
                             <button onClick={() => this.handleNavigationClick('/dashboard')}>
-                                <div className={'Home-Icon Icon ' + themeClass}/>
+                                <img alt="Home" src={require('./core/assets/home-icon-' + theme.toLowerCase() + '.svg')}
+                                     title="Home"/>
                             </button>
                             <button onClick={() => this.handleNavigationClick('/profile')}>
-                                <div className={'Profile-Icon Icon ' + themeClass}/>
+                                <img alt="Profile"
+                                     src={require('./core/assets/profile-icon-' + theme.toLowerCase() + '.svg')}
+                                     title="Profile"/>
                             </button>
                             <button onClick={() => this.handleNavigationClick('/x-section')}>
-                                <div className={'Chart-Icon Icon ' + themeClass}/>
+                                <img alt="X-Section"
+                                     src={require('./core/assets/chart-icon-' + theme.toLowerCase() + '.svg')}
+                                     title="X-Section"/>
                             </button>
                             <button onClick={() => this.handleNavigationClick('/settings')}>
-                                <div className={'Settings-Icon Icon ' + themeClass}/>
+                                <img alt="Settings"
+                                     src={require('./core/assets/more-icon-' + theme.toLowerCase() + '.svg')}
+                                     title="Settings"/>
                             </button>
                         </footer>
                     </div>

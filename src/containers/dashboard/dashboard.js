@@ -57,7 +57,7 @@ class Dashboard extends Component {
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
             body = (
-                <fragment>
+                <Fragment>
                     <div className="Location-Card">
                         <City value={this.props.selectedLocation.name}/>
                         <Country value={updateMessage}/>
@@ -109,7 +109,7 @@ class Dashboard extends Component {
                         </div>
                         }
                     </div>
-                </fragment>
+                </Fragment>
             );
         }
         return (
