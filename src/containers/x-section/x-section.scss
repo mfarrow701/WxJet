@@ -61,6 +61,7 @@
     height:          48px;
     justify-content: space-between;
     width:           100%;
+    transition:      background 0.5s;
 
     &.Dark {
       background: $background-secondary;
@@ -69,6 +70,10 @@
       background: $background-primary;
 
       h5, p { color: white }
+    }
+
+    &:hover {
+      background: darkturquoise;
     }
 
     h5 {

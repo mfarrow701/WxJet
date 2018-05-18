@@ -12,11 +12,11 @@
   -webkit-appearance: none;
 
   &:focus {
-    background-color: $colour-ternary;
+    background-color: $colour-secondary;
   }
 
   &:hover {
-    background-color: $colour-secondary;
+    background-color: $colour-ternary;
   }
 
   &::placeholder {

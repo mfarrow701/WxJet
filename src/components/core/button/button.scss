@@ -11,11 +11,11 @@
   width:            280px;
 
   &:focus {
-    background-color: $colour-ternary;
+    background-color: $colour-secondary;
     outline:          none;
   }
 
   &:hover {
-    background-color: $colour-secondary;
+    background-color: $colour-ternary;
   }
 }
