@@ -1,89 +1,76 @@
 @import "../../core/variables.scss";
 
 .Dashboard {
-  display:               grid;
-  grid-row-gap:          20px;
-  grid-template-columns: 100%;
-  grid-template-rows:    min-content;
-  justify-items:         center;
-  margin:                20px;
-
-  .Card {
-    border-top: 10px solid $colour-primary;
-    width:      100%;
-    transition: border 0.5s;
-
-    .Content {
-      background: white;
-      padding:    15px;
-    }
-  }
+  margin: 20px;
 
   .Location-Card {
     text-align: center;
   }
 
-  .Flight-Card {
-    //border-top: 10px solid deeppink;
+  .Grid {
+    column-count: 1;
+    column-gap:   20px;
+    margin-top:   20px;
 
-    .Temperature {
-      font-weight: 300;
+    .Card {
+      border-top:        10px solid $colour-primary;
+      break-inside:      avoid-column;
+      margin-bottom:     20px;
+      page-break-inside: avoid;
+
+      .Content {
+        background: white;
+        padding:    15px;
+      }
     }
 
-    .Time {
-      font-weight: 300;
+    .Flight-Card {
+      //border-top: 10px solid deeppink;
+
+      .Temperature {
+        font-weight: 300;
+      }
+
+      .Time {
+        font-weight: 300;
+      }
+
+      .Flight-Rule {
+        font-weight: 900;
+      }
     }
 
-    .Flight-Rule {
-      font-weight: 900;
-    }
-  }
+    .Wind-Card {
+      //border-top: 10px solid turquoise;
 
-  .Wind-Card {
-    //border-top: 10px solid turquoise;
+      .Wind-Direction {
+        font-weight: 300;
+      }
 
-    .Wind-Direction {
-      font-weight: 300;
-    }
+      .Wind-Speed {
+        font-weight: 300;
+      }
 
-    .Wind-Speed {
-      font-weight: 300;
-    }
-
-    .Pressure {
-      color:       darkturquoise;
-      font-weight: 900;
+      .Pressure {
+        color:       darkturquoise;
+        font-weight: 900;
+      }
     }
   }
 }
 
 @media screen and (min-width: $media-query-md) {
   .Dashboard {
-    grid-column-gap:       20px;
-    grid-template-columns: 1fr 1fr;
-
-    .Loading {
-      grid-column: span 2;
+    .Grid {
+      column-count: 2;
     }
-
-    .Location-Card {
-      grid-column: span 2;
-    }
-
   }
 }
 
 @media screen and (min-width: $media-query-xl) {
   .Dashboard {
-    grid-template-columns: 1fr 1fr 1fr;
-
-    .Loading {
-      grid-column: span 3;
+    .Grid {
+      column-count: 3;
     }
-
-    .Location-Card {
-      grid-column: span 3;
-    }
-
   }
 }

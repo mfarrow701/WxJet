@@ -57,56 +57,59 @@ class Dashboard extends Component {
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
             body = (
-                <Fragment>
+                <fragment>
                     <div className="Location-Card">
                         <City value={this.props.selectedLocation.name}/>
                         <Country value={updateMessage}/>
                     </div>
-                    <div className="Card Flight-Card">
-                        <div className="Content">
-                            <h5>Flight information</h5>
-                            <Temperature value={Math.round(forecast['screen_temperature'])}/>
-                            <Time format={DateTime.TIME_24_WITH_SECONDS}/>
-                            <FlightRule ceiling={Math.round(forecast['5_okta_cloud_base_height']) * 3.28}
-                                        visibility={Math.round(forecast['visibility'])}/>
+                    <div className="Grid">
+                        <div className="Card Flight-Card">
+                            <div className="Content">
+                                <h5>Flight information</h5>
+                                <Temperature value={Math.round(forecast['screen_temperature'])}/>
+                                <Time format={DateTime.TIME_24_WITH_SECONDS}/>
+                                <FlightRule ceiling={Math.round(forecast['5_okta_cloud_base_height']) * 3.28}
+                                            visibility={Math.round(forecast['visibility'])}/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="Card Wind-Card">
-                        <div className="Content">
-                            <h5>Wind & pressure</h5>
-                            <WindDirection value={forecast['10m_wind_direction'].toString()}/>
-                            <WindSpeed value={forecast['10m_wind_speed']}/>
-                            <Pressure value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2), 10)}
-                                      altitude={this.props.forecastPayload.altitude}/>
+                        <div className="Card Wind-Card">
+                            <div className="Content">
+                                <h5>Wind & pressure</h5>
+                                <WindDirection value={forecast['10m_wind_direction'].toString()}/>
+                                <WindSpeed value={forecast['10m_wind_speed']}/>
+                                <Pressure
+                                    value={parseInt(forecast['mean_sea_level_pressure'].toString().slice(0, -2), 10)}
+                                    altitude={this.props.forecastPayload.altitude}/>
+                            </div>
                         </div>
-                    </div>
 
-                    {isThresholdExceeded &&
-                    <div className="Card">
-                        <div className="Content">
-                            <h5>{this.props.notificationsThreshold}ft cloud threshold exceeded</h5>
+                        {isThresholdExceeded &&
+                        <div className="Card">
+                            <div className="Content">
+                                <h5>{this.props.notificationsThreshold}ft cloud threshold exceeded</h5>
+                            </div>
                         </div>
-                    </div>
-                    }
+                        }
 
-                    <div className="Card"
-                         style={{borderTop: '10px solid ' + this.state.socketNotification.colourState}}>
-                        <div className="Content">
-                            <h5>Websocket notifications</h5>
-                            <p>{this.state.socketNotification.message || 'Unable to retrieve socket notifications'}</p>
+                        <div className="Card"
+                             style={{borderTop: '10px solid ' + this.state.socketNotification.colourState}}>
+                            <div className="Content">
+                                <h5>Websocket notifications</h5>
+                                <p>{this.state.socketNotification.message || 'Unable to retrieve socket notifications'}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    {isAirfield &&
-                    <div className="Card"
-                         style={{borderTop: '10px solid ' + this.state.sseNotification.colourState}}>
-                        <div className="Content">
-                            <h5>Server-sent notifications</h5>
-                            <p>{this.state.sseNotification.message || 'Unable to retrieve SSE notifications'}</p>
+                        {isAirfield &&
+                        <div className="Card"
+                             style={{borderTop: '10px solid ' + this.state.sseNotification.colourState}}>
+                            <div className="Content">
+                                <h5>Server-sent notifications</h5>
+                                <p>{this.state.sseNotification.message || 'Unable to retrieve SSE notifications'}</p>
+                            </div>
                         </div>
+                        }
                     </div>
-                    }
-                </Fragment>
+                </fragment>
             );
         }
         return (

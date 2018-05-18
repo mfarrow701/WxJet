@@ -10,10 +10,10 @@ import {
     generateXSectionWeather,
     getLunarPhase,
 } from '../../services/x-section-service';
-import './x-section.css';
 import NumberInput from '../../components/core/input/number-input';
 import Button from '../../components/core/button/button';
 import SelectInput from '../../components/core/input/select-input';
+import './x-section.css';
 
 class XSection extends Component {
     constructor() {
