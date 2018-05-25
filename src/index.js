@@ -7,8 +7,11 @@ import {applyMiddleware, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
+import {ApolloProvider} from 'react-apollo';
+import {Rehydrated} from 'aws-appsync-react';
 import rootReducer from './reducers/rootReducer'
 import rootSaga from './sagas/root.saga';
+import {client} from './appSync';
 import App from './app';
 import './index.css';
 
@@ -16,41 +19,35 @@ const history = createHistory({basename: process.env.PUBLIC_URL}),
     sagaMiddleware = createSagaMiddleware(),
     rootElement = document.getElementById('root');
 
-const localStorageMiddleware = ({getState}) => {
-    return (next) => (action) => {
-        const result = next(action);
-        localStorage.setItem('reduxState', JSON.stringify(
-            getState()
-        ));
-        return result;
-    };
-};
-
-const reHydrateStore = () => {
-
-    if (localStorage.getItem('reduxState') !== null) {
-        return JSON.parse(localStorage.getItem('reduxState'))
-    }
-};
+const reHydrateStore = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {};
 
 const middleware = applyMiddleware(
     routerMiddleware(history),
-    sagaMiddleware,
-    localStorageMiddleware
+    sagaMiddleware
 );
 
 const store = createStore(
     rootReducer,
-    reHydrateStore(),
+    reHydrateStore,
     middleware
 );
+
+store.subscribe(() => {
+    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
 
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App history={history}/>
-    </Provider>,
+    <ApolloProvider client={client}>
+        <Rehydrated>
+            <Provider store={store}>
+                <App history={history}/>
+            </Provider>
+        </Rehydrated>
+    </ApolloProvider>,
     rootElement
 );
 registerServiceWorker();
+
+

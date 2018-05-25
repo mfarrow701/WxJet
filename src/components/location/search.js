@@ -8,58 +8,37 @@ import './search.css';
 import Loading from '../loading/loading';
 import List from '../core/list/list';
 import SearchInput from '../core/input/search-input';
-import Button from '../core/button/button';
+import Locations from './static/locations.json';
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            filteredLocations: null,
-        }
-    }
-
-    componentWillMount() {
-        this.props.requestLocations();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.locationsPayload !== null) {
-            this.setState({
-                filteredLocations: filterLocations(nextProps.locationsPayload.locations, '', 15)
-            });
+            filteredLocations: filterLocations(Locations.locations, '', 15)
         }
     }
 
     render() {
         let body;
-        if (!this.props.locationsError) {
-            if (this.state.filteredLocations === null) {
-                body = <Loading />
-            } else if (this.state.filteredLocations.length === 0) {
-                body = (
-                    <Fragment>
-                        <SearchInput name="locationSearch" onChange={this.handleSearchChange}
-                                     placeholder='Search for a location...'/>
-                        <h5>No matching locations</h5>
-                    </Fragment>
-                )
-            } else {
-                body = (
-                    <Fragment>
-                        <SearchInput name="locationSearch" onChange={this.handleSearchChange}
-                                     placeholder='Search for a location...'/>
-                        <List data={this.populateSearchList(this.state.filteredLocations)}
-                              onClick={this.props.selectLocation}/>
-                    </Fragment>
-                );
-            }
+        if (this.state.filteredLocations === null) {
+            body = <Loading />
+        } else if (this.state.filteredLocations.length === 0) {
+            body = (
+                <Fragment>
+                    <SearchInput name="locationSearch" onChange={this.handleSearchChange}
+                                 placeholder='Search for a location...'/>
+                    <h5>No matching locations</h5>
+                </Fragment>
+            )
         } else {
             body = (
                 <Fragment>
-                    <h5>Error with the locations API</h5>
-                    <Button onClick={() => this.props.requestLocations()} placeholder='Request locations'/>
+                    <SearchInput name="locationSearch" onChange={this.handleSearchChange}
+                                 placeholder='Search for a location...'/>
+                    <List data={this.populateSearchList(this.state.filteredLocations)}
+                          onClick={this.props.selectLocation}/>
                 </Fragment>
-            )
+            );
         }
         return (
             <div className="Search">
@@ -70,7 +49,7 @@ class Search extends Component {
 
     handleSearchChange = (event) => {
         this.setState({
-            filteredLocations: filterLocations(this.props.locationsPayload.locations, event.target.value, 15)
+            filteredLocations: filterLocations(Locations.locations, event.target.value, 15)
         });
     };
 

@@ -3,7 +3,10 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
 import io from 'socket.io-client';
+import {client} from '../../appSync';
+import OnCreateNotificationMutation from '../../queries/onCreateNotification';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
+import {pollNotificationsAPIRequest} from '../../actions/notification.actions';
 import Loading from '../../components/loading/loading';
 import Temperature from '../../components/weather/temperature';
 import Time from '../../components/time/time';
@@ -31,6 +34,10 @@ class Dashboard extends Component {
             socketNotification: {
                 colourState: '#333333',
                 message: ''
+            },
+            appSyncNotification: {
+                colourState: '#333333',
+                message: ''
             }
         }
     }
@@ -39,11 +46,23 @@ class Dashboard extends Component {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
         this.subscribeSSENotifications();
         this.subscribeSocketNotifications();
+        this.props.pollNotifications();
+        this.notificationsPollInterval = setInterval(() => this.props.pollNotifications(), 10000);
+        client
+            .subscribe({
+                query: OnCreateNotificationMutation
+            })
+            .subscribe({
+                next: this.onCreateNotification,
+                complete: console.log,
+                error: console.log
+            });
     }
 
     componentWillUnmount() {
         this.unsubscribeSocketNotifications();
         this.unsubscribeSSENotifications();
+        clearInterval(this.notificationsPollInterval);
     }
 
     render() {
@@ -108,6 +127,32 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         }
+
+                        {this.props.pollNotificationsPayload ? (
+                            <div className="Card"
+                                 style={{borderTop: '10px solid ' + this.props.pollNotificationsPayload.colourState}}>
+                                <div className="Content">
+                                    <h5>Poll notifications</h5>
+                                    {this.props.notificationsThreshold > this.props.pollNotificationsPayload.value &&
+                                    <p>{this.props.notificationsThreshold}ft cloud threshold exceeded</p>}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="Card">
+                                <div className="Content">
+                                    <h5>Poll notifications</h5>
+                                    <p>Unable to retrieve Poll notifications</p>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="Card"
+                             style={{borderTop: '10px solid ' + this.state.appSyncNotification.colourState}}>
+                            <div className="Content">
+                                <h5>AppSync Notifications</h5>
+                                <p>{this.state.appSyncNotification.message || 'No new notifications from AppSync'}</p>
+                            </div>
+                        </div>
                     </div>
                 </Fragment>
             );
@@ -118,6 +163,16 @@ class Dashboard extends Component {
             </div>
         )
     }
+
+    onCreateNotification = (payload) => {
+        let notification = payload.data['onCreateNotification'];
+        this.setState({
+            appSyncNotification: {
+                colourState: notification.state,
+                message: notification.message
+            }
+        });
+    };
 
     subscribeSSENotifications() {
         if (typeof(EventSource) !== 'undefined') {
@@ -182,13 +237,17 @@ const mapStateToProps = state => {
         forecastPayload: state.forecastReducer.payload,
         forecastFetching: state.forecastReducer.fetching,
         selectedLocation: state.locationsReducer.selectedLocation,
-        notificationsThreshold: state.settings.notificationsThreshold
+        notificationsThreshold: state.settings.notificationsThreshold,
+        pollNotificationsFetching: state.notifications.fetching,
+        pollNotificationsPayload: state.notifications.payload,
+        pollNotificationsError: state.notifications.error
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        requestForecast: selectedLocation => dispatch(forecastAPIRequest(selectedLocation))
+        requestForecast: selectedLocation => dispatch(forecastAPIRequest(selectedLocation)),
+        pollNotifications: () => dispatch(pollNotificationsAPIRequest())
     };
 };
 

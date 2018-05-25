@@ -13,7 +13,8 @@ class Settings extends Component {
             <div className="Settings">
                 <h1>Settings</h1>
                 <p>Notification threshold</p>
-                <NumberInput name="notificationsThreshold" onChange={this.props.setNotificationThreshold} value={this.props.notificationsThreshold.toString() || '' }/>
+                <NumberInput name="notificationsThreshold" onChange={this.props.setNotificationThreshold}
+                             value={this.props.notificationsThreshold.toString() || '' }/>
                 <p>{this.props.themeIsDark ? 'Dark' : 'Light'} theme</p>
                 <Switch checked={this.props.themeIsDark} handleChange={this.props.setThemeState}/>
                 <p>{this.props.typeIsFixedWing ? 'Fixed' : 'Rotary'} wing</p>
