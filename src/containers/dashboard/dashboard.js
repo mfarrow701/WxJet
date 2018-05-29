@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
 import io from 'socket.io-client';
 import {client} from '../../appSync';
-import OnCreateNotificationMutation from '../../queries/onCreateNotification';
+import OnCreateNotificationSubscription from '../../queries/onCreateNotification';
+import CreateNotificationMutation from '../../queries/createNotification';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
 import {pollNotificationsAPIRequest} from '../../actions/notification.actions';
 import Loading from '../../components/loading/loading';
@@ -17,6 +18,7 @@ import WindDirection from '../../components/weather/wind-direction';
 import WindSpeed from '../../components/weather/wind-speed';
 import './dashboard.css';
 import Pressure from '../../components/weather/pressure';
+import Button from '../../components/core/button/button';
 
 let socket, socketOptions = {
     reconnectionAttempts: 3,
@@ -36,6 +38,7 @@ class Dashboard extends Component {
                 message: ''
             },
             appSyncNotification: {
+                id: null,
                 colourState: '#333333',
                 message: ''
             }
@@ -44,25 +47,24 @@ class Dashboard extends Component {
 
     componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
-        this.subscribeSSENotifications();
-        this.subscribeSocketNotifications();
-        this.props.pollNotifications();
-        this.notificationsPollInterval = setInterval(() => this.props.pollNotifications(), 10000);
-        client
-            .subscribe({
-                query: OnCreateNotificationMutation
-            })
-            .subscribe({
-                next: this.onCreateNotification,
-                complete: console.log,
-                error: console.log
-            });
+        // this.subscribeSSENotifications();
+        // this.subscribeSocketNotifications();
+        // this.props.pollNotifications();
+        // this.notificationsPollInterval = setInterval(() => this.props.pollNotifications(), 10000);
+        this.appSyncHandler = client.subscribe({
+            query: OnCreateNotificationSubscription
+        }).subscribe({
+            next: this.onCreateNotification,
+            complete: console.log,
+            error: console.log
+        });
     }
 
     componentWillUnmount() {
-        this.unsubscribeSocketNotifications();
-        this.unsubscribeSSENotifications();
-        clearInterval(this.notificationsPollInterval);
+        // this.unsubscribeSocketNotifications();
+        // this.unsubscribeSSENotifications();
+        // clearInterval(this.notificationsPollInterval);
+        this.appSyncHandler.unsubscribe();
     }
 
     render() {
@@ -75,6 +77,8 @@ class Dashboard extends Component {
             updateMessage = this.props.selectedLocation.unitaryAuthArea + ', updated 1 min ago';
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
+            const appSyncNotification = this.state.appSyncNotification.message !== '' ?
+                this.state.appSyncNotification.message + ' My unique identity is: ' + this.state.appSyncNotification.id : 'No new notifications from AppSync';
             body = (
                 <Fragment>
                     <div className="Location-Card">
@@ -146,11 +150,12 @@ class Dashboard extends Component {
                             </div>
                         )}
 
-                        <div className="Card"
+                        <div className="Card AppSync-Card"
                              style={{borderTop: '10px solid ' + this.state.appSyncNotification.colourState}}>
                             <div className="Content">
                                 <h5>AppSync Notifications</h5>
-                                <p>{this.state.appSyncNotification.message || 'No new notifications from AppSync'}</p>
+                                <p>{appSyncNotification}</p>
+                                <Button placeholder="Send notification" onClick={this.onNewNotification}/>
                             </div>
                         </div>
                     </div>
@@ -168,10 +173,24 @@ class Dashboard extends Component {
         let notification = payload.data['onCreateNotification'];
         this.setState({
             appSyncNotification: {
+                id: notification.id,
                 colourState: notification.state,
                 message: notification.message
             }
         });
+    };
+
+    onNewNotification = () => {
+        if (this.clickLimiter) clearTimeout(this.clickLimiter);
+        this.clickLimiter = setTimeout(() => {
+            let message = 'I am a new AWS AppSync notification!',
+                states = ['#00CED1', '#FF8C00', '#FF1493'], state;
+            state = states[Math.floor(Math.random() * states.length)];
+            client.mutate({
+                mutation: CreateNotificationMutation,
+                variables: {message: message, state: state},
+            });
+        }, 500);
     };
 
     subscribeSSENotifications() {
