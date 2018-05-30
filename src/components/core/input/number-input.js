@@ -22,8 +22,8 @@ class NumberInput extends Component {
 }
 
 NumberInput.propTypes = {
-    maxValue: PropTypes.string,
-    minValue: PropTypes.string,
+    maxValue: PropTypes.number,
+    minValue: PropTypes.number,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,

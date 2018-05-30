@@ -24,12 +24,7 @@
       }
     }
 
-    .Flight-Card {
-      //border-top: 10px solid deeppink;
-
-      .Temperature {
-        font-weight: 300;
-      }
+    .Airfield-Card {
 
       .Time {
         font-weight: 300;
@@ -38,22 +33,27 @@
       .Flight-Rule {
         font-weight: 900;
       }
-    }
-
-    .Wind-Card {
-      //border-top: 10px solid turquoise;
-
-      .Wind-Direction {
-        font-weight: 300;
-      }
-
-      .Wind-Speed {
-        font-weight: 300;
-      }
-
       .Pressure {
         color:       darkturquoise;
         font-weight: 900;
+      }
+    }
+
+    .Visibility-Card {
+      h1 {
+        font-weight: 300;
+      }
+    }
+
+    .Cloud-Card {
+      h1 {
+        font-weight: 300;
+      }
+    }
+
+    .Wind-Card {
+      h1 {
+        font-weight: 300;
       }
     }
 

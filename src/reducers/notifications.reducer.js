@@ -1,12 +1,10 @@
 // @flow
 import {
-    POLL_NOTIFICATIONS_API_REQUEST,
-    POLL_NOTIFICATIONS_API_FAILURE,
-    POLL_NOTIFICATIONS_API_SUCCESS,
+    NOTIFICATIONS_SUBSCRIPTION_ERROR,
+    NOTIFICATIONS_SUBSCRIPTION_NEXT,
 } from '../actions/notification.actions';
 
 const initialState = {
-    fetching: false,
     payload: null,
     error: null
 };
@@ -14,12 +12,10 @@ const initialState = {
 export function handleNotificationActions(state = initialState, action) { // NOSONAR
     const {payload, type} = action;
     switch (type) {
-        case POLL_NOTIFICATIONS_API_REQUEST:
-            return {...state, fetching: true, payload: null, error: null};
-        case POLL_NOTIFICATIONS_API_SUCCESS:
-            return {...state, fetching: false, payload, error: null};
-        case POLL_NOTIFICATIONS_API_FAILURE:
-            return {...state, fetching: false, payload: null, error: payload};
+        case NOTIFICATIONS_SUBSCRIPTION_NEXT:
+            return {...state, payload, error: null};
+        case NOTIFICATIONS_SUBSCRIPTION_ERROR:
+            return {...state, payload: null, error: payload};
         default:
             return state;
     }

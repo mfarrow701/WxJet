@@ -1,25 +1,17 @@
 // @flow
-export const POLL_NOTIFICATIONS_API_REQUEST = 'POLL_NOTIFICATIONS_API_REQUEST';
-export const POLL_NOTIFICATIONS_API_SUCCESS = 'POLL_NOTIFICATIONS_API_SUCCESS';
-export const POLL_NOTIFICATIONS_API_FAILURE = 'POLL_NOTIFICATIONS_API_FAILURE';
+export const NOTIFICATIONS_SUBSCRIPTION_NEXT = 'NOTIFICATIONS_SUBSCRIPTION_NEXT';
+export const NOTIFICATIONS_SUBSCRIPTION_ERROR = 'NOTIFICATIONS_SUBSCRIPTION_ERROR';
 
-export function pollNotificationsAPIRequest(payload) {
+export function notificationsSubscriptionNext(payload) {
     return {
-        type: POLL_NOTIFICATIONS_API_REQUEST,
+        type: NOTIFICATIONS_SUBSCRIPTION_NEXT,
         payload
     }
 }
 
-export function pollNotificationsAPISuccess(payload) {
+export function notificationsSubscriptionError(payload) {
     return {
-        type: POLL_NOTIFICATIONS_API_SUCCESS,
-        payload
-    }
-}
-
-export function pollNotificationsAPIFailure(payload) {
-    return {
-        type: POLL_NOTIFICATIONS_API_FAILURE,
+        type: NOTIFICATIONS_SUBSCRIPTION_ERROR,
         payload
     }
 }

@@ -4,7 +4,9 @@ import {Route, Switch} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {client} from './appSync'
 import {locationSelected} from './actions/location.actions';
+import {notificationsSubscriptionError, notificationsSubscriptionNext} from './actions/notification.actions';
 import Authentication from './containers/authentication/authentication';
 import Dashboard from './containers/dashboard/dashboard';
 import Profile from './containers/profile/profile';
@@ -13,6 +15,7 @@ import XSection from './containers/x-section/x-section';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 import Logo from './core/assets/logo.svg';
+import OnCreationNotificationSubscription from './queries/onCreateNotification';
 import './app.css';
 
 class App extends Component {
@@ -28,7 +31,12 @@ class App extends Component {
     componentDidMount() {
         this.setState({
             appLaunched: true
-        })
+        });
+        this.subscribeToAppSyncNotifications();
+    }
+
+    componentWillUnmount() {
+        this.unsubscribeFromAppSyncNotificiations();
     }
 
     render() {
@@ -101,6 +109,27 @@ class App extends Component {
             this.props.history.push(route);
         }
     }
+
+    onNextNotification = (payload) => {
+
+    };
+
+    onErrorNotification = (error) => {
+
+    };
+
+    subscribeToAppSyncNotifications() {
+        this.notificationsHandler = client.subscribe({
+            query: OnCreationNotificationSubscription
+        }).subscribe({
+            next: this.props.dispatchNextNotification,
+            error: this.props.dispatchNotificationError
+        })
+    }
+
+    unsubscribeFromAppSyncNotificiations() {
+        this.notificationsHandler.unsubscribe();
+    }
 }
 
 const mapStateToProps = state => {
@@ -112,7 +141,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearLocation: location => dispatch(locationSelected(null))
+        clearLocation: location => dispatch(locationSelected(null)),
+        dispatchNextNotification: payload => dispatch(notificationsSubscriptionNext(payload)),
+        dispatchNotificationError: error => dispatch(notificationsSubscriptionError(error))
     };
 };
 
