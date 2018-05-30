@@ -110,14 +110,6 @@ class App extends Component {
         }
     }
 
-    onNextNotification = (payload) => {
-
-    };
-
-    onErrorNotification = (error) => {
-
-    };
-
     subscribeToAppSyncNotifications() {
         this.notificationsHandler = client.subscribe({
             query: OnCreationNotificationSubscription

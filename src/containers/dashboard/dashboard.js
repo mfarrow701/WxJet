@@ -15,16 +15,6 @@ import Pressure from '../../components/weather/pressure';
 import Button from '../../components/core/button/button';
 
 class Dashboard extends Component {
-    constructor() {
-        super();
-        this.state = {
-            appSyncNotification: {
-                id: null,
-                colourState: '#333333',
-                message: ''
-            }
-        }
-    }
 
     componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
@@ -40,8 +30,11 @@ class Dashboard extends Component {
             updateMessage = this.props.selectedLocation.unitaryAuthArea + ', updated 1 min ago';
             const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
                 isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
-            const appSyncNotification = this.props.nextNotifications.data.onCreateNotification.message !== '' ?
-                this.props.nextNotifications.data.onCreateNotification.message : 'No new notifications from AppSync';
+            let appSyncNotification = {
+                message: 'No new notifications from AppSync',
+                state: '#333333'
+            };
+            if (this.props.nextNotifications) appSyncNotification.message = this.props.nextNotifications.data.onCreateNotification.message;
             body = (
                 <Fragment>
                     <div className="Location-Card">
@@ -97,10 +90,10 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="Card AppSync-Card"
-                             style={{borderTop: '10px solid ' + this.props.nextNotifications.data.onCreateNotification.state}}>
+                             style={{borderTop: '10px solid ' + appSyncNotification.message}}>
                             <div className="Content">
                                 <h5>AppSync Notifications</h5>
-                                <p>{appSyncNotification}</p>
+                                <p>{appSyncNotification.message}</p>
                                 <Button placeholder="Send notification" onClick={this.onNewNotification}/>
                             </div>
                         </div>
@@ -114,17 +107,6 @@ class Dashboard extends Component {
             </div>
         )
     }
-
-    onCreateNotification = (payload) => {
-        let notification = payload.data['onCreateNotification'];
-        this.setState({
-            appSyncNotification: {
-                id: notification.id,
-                colourState: notification.state,
-                message: notification.message
-            }
-        });
-    };
 
     onNewNotification = () => {
         if (this.clickLimiter) clearTimeout(this.clickLimiter);
