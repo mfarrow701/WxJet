@@ -14,7 +14,27 @@ import './dashboard.css';
 import Pressure from '../../components/weather/pressure';
 import Button from '../../components/core/button/button';
 
+const models = [{
+    'id': 'GL',
+    'name': 'Global'
+}, {
+    'id': 'UK',
+    'name': 'UKV'
+}, {
+    'id': 'UE',
+    'name': 'MOGREPS-UK'
+}, {
+    'id': 'GE',
+    'name': 'MOGREPS-G'
+}];
+
 class Dashboard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedModel: models[0]
+        }
+    }
 
     componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
@@ -28,8 +48,6 @@ class Dashboard extends Component {
         } else {
             forecast = this.props.forecastPayload;
             updateMessage = this.props.selectedLocation.unitaryAuthArea + ', updated 1 min ago';
-            const isAirfield = this.props.selectedLocation['name'].toLowerCase().includes('airport') || this.props.selectedLocation['name'].toLowerCase().includes('miramar'),
-                isThresholdExceeded = this.props.notificationsThreshold >= forecast['3_okta_cloud_base_height'];
             let appSyncNotification = {
                 message: 'No new notifications from AppSync',
                 state: '#333333'
@@ -37,6 +55,28 @@ class Dashboard extends Component {
             if (this.props.nextNotifications) appSyncNotification.message = this.props.nextNotifications.data.onCreateNotification.message;
             body = (
                 <Fragment>
+                    <div className="Status-Card">
+                        <div className="Favourites">
+                            <input id="favourite-icon" type="checkbox"
+                                   title={'Favourite ' + this.props.selectedLocation.name}/>
+                            <label for="favourite-icon">❤</label>
+                        </div>
+                        <div className="Models">
+                            {models.map((element, index) => {
+                                return (
+                                    <div className="Model"
+                                         key={index}
+                                         onClick={() => this.setState({
+                                             selectedModel: element
+                                         })}
+                                         style={{background: this.state.selectedModel.id === element.id && '#00CED1'}}
+                                         title={element.title}>
+                                        <p>{element.id}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
                     <div className="Location-Card">
                         <City value={this.props.selectedLocation.name}/>
                         <Country value={updateMessage}/>
@@ -92,9 +132,9 @@ class Dashboard extends Component {
                         <div className="Card AppSync-Card"
                              style={{borderTop: '10px solid ' + appSyncNotification.message}}>
                             <div className="Content">
-                                <h5>AppSync Notifications</h5>
+                                <h5>Notifications</h5>
                                 <p>{appSyncNotification.message}</p>
-                                <Button placeholder="Send notification" onClick={this.onNewNotification}/>
+                                {/*<Button placeholder="Notify the Avengers" onClick={this.onNewNotification}/>*/}
                             </div>
                         </div>
                     </div>
@@ -116,7 +156,7 @@ class Dashboard extends Component {
             state = states[Math.floor(Math.random() * states.length)];
             client.mutate({
                 mutation: CreateNotificationMutation,
-                variables: {message: message, state: state},
+                variables: {user_id: '4', message: message, state: state},
             });
         }, 500);
     };

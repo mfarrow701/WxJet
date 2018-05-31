@@ -16,7 +16,10 @@ import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
 import Logo from './core/assets/logo.svg';
 import OnCreationNotificationSubscription from './queries/onCreateNotification';
+import GetUserQuery from './queries/getUser';
 import './app.css';
+
+let users = ['1', '2', '3', '4'];
 
 class App extends Component {
     logoMessage = 'WxJet';
@@ -24,15 +27,21 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            appLaunched: false
+            user: null
         }
     }
 
     componentDidMount() {
-        this.setState({
-            appLaunched: true
+        client.query({
+            query: GetUserQuery,
+            variables: {id: users[Math.floor(Math.random() * users.length)]}
+        }).then((user) => {
+            let subscribedUser = user.data.getUser;
+            this.setState({
+                user: subscribedUser
+            });
+            this.subscribeToAppSyncNotifications(subscribedUser.id);
         });
-        this.subscribeToAppSyncNotifications();
     }
 
     componentWillUnmount() {
@@ -40,9 +49,10 @@ class App extends Component {
     }
 
     render() {
-        if (this.state.appLaunched) {
+        if (this.state.user) {
             const theme = this.props.themeIsDark ? 'Dark' : 'Light',
                 themeClass = classNames(theme);
+            const profileIcon = this.state.user.nickname.split(' ').join('').toLowerCase();
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
@@ -52,12 +62,18 @@ class App extends Component {
                                  onClick={() => this.handleNavigationClick('/')}
                                  src={Logo}
                                  title={this.logoMessage}/>
-                            {this.props.selectedLocation !== null &&
-                            <img alt="Search for a location..."
-                                 className="Search-Icon"
-                                 onClick={this.props.clearLocation}
-                                 src={require('./core/assets/search-icon-' + theme.toLowerCase() + '.svg')}
-                                 title="Search for a location..."/> }
+                            <div className="Secondary">
+                                <img alt={this.state.user.nickname}
+                                     className="Profile-Icon"
+                                     src={require('./core/assets/' + profileIcon + '-icon.svg')}
+                                     title={this.state.user.nickname}/>
+                                {this.props.selectedLocation !== null &&
+                                <img alt="Search for a location..."
+                                     className="Search-Icon"
+                                     onClick={this.props.clearLocation}
+                                     src={require('./core/assets/search-icon-' + theme.toLowerCase() + '.svg')}
+                                     title="Search for a location..."/> }
+                            </div>
                         </header>
                         <main>
                             {this.props.selectedLocation === null ? (
@@ -99,7 +115,6 @@ class App extends Component {
                 </ConnectedRouter>
             )
         } else {
-            // return <Portal navigateToApp={() => this.setState({appLaunched: true})}/>
             return <h1>Loading...</h1>
         }
     }
@@ -110,9 +125,10 @@ class App extends Component {
         }
     }
 
-    subscribeToAppSyncNotifications() {
+    subscribeToAppSyncNotifications(userId) {
         this.notificationsHandler = client.subscribe({
-            query: OnCreationNotificationSubscription
+            query: OnCreationNotificationSubscription,
+            variables: {user_id: userId}
         }).subscribe({
             next: this.props.dispatchNextNotification,
             error: this.props.dispatchNotificationError

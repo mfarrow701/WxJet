@@ -3,6 +3,63 @@
 .Dashboard {
   margin: 20px;
 
+  .Status-Card {
+    align-items:     center;
+    display:         flex;
+    flex-direction:  row;
+    justify-content: space-between;
+    margin-bottom:   10px;
+
+    .Favourites {
+      input {
+        display:    none;
+        position:   absolute;
+        transition: color 0.5s;
+
+        &:checked + label {
+          color:     #E2264D;
+          animation: pulse 5s infinite;
+        }
+      }
+
+      label {
+        color:      #AAB8C2;
+        font-size:  25px;
+        cursor:     pointer;
+        transition: color 0.5s;
+      }
+    }
+
+    .Models {
+      align-items:     center;
+      display:         flex;
+      flex-direction:  row;
+      justify-content: flex-end;
+      .Model {
+        align-items:     center;
+        background:      $colour-primary;
+        border-radius:   50%;
+        cursor:          pointer;
+        display:         flex;
+        height:          25px;
+        justify-content: center;
+        margin-left:     10px;
+        width:           25px;
+
+        &:focus {
+          background: green;
+        }
+
+        p {
+          color:       white;
+          font-size:   1rem;
+          font-weight: 900;
+          margin:      0;
+        }
+      }
+    }
+  }
+
   .Location-Card {
     text-align: center;
   }
@@ -62,6 +119,18 @@
         width: 100%;
       }
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    color: #E2264D;
+  }
+  50% {
+    color: #912138;
+  }
+  100% {
+    color: #E2264D
   }
 }
 

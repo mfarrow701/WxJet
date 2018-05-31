@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 
 export default gql`
-mutation CreateNotificationMutation($message: String!, $state: String!) {
-    createNotification(message: $message, state: $state) {
+mutation CreateNotificationMutation($user_id: String!, $message: String!, $state: String!) {
+    createNotification(user_id: $user_id, message: $message, state: $state) {
         id
+        user_id
         message
         state
     }
