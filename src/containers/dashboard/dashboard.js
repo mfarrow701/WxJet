@@ -57,9 +57,7 @@ class Dashboard extends Component {
                 <Fragment>
                     <div className="Status-Card">
                         <div className="Favourites">
-                            <input id="favourite-icon" type="checkbox"
-                                   title={'Favourite ' + this.props.selectedLocation.name}/>
-                            <label for="favourite-icon">❤</label>
+                            <p>Favourite</p>
                         </div>
                         <div className="Models">
                             {models.map((element, index) => {

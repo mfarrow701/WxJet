@@ -10,26 +10,6 @@
     justify-content: space-between;
     margin-bottom:   10px;
 
-    .Favourites {
-      input {
-        display:    none;
-        position:   absolute;
-        transition: color 0.5s;
-
-        &:checked + label {
-          color:     #E2264D;
-          animation: pulse 5s infinite;
-        }
-      }
-
-      label {
-        color:      #AAB8C2;
-        font-size:  25px;
-        cursor:     pointer;
-        transition: color 0.5s;
-      }
-    }
-
     .Models {
       align-items:     center;
       display:         flex;
@@ -119,18 +99,6 @@
         width: 100%;
       }
     }
-  }
-}
-
-@keyframes pulse {
-  0% {
-    color: #E2264D;
-  }
-  50% {
-    color: #912138;
-  }
-  100% {
-    color: #E2264D
   }
 }
 

@@ -9,6 +9,7 @@ import {locationSelected} from './actions/location.actions';
 import {notificationsSubscriptionError, notificationsSubscriptionNext} from './actions/notification.actions';
 import Authentication from './containers/authentication/authentication';
 import Dashboard from './containers/dashboard/dashboard';
+import Admin from './containers/admin/admin';
 import Profile from './containers/profile/profile';
 import Settings from './containers/settings/settings';
 import XSection from './containers/x-section/x-section';
@@ -82,6 +83,7 @@ class App extends Component {
                                 <Switch>
                                     <Route exact path="/" component={Dashboard}/>
                                     <Route path="/dashboard" component={Dashboard}/>
+                                    <Route path="/admin" component={Admin}/>
                                     <Route path="/profile" component={Profile}/>
                                     <Route path="/authenticate" component={Authentication}/>
                                     <Route path="/x-section" component={XSection}/>
@@ -94,6 +96,9 @@ class App extends Component {
                             <button onClick={() => this.handleNavigationClick('/dashboard')}>
                                 <img alt="Home" src={require('./core/assets/home-icon-' + theme.toLowerCase() + '.svg')}
                                      title="Home"/>
+                            </button>
+                            <button onClick={() => this.handleNavigationClick('/admin')}>
+                                Admin
                             </button>
                             <button onClick={() => this.handleNavigationClick('/profile')}>
                                 <img alt="Profile"
