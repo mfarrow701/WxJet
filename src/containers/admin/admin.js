@@ -11,6 +11,7 @@ class Admin extends Component {
     constructor() {
         super();
         this.state = {
+            isReversed: false,
             favourites: [
                 {
                     location: 'MCAS Miramar',
@@ -58,48 +59,66 @@ class Admin extends Component {
         return (
             <div className={'Admin ' + themeClass}>
                 <Status/>
-               <div className="Scroll-Container">
-                   <table>
-                       <thead>
-                       <tr>
-                           <th>Location</th>
-                           <th>Cloud threshold</th>
-                           <th>Visibility threshold</th>
-                           <th>Wind threshold</th>
-                           <th>Active OpMet</th>
-                       </tr>
-                       </thead>
-                       <tbody>
-                       {this.state.favourites.map((element, index) => {
-                           return (
-                               <tr key={index}>
-                                   <td data-label="location">{element.location}</td>
-                                   <td data-label="cloud-threshold"
-                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
-                                   <td data-label="vis-threshold"
-                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.vis_threshold}</td>
-                                   <td data-label="cloud-threshold"
-                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
-                                   <td data-label="active-opmet"
-                                       style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
-                                       {element.active_opmet.length !== 0 ? element.active_opmet.map((secondElement, secondIndex) => {
-                                           return <img
-                                               alt={secondElement}
-                                               src={require('../../core/assets/' + secondElement.split(' ').join('').toLowerCase() + '-icon.svg')}
-                                               key={secondElement}
-                                               title={secondElement}/>
-                                       }) : 'Inactive'}
-                                   </td>
-                               </tr>
-                           )
-                       })}
-                       </tbody>
-                   </table>
-               </div>
+                <div className="Scroll-Container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th onClick={event => this.onSort(event, 'location')} style={{cursor: 'pointer'}}>
+                                Location
+                            </th>
+                            <th onClick={event => this.onSort(event, 'cloud_threshold')} style={{cursor: 'pointer'}}>
+                                Cloud threshold
+                            </th>
+                            <th onClick={event => this.onSort(event, 'vis_threshold')} style={{cursor: 'pointer'}}>
+                                Visibility threshold
+                            </th>
+                            <th onClick={event => this.onSort(event, 'wind_threshold')} style={{cursor: 'pointer'}}>
+                                Wind threshold
+                            </th>
+                            <th>Active OpMet</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {this.state.favourites.map((element, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td data-label="location">{element.location}</td>
+                                    <td data-label="cloud-threshold"
+                                        style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
+                                    <td data-label="vis-threshold"
+                                        style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.vis_threshold}</td>
+                                    <td data-label="cloud-threshold"
+                                        style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
+                                    <td data-label="active-opmet"
+                                        style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
+                                        {element.active_opmet.length !== 0 ? element.active_opmet.map((secondElement, secondIndex) => {
+                                            return <img
+                                                alt={secondElement}
+                                                src={require('../../core/assets/' + secondElement.split(' ').join('').toLowerCase() + '-icon.svg')}
+                                                key={secondElement}
+                                                title={secondElement}/>
+                                        }) : 'Inactive'}
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
 
+    onSort(event, sortKey) {
+        const data = this.state.favourites;
+        data.sort((a, b) => {
+            let x = a[sortKey], y = b[sortKey];
+            return this.state.isReversed ?
+                (x === '-') - (y === '-') || -(x > y) || +(x < y) :
+                (x === '-') - (y === '-') || +(x > y) || -(x < y);
+        });
+        this.setState({data, isReversed: !this.state.isReversed})
+    }
 }
 
 const mapStateToProps = state => {
