@@ -1,6 +1,7 @@
 @import "../../core/variables.scss";
 
 .Admin {
+  overflow-x: auto;
   table {
     border-collapse: separate;
     border-spacing:  0;
@@ -9,6 +10,7 @@
     width:           100%;
 
     th {
+      min-width:      160px;
       text-transform: uppercase;
     }
 
@@ -18,13 +20,9 @@
     }
 
     tr {
-      cursor: pointer;
 
       &:nth-child(even) {
         background: #DDDDDD;
-      }
-      &:hover {
-        background: #00CED1;
       }
     }
 
@@ -43,13 +41,6 @@
         background: $background-secondary;
         color:      $colour-primary;
       }
-
-      tr {
-        &:hover {
-          background: $background-secondary;
-          color:      $colour-primary;
-        }
-      }
     }
   }
   &.Light {
@@ -57,13 +48,6 @@
       th {
         background: $background-primary;
         color:      white;
-      }
-
-      tr {
-        &:hover {
-          background: $background-primary;
-          color:      white;
-        }
       }
     }
   }

@@ -33,9 +33,10 @@ class App extends Component {
     }
 
     componentDidMount() {
+        let mockUser = users[Math.floor(Math.random() * users.length)];
         client.query({
             query: GetUserQuery,
-            variables: {id: users[Math.floor(Math.random() * users.length)]}
+            variables: {id: mockUser}
         }).then((user) => {
             let subscribedUser = user.data.getUser;
             this.setState({

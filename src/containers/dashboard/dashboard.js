@@ -12,7 +12,6 @@ import City from '../../components/location/city';
 import Country from '../../components/location/country';
 import './dashboard.css';
 import Pressure from '../../components/weather/pressure';
-import Button from '../../components/core/button/button';
 
 const models = [{
     'id': 'GL',

@@ -70,12 +70,15 @@ class Admin extends Component {
                                     style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.vis_threshold}</td>
                                 <td data-label="cloud-threshold"
                                     style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
-                                <td data-label="active-opmet" style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
-                                    {element.active_opmet.map((secondElement, secondIndex) => {
+                                <td data-label="active-opmet"
+                                    style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
+                                    {element.active_opmet.length !== 0 ? element.active_opmet.map((secondElement, secondIndex) => {
                                         return <img
+                                            alt={secondElement}
                                             src={require('../../core/assets/' + secondElement.split(' ').join('').toLowerCase() + '-icon.svg')}
-                                            key={secondElement}/>
-                                    })}
+                                            key={secondElement}
+                                            title={secondElement}/>
+                                    }) : 'Inactive'}
                                 </td>
                             </tr>
                         )
