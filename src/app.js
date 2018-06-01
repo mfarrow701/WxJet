@@ -28,6 +28,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
+            appLoaded: false,
             user: null
         }
     }
@@ -40,21 +41,27 @@ class App extends Component {
         }).then((user) => {
             let subscribedUser = user.data.getUser;
             this.setState({
+                appLoaded: true,
                 user: subscribedUser
             });
             this.subscribeToAppSyncNotifications(subscribedUser.id);
+        }).catch(error => {
+            this.setState({
+                appLoaded: true
+            })
         });
     }
 
     componentWillUnmount() {
-        this.unsubscribeFromAppSyncNotificiations();
+        if (!this.state.user) {
+            this.unsubscribeFromAppSyncNotificiations();
+        }
     }
 
     render() {
-        if (this.state.user) {
+        if (this.state.appLoaded) {
             const theme = this.props.themeIsDark ? 'Dark' : 'Light',
                 themeClass = classNames(theme);
-            const profileIcon = this.state.user.nickname.split(' ').join('').toLowerCase();
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
@@ -65,10 +72,11 @@ class App extends Component {
                                  src={Logo}
                                  title={this.logoMessage}/>
                             <div className="Secondary">
+                                {this.state.user &&
                                 <img alt={this.state.user.nickname}
                                      className="Profile-Icon"
-                                     src={require('./core/assets/' + profileIcon + '-icon.svg')}
-                                     title={this.state.user.nickname}/>
+                                     src={require('./core/assets/' + this.state.user.nickname.split(' ').join('').toLowerCase() + '-icon.svg')}
+                                     title={this.state.user.nickname}/>}
                                 {this.props.selectedLocation !== null &&
                                 <img alt="Search for a location..."
                                      className="Search-Icon"
