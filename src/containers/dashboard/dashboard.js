@@ -12,28 +12,9 @@ import City from '../../components/location/city';
 import Country from '../../components/location/country';
 import './dashboard.css';
 import Pressure from '../../components/weather/pressure';
-
-const models = [{
-    'id': 'GL',
-    'name': 'Global'
-}, {
-    'id': 'UK',
-    'name': 'UKV'
-}, {
-    'id': 'UE',
-    'name': 'MOGREPS-UK'
-}, {
-    'id': 'GE',
-    'name': 'MOGREPS-G'
-}];
+import Status from '../../components/weather/status';
 
 class Dashboard extends Component {
-    constructor() {
-        super();
-        this.state = {
-            selectedModel: models[0]
-        }
-    }
 
     componentDidMount() {
         this.props.requestForecast([this.props.selectedLocation.longitude, this.props.selectedLocation.latitude]);
@@ -54,26 +35,7 @@ class Dashboard extends Component {
             if (this.props.nextNotifications) appSyncNotification.message = this.props.nextNotifications.data.onCreateNotification.message;
             body = (
                 <Fragment>
-                    <div className="Status-Card">
-                        <div className="Favourites">
-                            <p>Favourite</p>
-                        </div>
-                        <div className="Models">
-                            {models.map((element, index) => {
-                                return (
-                                    <div className="Model"
-                                         key={index}
-                                         onClick={() => this.setState({
-                                             selectedModel: element
-                                         })}
-                                         style={{background: this.state.selectedModel.id === element.id && '#00CED1'}}
-                                         title={element.title}>
-                                        <p>{element.id}</p>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
+                    <Status/>
                     <div className="Location-Card">
                         <City value={this.props.selectedLocation.name}/>
                         <Country value={updateMessage}/>

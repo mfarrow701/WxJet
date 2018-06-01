@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import './admin.css';
+import Status from '../../components/weather/status';
 
 const states = ['#CC0033', '#FF9900', '#a3d700', 'transparent'];
 
@@ -38,6 +39,13 @@ class Admin extends Component {
                     vis_threshold: '2000',
                     wind_threshold: '12',
                     active_opmet: ['Groot']
+                },
+                {
+                    location: 'Heathrow Airport',
+                    cloud_threshold: '600',
+                    vis_threshold: '300',
+                    wind_threshold: '25',
+                    active_opmet: ['Rocket']
                 }
             ]
         }
@@ -49,43 +57,45 @@ class Admin extends Component {
         );
         return (
             <div className={'Admin ' + themeClass}>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Location</th>
-                        <th>Cloud threshold</th>
-                        <th>Visibility threshold</th>
-                        <th>Wind threshold</th>
-                        <th>Active OpMet</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.favourites.map((element, index) => {
-                        return (
-                            <tr key={index}>
-                                <td data-label="location">{element.location}</td>
-                                <td data-label="cloud-threshold"
-                                    style={{background: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
-                                <td data-label="vis-threshold"
-                                    style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.vis_threshold}</td>
-                                <td data-label="cloud-threshold"
-                                    style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
-                                <td data-label="active-opmet"
-                                    style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
-                                    {element.active_opmet.length !== 0 ? element.active_opmet.map((secondElement, secondIndex) => {
-                                        return <img
-                                            alt={secondElement}
-                                            src={require('../../core/assets/' + secondElement.split(' ').join('').toLowerCase() + '-icon.svg')}
-                                            key={secondElement}
-                                            title={secondElement}/>
-                                    }) : 'Inactive'}
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
-
+                <Status/>
+               <div className="Scroll-Container">
+                   <table>
+                       <thead>
+                       <tr>
+                           <th>Location</th>
+                           <th>Cloud threshold</th>
+                           <th>Visibility threshold</th>
+                           <th>Wind threshold</th>
+                           <th>Active OpMet</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       {this.state.favourites.map((element, index) => {
+                           return (
+                               <tr key={index}>
+                                   <td data-label="location">{element.location}</td>
+                                   <td data-label="cloud-threshold"
+                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
+                                   <td data-label="vis-threshold"
+                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.vis_threshold}</td>
+                                   <td data-label="cloud-threshold"
+                                       style={{borderTop: '5px solid ' + states[Math.floor(Math.random() * states.length)]}}>{element.cloud_threshold}</td>
+                                   <td data-label="active-opmet"
+                                       style={{backgroundColor: element.active_opmet.length === 0 && '#696969'}}>
+                                       {element.active_opmet.length !== 0 ? element.active_opmet.map((secondElement, secondIndex) => {
+                                           return <img
+                                               alt={secondElement}
+                                               src={require('../../core/assets/' + secondElement.split(' ').join('').toLowerCase() + '-icon.svg')}
+                                               key={secondElement}
+                                               title={secondElement}/>
+                                       }) : 'Inactive'}
+                                   </td>
+                               </tr>
+                           )
+                       })}
+                       </tbody>
+                   </table>
+               </div>
             </div>
         )
     }

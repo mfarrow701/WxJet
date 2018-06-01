@@ -1,0 +1,50 @@
+@import "../../core/variables.scss";
+
+.Status {
+  align-items:     center;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: space-between;
+  margin-bottom:   10px;
+
+  .Times {
+    background:         $colour-primary;
+    border:             none;
+    border-radius:      0;
+    color:              white;
+    font-size:          1rem;
+    height:             25px;
+    padding:            0 5px;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+
+    &::placeholder {
+      color: white;
+    }
+  }
+
+  .Models {
+    align-items:     center;
+    display:         flex;
+    flex-direction:  row;
+    justify-content: flex-end;
+
+    .Model {
+      align-items:     center;
+      background:      $colour-primary;
+      cursor:          pointer;
+      display:         flex;
+      height:          25px;
+      justify-content: center;
+      margin-left:     10px;
+      width:           25px;
+
+      p {
+        color:       white;
+        font-size:   1rem;
+        font-weight: 900;
+        margin:      0;
+      }
+    }
+  }
+}

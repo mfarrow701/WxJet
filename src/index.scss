@@ -52,6 +52,10 @@ p {
   margin-bottom: 1rem;
 }
 
+*:focus {
+  outline: 0 none;
+}
+
 table {
   font-size: 1.6rem;
 }
