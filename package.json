@@ -2,7 +2,6 @@
   "name": "wxjet",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mfarrow701.github.io/wxjet",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
@@ -12,17 +11,12 @@
     ]
   },
   "dependencies": {
-    "apollo-client": "^2.3.1",
-    "aws-appsync": "^1.0.20",
-    "aws-appsync-react": "^1.0.11",
+    "aws-amplify": "^0.4.3",
     "classnames": "^2.2.5",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "luxon": "^0.5.8",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
-    "react-apollo": "^2.1.4",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
@@ -32,7 +26,6 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
-    "socket.io-client": "^2.1.0",
     "suncalc": "^1.8.0"
   },
   "scripts": {

@@ -2,7 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {DateTime} from 'luxon';
-import {client} from '../../appSync';
+import {API, graphqlOperation} from 'aws-amplify';
 import CreateNotificationMutation from '../../queries/createNotification';
 import {forecastAPIRequest} from '../../actions/forecast.actions';
 import Loading from '../../components/loading/loading';
@@ -10,9 +10,9 @@ import Time from '../../components/time/time';
 import FlightRule from '../../components/weather/flight-rule';
 import City from '../../components/location/city';
 import Country from '../../components/location/country';
-import './dashboard.css';
 import Pressure from '../../components/weather/pressure';
 import Status from '../../components/weather/status';
+import './dashboard.css';
 
 class Dashboard extends Component {
 
@@ -113,10 +113,7 @@ class Dashboard extends Component {
             let message = 'Cloud threshold breach of 11000ft anticipated at ' + DateTime.local().toLocaleString(DateTime.TIME_24_SIMPLE),
                 states = ['#00CED1', '#FF8C00', '#FF1493'], state;
             state = states[Math.floor(Math.random() * states.length)];
-            client.mutate({
-                mutation: CreateNotificationMutation,
-                variables: {user_id: '4', message: message, state: state},
-            });
+            API.graphql(graphqlOperation(CreateNotificationMutation, {user_id: '4', message: message, state: state}));
         }, 500);
     };
 }

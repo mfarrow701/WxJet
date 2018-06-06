@@ -1,10 +1,7 @@
-import gql from 'graphql-tag';
-
-export default gql`
-query GetNotificationsQuery {
+export default `query GetNotificationsQuery {
     getNotifications {
-    id
-    message
-    state
+        id
+        message
+        state
   }
 }`;

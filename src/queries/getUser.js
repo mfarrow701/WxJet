@@ -1,11 +1,8 @@
-import gql from 'graphql-tag';
-
-export default gql`
-query GetUserQuery($id: ID!) {
+export default `query GetUserQuery($id: ID!) {
     getUser(id: $id) {
-    id
-    first_name
-    last_name
-    nickname
+        id
+        first_name
+        last_name
+        nickname
   }
 }`;

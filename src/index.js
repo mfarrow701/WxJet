@@ -5,13 +5,12 @@ import {Provider} from 'react-redux';
 import {routerMiddleware} from 'react-router-redux';
 import {applyMiddleware, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import Amplify from 'aws-amplify';
 import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
-import {ApolloProvider} from 'react-apollo';
-import {Rehydrated} from 'aws-appsync-react';
 import rootReducer from './reducers/rootReducer'
 import rootSaga from './sagas/root.saga';
-import {client} from './appSync';
+import {amplifyConfig} from './appConfig';
 import App from './app';
 import './index.css';
 
@@ -38,14 +37,12 @@ store.subscribe(() => {
 
 sagaMiddleware.run(rootSaga);
 
+Amplify.configure(amplifyConfig);
+
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <Rehydrated>
-            <Provider store={store}>
-                <App history={history}/>
-            </Provider>
-        </Rehydrated>
-    </ApolloProvider>,
+    <Provider store={store}>
+        <App history={history}/>
+    </Provider>,
     rootElement
 );
 registerServiceWorker();

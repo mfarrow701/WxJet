@@ -82,6 +82,17 @@ git clone ssh://git@github.com:mfarrow701/wxjet.git
 # Install dependencies
 yarn install
 
+# Create and add the following properties to an .env file for authentication with AWS
+REACT_APP_APPSYNC_ENDPOINT
+REACT_APP_APPSYNC_REGION
+REACT_APP_APPSYNC_AUTHENTICATION_TYPE
+REACT_APP_APPSYNC_API_KEY
+
+REACT_APP_AUTH_REGION
+REACT_APP_AUTH_POOL_ID
+REACT_APP_AUTH_WEB_CLIENT_ID
+REACT_APP_AUTH_MANDATORY_SIGN_IN
+
 # Run the application
 yarn start
 ```

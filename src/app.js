@@ -3,9 +3,7 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
-import {client} from './appSync'
-import {locationSelected} from './actions/location.actions';
+import {API, graphqlOperation} from 'aws-amplify';
 import {notificationsSubscriptionError, notificationsSubscriptionNext} from './actions/notification.actions';
 import Authentication from './containers/authentication/authentication';
 import Dashboard from './containers/dashboard/dashboard';
@@ -15,12 +13,19 @@ import Settings from './containers/settings/settings';
 import XSection from './containers/x-section/x-section';
 import NotFound from './containers/not-found/not-found';
 import Search from './components/location/search';
-import Logo from './core/assets/logo.svg';
+import AuthGuard from './routing/authGuard';
+import {
+    AUTH_ROUTE,
+    DASHBOARD_ROUTE,
+    ADMIN_ROUTE,
+    PROFILE_ROUTE,
+    X_SECTION_ROUTE,
+    SETTINGS_ROUTE
+} from './routing/routes';
 import OnCreationNotificationSubscription from './queries/onCreateNotification';
-import GetUserQuery from './queries/getUser';
 import './app.css';
-
-let users = ['1', '2', '3', '4'];
+import Header from './components/core/header/header';
+import Footer from './components/core/footer/footer';
 
 class App extends Component {
     logoMessage = 'WxJet';
@@ -34,97 +39,57 @@ class App extends Component {
     }
 
     componentDidMount() {
-        let mockUser = users[Math.floor(Math.random() * users.length)];
-        client.query({
-            query: GetUserQuery,
-            variables: {id: mockUser}
-        }).then((user) => {
-            let subscribedUser = user.data.getUser;
-            this.setState({
-                appLoaded: true,
-                user: subscribedUser
-            });
-            this.subscribeToAppSyncNotifications(subscribedUser.id);
-        }).catch(error => {
-            this.setState({
-                appLoaded: true
-            })
-        });
+        this.setState({
+            appLoaded: true
+        })
     }
 
-    componentWillUnmount() {
-        if (!this.state.user) {
-            this.unsubscribeFromAppSyncNotificiations();
-        }
-    }
+    // componentDidMount() {
+    //     Auth.signIn('mfarrow', 'Test1234')
+    //         .then(user => {
+    //             let userDetails = user.challengeParam.userAttributes;
+    //             userDetails['user_id'] = users[Math.floor(Math.random() * users.length)];
+    //             this.setState({
+    //                 appLoaded: true,
+    //                 user: userDetails
+    //             });
+    //             this.subscribeToAppSyncNotifications(userDetails.id);
+    //         })
+    //         .catch(error => {
+    //             this.setState({
+    //                 appLoaded: true
+    //             })
+    //         });
+    // }
+    //
+    // componentWillUnmount() {
+    //     if (!this.state.user) {
+    //         this.unsubscribeFromAppSyncNotificiations();
+    //     }
+    // }
 
     render() {
         if (this.state.appLoaded) {
-            const theme = this.props.themeIsDark ? 'Dark' : 'Light',
-                themeClass = classNames(theme);
             return (
                 <ConnectedRouter history={this.props.history}>
                     <div className="App">
-                        <header className={themeClass}>
-                            <img alt={this.logoMessage}
-                                 className="Logo"
-                                 onClick={() => this.handleNavigationClick('/')}
-                                 src={Logo}
-                                 title={this.logoMessage}/>
-                            <div className="Secondary">
-                                {this.state.user &&
-                                <img alt={this.state.user.nickname}
-                                     className="Profile-Icon"
-                                     src={require('./core/assets/' + this.state.user.nickname.split(' ').join('').toLowerCase() + '-icon.svg')}
-                                     title={this.state.user.nickname}/>}
-                                {this.props.selectedLocation !== null &&
-                                <img alt="Search for a location..."
-                                     className="Search-Icon"
-                                     onClick={this.props.clearLocation}
-                                     src={require('./core/assets/search-icon-' + theme.toLowerCase() + '.svg')}
-                                     title="Search for a location..."/> }
-                            </div>
-                        </header>
+                        <Header/>
                         <main>
                             {this.props.selectedLocation === null ? (
                                 <Search />
                             ) : (
                                 <Switch>
-                                    <Route exact path="/" component={Dashboard}/>
-                                    <Route path="/dashboard" component={Dashboard}/>
-                                    <Route path="/admin" component={Admin}/>
-                                    <Route path="/profile" component={Profile}/>
-                                    <Route path="/authenticate" component={Authentication}/>
-                                    <Route path="/x-section" component={XSection}/>
-                                    <Route path="/settings" component={Settings}/>
+                                    <Route path={AUTH_ROUTE} component={Authentication}/>
+                                    <AuthGuard exact path={DASHBOARD_ROUTE} component={Dashboard}/>
+                                    <AuthGuard path={ADMIN_ROUTE} component={Admin}/>
+                                    <AuthGuard path={PROFILE_ROUTE} component={Profile}/>
+                                    <AuthGuard path={X_SECTION_ROUTE} component={XSection}/>
+                                    <AuthGuard path={SETTINGS_ROUTE} component={Settings}/>
                                     <Route component={NotFound}/>
                                 </Switch>
                             )}
                         </main>
-                        <footer className={themeClass}>
-                            <button onClick={() => this.handleNavigationClick('/dashboard')}>
-                                <img alt="Home" src={require('./core/assets/home-icon-' + theme.toLowerCase() + '.svg')}
-                                     title="Home"/>
-                            </button>
-                            <button onClick={() => this.handleNavigationClick('/admin')}>
-                                Admin
-                            </button>
-                            <button onClick={() => this.handleNavigationClick('/profile')}>
-                                <img alt="Profile"
-                                     src={require('./core/assets/profile-icon-' + theme.toLowerCase() + '.svg')}
-                                     title="Profile"/>
-                            </button>
-                            <button onClick={() => this.handleNavigationClick('/x-section')}>
-                                <img alt="X-Section"
-                                     src={require('./core/assets/chart-icon-' + theme.toLowerCase() + '.svg')}
-                                     title="X-Section"/>
-                            </button>
-                            <button onClick={() => this.handleNavigationClick('/settings')}>
-                                <img alt="Settings"
-                                     src={require('./core/assets/more-icon-' + theme.toLowerCase() + '.svg')}
-                                     title="Settings"/>
-                            </button>
-                        </footer>
+                        <Footer/>
                     </div>
                 </ConnectedRouter>
             )
@@ -133,20 +98,11 @@ class App extends Component {
         }
     }
 
-    handleNavigationClick(route) {
-        if (route !== this.props.history.location.pathname) {
-            this.props.history.push(route);
-        }
-    }
-
     subscribeToAppSyncNotifications(userId) {
-        this.notificationsHandler = client.subscribe({
-            query: OnCreationNotificationSubscription,
-            variables: {user_id: userId}
-        }).subscribe({
+        this.notificationsHandler = API.graphql(graphqlOperation(OnCreationNotificationSubscription, {user_id: userId})).subscribe({
             next: this.props.dispatchNextNotification,
             error: this.props.dispatchNotificationError
-        })
+        });
     }
 
     unsubscribeFromAppSyncNotificiations() {
@@ -156,15 +112,13 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        selectedLocation: state.locationsReducer.selectedLocation,
-        themeIsDark: state.settings.themeIsDark
+        selectedLocation: state.locationsReducer.selectedLocation
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearLocation: location => dispatch(locationSelected(null)),
-        dispatchNextNotification: payload => dispatch(notificationsSubscriptionNext(payload)),
+        dispatchNextNotification: payload => dispatch(notificationsSubscriptionNext(payload.value)),
         dispatchNotificationError: error => dispatch(notificationsSubscriptionError(error))
     };
 };

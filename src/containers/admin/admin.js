@@ -2,8 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import './admin.css';
 import Status from '../../components/weather/status';
+import './admin.css';
 
 const states = ['#CC0033', '#FF9900', '#a3d700', 'transparent'];
 
@@ -18,14 +18,14 @@ class Admin extends Component {
                     cloud_threshold: '700',
                     vis_threshold: '9999',
                     wind_threshold: '15',
-                    active_opmet: ['Groot', 'Rocket']
+                    active_opmet: ['User2', 'User1']
                 },
                 {
                     location: 'Exeter Airport',
                     cloud_threshold: '2000',
                     vis_threshold: '7000',
                     wind_threshold: '17',
-                    active_opmet: ['Captain America', 'Starlord']
+                    active_opmet: ['User4', 'User3']
                 },
                 {
                     location: 'Newquay Airport',
@@ -39,18 +39,19 @@ class Admin extends Component {
                     cloud_threshold: '500',
                     vis_threshold: '2000',
                     wind_threshold: '12',
-                    active_opmet: ['Groot']
+                    active_opmet: ['User2']
                 },
                 {
                     location: 'Heathrow Airport',
                     cloud_threshold: '600',
                     vis_threshold: '300',
                     wind_threshold: '25',
-                    active_opmet: ['Rocket']
+                    active_opmet: ['User1']
                 }
             ]
         }
     }
+
 
     render() {
         const themeClass = classNames(

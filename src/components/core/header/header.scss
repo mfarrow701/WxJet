@@ -1,0 +1,46 @@
+@import "../../../core/variables.scss";
+
+header {
+  align-items:     center;
+  display:         flex;
+  grid-area:       header;
+  justify-content: space-between;
+  padding:         0 20px;
+  text-align:      center;
+  transition:      0.5s;
+
+  &.Dark {
+    background-color: $background-primary;
+  }
+
+  &.Light {
+    background-color: $background-secondary;
+  }
+
+  .Logo {
+    cursor: pointer;
+    height: 30px;
+  }
+
+  .Secondary {
+    align-items:    center;
+    display:        flex;
+    flex-direction: row;
+
+    h6 {
+      margin:        0;
+      padding-right: 10px;
+    }
+
+    .Profile-Icon {
+      cursor:        pointer;
+      height:        25px;
+      padding-right: 10px;
+    }
+
+    .Search-Icon {
+      cursor: pointer;
+      height: 25px;
+    }
+  }
+}
